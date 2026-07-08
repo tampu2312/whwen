@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOGEL ON — Command Center</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root{--bg-deep:#07070c;--bg-surface:rgba(10,10,18,0.88);--bg-surface-solid:#0c0c16;--bg-card:rgba(18,18,32,0.75);--bg-card-hover:rgba(28,28,46,0.8);--border:rgba(40,40,65,0.6);--accent:#00e5a0;--accent-dim:#00b87e;--accent-glow:rgba(0,229,160,0.12);--accent2:#00c9db;--text-primary:#eaf5f0;--text-secondary:#8a9a9e;--text-muted:#506068;--success:#00e5a0;--warning:#fbbf24;--danger:#ff4757;--info:#00c9db}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body,.login-gate,.app-layout,.sidebar,.main-content,.topbar,.dashboard-scroll,.stat-card,.quick-card,.activity-item,.login-card,.nav-item,.nav-label,.nav-icon,.stat-card-value,.stat-card-label,.quick-card-title,.quick-card-desc,.activity-text,.welcome-title,.welcome-sub,.section-title,.section-subtitle{user-select:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none}
+    .login-input{user-select:text;-webkit-user-select:text}
+    body{font-family:'Space Grotesk',sans-serif;color:var(--text-primary);overflow:hidden;height:100vh}
+
+    .bg-image{position:fixed;inset:0;z-index:0;background:url('https://cdn.areabermain.club/assets/cdn/az7/2026/06/13/20260613/6440b79d16d7215decaa0bf5a2f9f1a0/8e35011e-6793-4bfc-ba03-ac317c74beca.png') center center/cover no-repeat}
+    .bg-image::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,7,12,0.82) 0%,rgba(7,7,12,0.7) 40%,rgba(7,7,12,0.85) 100%),linear-gradient(135deg,rgba(0,229,160,0.04) 0%,transparent 50%)}
+    .bg-grid{position:fixed;inset:0;z-index:1;pointer-events:none;background-image:linear-gradient(rgba(0,229,160,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,160,0.015) 1px,transparent 1px);background-size:60px 60px;animation:gridMove 25s linear infinite}
+    @keyframes gridMove{to{transform:translate(60px,60px)}}
+    .bg-glow-1{position:fixed;width:500px;height:500px;background:radial-gradient(circle,rgba(0,229,160,0.06),transparent 70%);border-radius:50%;top:-150px;right:-100px;z-index:1;animation:floatG1 12s ease-in-out infinite;pointer-events:none}
+    .bg-glow-2{position:fixed;width:400px;height:400px;background:radial-gradient(circle,rgba(0,201,219,0.04),transparent 70%);border-radius:50%;bottom:-100px;left:200px;z-index:1;animation:floatG2 15s ease-in-out infinite;pointer-events:none}
+    @keyframes floatG1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-40px,30px) scale(1.1)}}
+    @keyframes floatG2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-40px) scale(1.15)}}
+
+    /* Login Gate */
+    .login-gate{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .8s ease,visibility .8s ease}
+    .login-gate.unlocked{opacity:0;visibility:hidden;pointer-events:none}
+    .login-bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,160,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,160,0.02) 1px,transparent 1px);background-size:80px 80px;animation:gridDrift 25s linear infinite}
+    @keyframes gridDrift{to{transform:translate(80px,80px)}}
+    .login-glow-1{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(0,229,160,0.08),transparent 65%);border-radius:50%;top:-200px;left:-150px;animation:lglow1 14s ease-in-out infinite}
+    .login-glow-2{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(0,201,219,0.06),transparent 65%);border-radius:50%;bottom:-200px;right:-100px;animation:lglow2 18s ease-in-out infinite}
+    .login-glow-3{position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(0,229,160,0.05),transparent 70%);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);animation:lglow3 10s ease-in-out infinite}
+    @keyframes lglow1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,20px) scale(1.15)}}
+    @keyframes lglow2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-20px,-30px) scale(1.1)}}
+    @keyframes lglow3{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6}50%{transform:translate(-50%,-50%) scale(1.3);opacity:1}}
+
+    .login-card{position:relative;z-index:2;background:rgba(10,10,18,0.9);backdrop-filter:blur(30px);border:1px solid rgba(0,229,160,0.15);border-radius:24px;padding:48px 44px 40px;width:420px;max-width:92vw;box-shadow:0 0 80px rgba(0,229,160,0.06),0 30px 60px rgba(0,0,0,0.5);animation:cardFloat 6s ease-in-out infinite}
+    @keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+    .login-card::before{content:'';position:absolute;inset:-1px;border-radius:25px;z-index:-1;background:conic-gradient(from 180deg,rgba(0,229,160,0.3),transparent 25%,transparent 75%,rgba(0,201,219,0.3));animation:borderSpin 8s linear infinite}
+    @keyframes borderSpin{to{transform:rotate(360deg)}}
+    .login-logo-area{text-align:center;margin-bottom:32px}
+    .login-logo-img{height:52px;margin-bottom:16px;filter:drop-shadow(0 0 20px rgba(0,229,160,0.3))}
+    .login-brand-name{font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:6px;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:4px}
+    .login-brand-sub{font-size:11px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase}
+    .login-divider{height:1px;margin:24px 0;background:linear-gradient(to right,transparent,var(--border),rgba(0,229,160,0.2),var(--border),transparent)}
+    .login-field-label{font-size:11px;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+    .login-input-wrap{position:relative;margin-bottom:20px}
+    .login-input-wrap .field-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:14px;transition:color .3s;pointer-events:none}
+    .login-input{width:100%;padding:14px 48px 14px 44px;background:var(--bg-deep);border:1px solid var(--border);border-radius:12px;color:var(--text-primary);font-family:'JetBrains Mono',monospace;font-size:14px;outline:none;transition:all .3s}
+    .login-input::placeholder{color:var(--text-muted);font-size:12px}
+    .login-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow),0 0 20px var(--accent-glow)}
+    .login-toggle-pw{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:14px;transition:color .2s}
+    .login-toggle-pw:hover{color:var(--accent)}
+    .login-error{font-size:12px;color:var(--danger);margin-bottom:16px;min-height:18px;transition:all .3s;display:flex;align-items:center;gap:6px}
+    .login-error.hidden{opacity:0}
+    .login-btn{width:100%;padding:15px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--bg-deep);font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:1px;text-transform:uppercase;transition:all .3s;position:relative;overflow:hidden}
+    .login-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,229,160,0.35)}
+    .login-btn:active{transform:translateY(0)}
+    .login-btn.loading{pointer-events:none;opacity:.7}
+    .btn-shimmer{position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);animation:shimmer 2.5s infinite}
+    @keyframes shimmer{0%{left:-100%}100%{left:100%}}
+    .login-footer{text-align:center;margin-top:24px;font-size:11px;color:var(--text-muted)}
+    .login-footer span{color:var(--accent)}
+    .login-attempts{text-align:center;margin-top:12px;font-size:10px;color:var(--text-muted);font-family:'JetBrains Mono',monospace;min-height:16px}
+    @keyframes shake{0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-4px)}20%,40%,60%,80%{transform:translateX(4px)}}
+    .shake{animation:shake .5s ease}
+    #login-particles{position:absolute;inset:0;z-index:1;pointer-events:none}
+
+    /* Dashboard */
+    .app-layout{display:flex;height:100vh;position:relative;z-index:2}
+    .sidebar{width:280px;min-width:280px;background:var(--bg-surface);backdrop-filter:blur(20px);border-right:1px solid var(--border);display:flex;flex-direction:column;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+    .sidebar::after{content:'';position:absolute;top:0;right:0;width:1px;height:100%;background:linear-gradient(to bottom,var(--accent),transparent 30%,transparent 70%,var(--accent2));opacity:.2}
+    .sidebar.collapsed{width:72px;min-width:72px}
+    .sidebar-header{padding:20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;min-height:72px}
+    .logo-icon-sm{width:36px;height:36px;border-radius:10px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+    .logo-icon-sm img{height:28px;object-fit:contain;filter:drop-shadow(0 0 8px rgba(0,229,160,0.4))}
+    .logo-text{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;letter-spacing:1px;white-space:nowrap;overflow:hidden;transition:opacity .3s;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .sidebar.collapsed .logo-text,.sidebar.collapsed .nav-label,.sidebar.collapsed .nav-badge,.sidebar.collapsed .user-info{opacity:0;width:0;overflow:hidden}
+    .nav-section{padding:16px 12px;flex:1;overflow-y:auto}
+    .nav-section::-webkit-scrollbar{width:4px}
+    .nav-section::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+    .nav-group-label{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted);padding:8px 12px 6px;font-family:'JetBrains Mono',monospace}
+    .nav-item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;cursor:pointer;transition:all .25s ease;margin-bottom:2px;position:relative;border:1px solid transparent}
+    .nav-item:hover{background:var(--bg-card);border-color:var(--border)}
+    .nav-item.active{background:var(--accent-glow);border-color:rgba(0,229,160,0.2)}
+    .nav-item.active::before{content:'';position:absolute;left:-12px;top:50%;transform:translateY(-50%);width:3px;height:20px;background:var(--accent);border-radius:0 3px 3px 0}
+    .nav-icon{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:8px;font-size:14px;flex-shrink:0;transition:all .25s}
+    .nav-item.active .nav-icon{color:var(--accent);background:rgba(0,229,160,0.1)}
+    .nav-item:not(.active) .nav-icon{color:var(--text-secondary);background:var(--bg-card)}
+    .nav-item:hover:not(.active) .nav-icon{color:var(--text-primary)}
+    .nav-label{font-size:13px;font-weight:500;white-space:nowrap;transition:opacity .3s}
+    .nav-badge{margin-left:auto;background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--bg-deep);font-size:9px;font-weight:700;padding:2px 6px;border-radius:5px;font-family:'JetBrains Mono',monospace;transition:opacity .3s}
+    .sidebar-footer{padding:16px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px}
+    .user-avatar{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#0e1a20,#1a2a30);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--accent);flex-shrink:0;border:1px solid var(--border)}
+    .user-info{overflow:hidden;transition:opacity .3s}
+    .user-name{font-size:13px;font-weight:600}
+    .user-role{font-size:11px;color:var(--text-muted)}
+
+    .main-content{flex:1;display:flex;flex-direction:column;overflow:hidden}
+    .topbar{height:64px;background:var(--bg-surface);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:16px;flex-shrink:0}
+    .topbar-toggle{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--bg-card);border:1px solid var(--border);color:var(--text-secondary);cursor:pointer;transition:all .2s;font-size:14px}
+    .topbar-toggle:hover{color:var(--accent);border-color:rgba(0,229,160,0.3)}
+    .topbar-title{font-size:15px;font-weight:600}
+    .topbar-breadcrumb{font-size:12px;color:var(--text-muted);font-family:'JetBrains Mono',monospace}
+    .topbar-spacer{flex:1}
+    .topbar-clock{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-secondary);background:var(--bg-card);padding:6px 12px;border-radius:8px;border:1px solid var(--border)}
+    .topbar-action{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:transparent;border:1px solid var(--border);color:var(--text-secondary);cursor:pointer;transition:all .2s;font-size:14px;position:relative}
+    .topbar-action:hover{color:var(--accent);border-color:rgba(0,229,160,0.3);background:var(--accent-glow)}
+    .topbar-action .notif-dot{position:absolute;top:6px;right:6px;width:7px;height:7px;background:var(--danger);border-radius:50%;border:2px solid var(--bg-surface-solid)}
+    .topbar-logout{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;background:transparent;border:1px solid var(--border);color:var(--text-secondary);cursor:pointer;transition:all .2s;font-size:12px;font-family:'Space Grotesk',sans-serif;font-weight:500}
+    .topbar-logout:hover{color:var(--danger);border-color:rgba(255,71,87,0.3);background:rgba(255,71,87,0.08)}
+
+    .page-content{flex:1;overflow:hidden;position:relative}
+    .page-panel{position:absolute;inset:0;opacity:0;visibility:hidden;transition:all .4s cubic-bezier(.4,0,.2,1);transform:translateY(8px);display:flex;flex-direction:column}
+    .page-panel.active{opacity:1;visibility:visible;transform:translateY(0)}
+    .dashboard-scroll{flex:1;overflow-y:auto;padding:28px}
+    .dashboard-scroll::-webkit-scrollbar{width:6px}
+    .dashboard-scroll::-webkit-scrollbar-track{background:transparent}
+    .dashboard-scroll::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+    .welcome-section{margin-bottom:28px}
+    .welcome-title{font-size:28px;font-weight:800;letter-spacing:-1px;margin-bottom:6px}
+    .welcome-title span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .welcome-sub{color:var(--text-secondary);font-size:14px}
+    .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px}
+    .stat-card{background:var(--bg-card);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:14px;padding:18px;position:relative;overflow:hidden;cursor:pointer;transition:all .3s ease}
+    .stat-card:hover{border-color:rgba(0,229,160,0.3);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,0.3)}
+    .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:14px 14px 0 0}
+    .stat-card:nth-child(1)::before{background:linear-gradient(90deg,var(--accent),var(--accent2))}
+    .stat-card:nth-child(2)::before{background:var(--accent2)}
+    .stat-card:nth-child(3)::before{background:var(--success)}
+    .stat-card:nth-child(4)::before{background:var(--warning)}
+    .stat-card:nth-child(5)::before{background:#a855f7}
+    .stat-card:nth-child(6)::before{background:#f97316}
+    .stat-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+    .stat-card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px}
+    .stat-card:nth-child(1) .stat-card-icon{background:rgba(0,229,160,0.1);color:var(--accent)}
+    .stat-card:nth-child(2) .stat-card-icon{background:rgba(0,201,219,0.1);color:var(--accent2)}
+    .stat-card:nth-child(3) .stat-card-icon{background:rgba(0,229,160,0.1);color:var(--success)}
+    .stat-card:nth-child(4) .stat-card-icon{background:rgba(251,191,36,0.1);color:var(--warning)}
+    .stat-card:nth-child(5) .stat-card-icon{background:rgba(168,85,247,0.1);color:#a855f7}
+    .stat-card:nth-child(6) .stat-card-icon{background:rgba(249,115,22,0.1);color:#f97316}
+    .stat-card-status{font-size:10px;font-family:'JetBrains Mono',monospace;padding:3px 8px;border-radius:6px;font-weight:600}
+    .status-live{background:rgba(0,229,160,0.12);color:var(--success)}
+    .stat-card-value{font-size:18px;font-weight:700;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+    .stat-card-label{font-size:11px;color:var(--text-muted)}
+    .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+    .section-title{font-size:16px;font-weight:600;letter-spacing:-.3px}
+    .section-subtitle{font-size:12px;color:var(--text-muted)}
+    .quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px}
+    .quick-card{background:var(--bg-card);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:14px;padding:22px;cursor:pointer;transition:all .35s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+    .quick-card:hover{border-color:rgba(0,229,160,0.3);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.4)}
+    .quick-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;position:relative;z-index:1}
+    .quick-card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px}
+    .quick-card:nth-child(1) .quick-card-icon{background:linear-gradient(135deg,rgba(0,229,160,0.15),rgba(0,229,160,0.03));color:var(--accent)}
+    .quick-card:nth-child(2) .quick-card-icon{background:linear-gradient(135deg,rgba(0,201,219,0.15),rgba(0,201,219,0.03));color:var(--accent2)}
+    .quick-card:nth-child(3) .quick-card-icon{background:linear-gradient(135deg,rgba(0,229,160,0.15),rgba(0,229,160,0.03));color:var(--success)}
+    .quick-card:nth-child(4) .quick-card-icon{background:linear-gradient(135deg,rgba(251,191,36,0.15),rgba(251,191,36,0.03));color:var(--warning)}
+    .quick-card:nth-child(5) .quick-card-icon{background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(168,85,247,0.03));color:#a855f7}
+    .quick-card:nth-child(6) .quick-card-icon{background:linear-gradient(135deg,rgba(249,115,22,0.15),rgba(249,115,22,0.03));color:#f97316}
+    .quick-card-arrow{width:30px;height:30px;border-radius:8px;background:rgba(10,10,18,0.6);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:11px;transition:all .3s}
+    .quick-card:hover .quick-card-arrow{color:var(--accent);background:var(--accent-glow);transform:translate(2px,-2px)}
+    .quick-card-title{font-size:15px;font-weight:600;margin-bottom:5px;position:relative;z-index:1}
+    .quick-card-desc{font-size:11px;color:var(--text-secondary);line-height:1.6;position:relative;z-index:1}
+    .quick-card-url{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-muted);background:rgba(10,10,18,0.6);padding:5px 8px;border-radius:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;position:relative;z-index:1;border:1px solid rgba(40,40,65,0.4)}
+    .activity-section{margin-bottom:28px}
+    .activity-list{background:var(--bg-card);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+    .activity-item{display:flex;align-items:center;gap:14px;padding:12px 20px;border-bottom:1px solid var(--border);transition:background .2s}
+    .activity-item:last-child{border-bottom:none}
+    .activity-item:hover{background:var(--bg-card-hover)}
+    .activity-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+    .activity-dot.online{background:var(--success);box-shadow:0 0 8px rgba(0,229,160,0.5)}
+    .activity-text{flex:1;font-size:13px}
+    .activity-text strong{color:var(--text-primary);font-weight:600}
+    .activity-time{font-size:11px;color:var(--text-muted);font-family:'JetBrains Mono',monospace}
+
+    .iframe-topbar{height:44px;background:var(--bg-surface);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 16px;gap:10px;flex-shrink:0}
+    .iframe-url-bar{flex:1;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:6px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-secondary);display:flex;align-items:center;gap:8px;overflow:hidden}
+    .iframe-url-bar i{color:var(--success);font-size:10px;flex-shrink:0}
+    .iframe-url-bar span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .iframe-btn{width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:6px;background:transparent;border:1px solid var(--border);color:var(--text-secondary);cursor:pointer;transition:all .2s;font-size:12px}
+    .iframe-btn:hover{color:var(--accent);border-color:rgba(0,229,160,0.3)}
+    .iframe-btn.open-external{width:auto;padding:0 12px;font-size:11px;gap:6px;font-family:'Space Grotesk',sans-serif;font-weight:500;text-decoration:none;display:flex;align-items:center}
+    .iframe-wrapper{flex:1;position:relative;overflow:hidden}
+    .iframe-wrapper iframe{width:100%;height:100%;border:none;background:#fff}
+    .iframe-loading{position:absolute;inset:0;background:var(--bg-deep);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;z-index:5;transition:opacity .5s}
+    .iframe-loading.hidden{opacity:0;pointer-events:none}
+    .loader-ring{width:48px;height:48px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .loader-text{font-size:13px;color:var(--text-secondary);font-family:'JetBrains Mono',monospace}
+    .iframe-fallback{position:absolute;inset:0;background:var(--bg-deep);display:none;flex-direction:column;align-items:center;justify-content:center;gap:20px;z-index:6;padding:40px}
+    .iframe-fallback.visible{display:flex}
+    .fallback-icon-wrap{width:88px;height:88px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:36px;position:relative}
+    .fallback-icon-wrap::before{content:'';position:absolute;inset:-4px;border-radius:24px;background:conic-gradient(from 0deg,var(--accent),transparent 60%,var(--accent2));animation:rotateBorder 4s linear infinite;opacity:.4;z-index:-1}
+    @keyframes rotateBorder{to{transform:rotate(360deg)}}
+    .fallback-title{font-size:20px;font-weight:700;text-align:center}
+    .fallback-desc{font-size:13px;color:var(--text-secondary);text-align:center;max-width:440px;line-height:1.7}
+    .fallback-url{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);background:var(--bg-card);padding:10px 18px;border-radius:10px;border:1px solid var(--border);max-width:500px;width:100%;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .fallback-actions{display:flex;gap:12px;margin-top:8px;flex-wrap:wrap;justify-content:center}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;background:linear-gradient(135deg,var(--accent),var(--accent2));color:var(--bg-deep);border:none;cursor:pointer;text-decoration:none;transition:all .25s;font-family:'Space Grotesk',sans-serif}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,229,160,0.35)}
+    .btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:600;background:transparent;color:var(--text-primary);border:1px solid var(--border);cursor:pointer;text-decoration:none;transition:all .25s;font-family:'Space Grotesk',sans-serif}
+    .btn-secondary:hover{border-color:rgba(0,229,160,0.3);color:var(--accent);background:var(--accent-glow)}
+    .fallback-reason{font-size:11px;color:var(--text-muted);text-align:center;font-family:'JetBrains Mono',monospace;background:var(--bg-card);padding:8px 16px;border-radius:8px;border:1px dashed var(--border);max-width:500px}
+
+    .toast-container{position:fixed;bottom:24px;right:24px;z-index:10000;display:flex;flex-direction:column;gap:8px}
+    .toast{background:var(--bg-card);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:10px;padding:12px 18px;display:flex;align-items:center;gap:10px;font-size:13px;box-shadow:0 8px 30px rgba(0,0,0,0.5);animation:toastIn .35s ease;min-width:260px}
+    .toast.leaving{animation:toastOut .3s ease forwards}
+    @keyframes toastIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes toastOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(40px)}}
+    .toast-icon{font-size:16px}
+    .toast-icon.success{color:var(--success)}.toast-icon.warning{color:var(--warning)}.toast-icon.info{color:var(--info)}
+
+    @media(max-width:1024px){.stat-grid,.quick-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:768px){.sidebar{position:fixed;left:0;top:0;height:100vh;z-index:100;transform:translateX(-100%)}.sidebar.mobile-open{transform:translateX(0)}.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:99}.sidebar-overlay.active{display:block}.stat-grid,.quick-grid{grid-template-columns:1fr}.dashboard-scroll{padding:20px 16px}}
+    @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+    .pulse-anim{animation:pulse-dot 2s ease-in-out infinite}
+    #particle-canvas{position:fixed;inset:0;z-index:1;pointer-events:none}
+  </style>
+</head>
+<body>
+
+  <div class="bg-image"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-glow-1"></div>
+  <div class="bg-glow-2"></div>
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- LOGIN GATE -->
+  <div class="login-gate" id="loginGate">
+    <div class="login-bg-grid"></div>
+    <div class="login-glow-1"></div>
+    <div class="login-glow-2"></div>
+    <div class="login-glow-3"></div>
+    <canvas id="login-particles"></canvas>
+    <div class="login-card" id="loginCard">
+      <div class="login-logo-area">
+        <img src="https://z-cdn-media.chatglm.cn/files/7a582b4e-b87d-4ded-8d89-270eee9f4787.png?auth_key=1883517696-75e63024d62141a783b7e54f73b5559e-0-7f7cd734252b2961ac954b55a168d03a" alt="TOGEL ON" class="login-logo-img" onerror="this.style.display='none';document.getElementById('logoFallbackText').style.display='block';">
+        <div id="logoFallbackText" style="display:none;font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:800;letter-spacing:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">TOGEL ON</div>
+        <div class="login-brand-name">TAMPU</div>
+        <div class="login-brand-sub">ITS WITHT WHEN</div>
+      </div>
+      <div class="login-divider"></div>
+      <div class="login-field-label"><i class="fas fa-key" style="font-size:10px;color:var(--accent)"></i> Kunci Akses</div>
+      <div class="login-input-wrap">
+        <input type="password" class="login-input" id="loginPassword" placeholder="Masukkan kunci akses..." autocomplete="off" spellcheck="false">
+        <i class="fas fa-key field-icon"></i>
+        <button class="login-toggle-pw" id="togglePwBtn" type="button"><i class="fas fa-eye" id="pwToggleIcon"></i></button>
+      </div>
+      <div class="login-error hidden" id="loginError"><i class="fas fa-exclamation-circle"></i><span id="loginErrorText"></span></div>
+      <button class="login-btn" id="loginBtn"><span class="btn-shimmer"></span><i class="fas fa-lock-open" style="margin-right:6px"></i> MASUK</button>
+      <div class="login-footer">Powered by <span>TOGEL ON</span> &mdash; Secure Gateway v2.0</div>
+      <div class="login-attempts" id="loginAttempts"></div>
+    </div>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- APP LAYOUT -->
+  <div class="app-layout" id="appLayout" style="opacity:0;transition:opacity .6s ease .3s;">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-icon-sm"><img src="https://z-cdn-media.chatglm.cn/files/7a582b4e-b87d-4ded-8d89-270eee9f4787.png?auth_key=1883517696-75e63024d62141a783b7e54f73b5559e-0-7f7cd734252b2961ac954b55a168d03a" alt="T" onerror="this.outerHTML='<div style=\'color:var(--accent);font-weight:800;font-size:16px\'>T</div>'"></div>
+        <div class="logo-text">TOGEL ON</div>
+      </div>
+      <nav class="nav-section">
+        <div class="nav-group-label">Menu Utama</div>
+        <div class="nav-item active" data-page="home" onclick="switchPage('home')"><div class="nav-icon"><i class="fas fa-th-large"></i></div><span class="nav-label">Dashboard</span></div>
+        <div class="nav-item" data-page="linkcek" onclick="switchPage('linkcek')"><div class="nav-icon"><i class="fas fa-link"></i></div><span class="nav-label">Link Cek</span><span class="nav-badge">LIVE</span></div>
+        <div class="nav-item" data-page="deloc" onclick="switchPage('deloc')"><div class="nav-icon"><i class="fas fa-mobile-alt"></i></div><span class="nav-label">CATATAN & REPORT</span><span class="nav-badge">LIVE</span></div>
+        <div class="nav-item" data-page="qris" onclick="switchPage('qris')"><div class="nav-icon"><i class="fas fa-qrcode"></i></div><span class="nav-label">QRIS & Pinjaman</span><span class="nav-badge">LIVE</span></div>
+        <div class="nav-group-label" style="margin-top:14px">Layanan Premium</div>
+        <div class="nav-item" data-page="bola" onclick="switchPage('bola')"><div class="nav-icon"><i class="fas fa-futbol"></i></div><span class="nav-label">SCHORCAT Bola</span><span class="nav-badge">LIVE</span></div>
+        <div class="nav-item" data-page="result" onclick="switchPage('result')"><div class="nav-icon"><i class="fas fa-trophy"></i></div><span class="nav-label">Result Togel</span><span class="nav-badge">LIVE</span></div>
+        <div class="nav-item" data-page="bank" onclick="switchPage('bank')"><div class="nav-icon"><i class="fas fa-university"></i></div><span class="nav-label">Jam Bank</span><span class="nav-badge">LIVE</span></div>
+        <div class="nav-group-label" style="margin-top:14px">Sistem</div>
+        <div class="nav-item" onclick="toggleSidebar()"><div class="nav-icon"><i class="fas fa-arrows-alt-h"></i></div><span class="nav-label">Toggle Sidebar</span></div>
+        <div class="nav-item" onclick="lockDashboard()"><div class="nav-icon"><i class="fas fa-sign-out-alt"></i></div><span class="nav-label">Kunci Ulang</span></div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-avatar"><i class="fas fa-crown"></i></div>
+        <div class="user-info"><div class="user-name">Premium User</div><div class="user-role">Full Access</div></div>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="topbar">
+        <div class="topbar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+        <div><div class="topbar-title" id="topbarTitle">Dashboard</div><div class="topbar-breadcrumb" id="topbarBreadcrumb">Home / Overview</div></div>
+        <div class="topbar-spacer"></div>
+        <div class="topbar-clock" id="topbarClock">--:--:--</div>
+        <div class="topbar-action" onclick="showToast('info','Tidak ada notifikasi baru')"><i class="fas fa-bell"></i><span class="notif-dot"></span></div>
+        <div class="topbar-action" onclick="showToast('success','Semua layanan berjalan normal')"><i class="fas fa-heartbeat"></i></div>
+        <button class="topbar-logout" onclick="lockDashboard()"><i class="fas fa-lock"></i> Kunci</button>
+      </header>
+      <div class="page-content">
+        <div class="page-panel active" id="page-home">
+          <div class="dashboard-scroll">
+            <div class="welcome-section"><div class="welcome-title">Selamat Datang di <span>TOGEL ON</span></div><div class="welcome-sub">Kontrol dan akses semua layanan premium dari satu tempat.</div></div>
+            <div class="stat-grid">
+              <div class="stat-card" onclick="switchPage('linkcek')"><div class="stat-card-header"><div class="stat-card-icon"><i class="fas fa-link"></i></div><div class="stat-card-status status-live pulse-anim">ONLINE</div></div><div class="stat-card-value">Link Cek</div><div class="stat-card-label">Cek dan validasi link</div></div>
+              <div class="stat-card" onclick="switchPage('deloc')"><div class="stat-card-header"><div class="stat-card-icon"><i class="fas fa-mobile-alt"></i></div><div class="stat-card-status status-live pulse-anim">ONLINE</div></div><div class="stat-card-value">Deloc App</div><div class="stat-card-label">Aplikasi mobile utility</div></div>
+              <div class="stat-card" onclick="switchPage('qris')"><div class="stat-card-header"><div class="stat-card-icon"><i class="fas fa-qrcode"></i></div><div class="stat-card-status status-live pulse-anim">ONLINE</div></div><div class="stat-card-value">QRIS & Loan</div><div class="stat-card-label">Pembayaran & pinjaman</div></div>
+              <div class="stat-card" onclick="switchPage('bola')"><div class="stat-card-header"><div class="stat-card-icon"><i class="fas fa-futbol"></i></div><div class="stat-card-status status-live pulse-anim">LIVE</div></div><div class="stat-card-value">Score Bola</div><div class="stat-card-label">Skor pertandingan live</div></div>
+              <div class="stat-card" onclick="switchPage('result')"><div class="stat-card-header"><div class="stat-card-icon"><i class="fas fa-trophy"></i></div><div class="stat-card-status status-live pulse-anim">LIVE</div></div><div class="stat-card-value">Result Togel</div><div class="stat-card-label">Hasil togel terkini</div></div>
+              <div class="stat-card" onclick="switchPage('bank')"><div class="stat-card-header"><div class="stat-card-icon"><i class="fas fa-university"></i></div><div class="stat-card-status status-live pulse-anim">ONLINE</div></div><div class="stat-card-value">Jam Bank</div><div class="stat-card-label">Jadwal operasional bank</div></div>
+            </div>
+            <div class="section-header"><div><div class="section-title">Akses Cepat</div><div class="section-subtitle">Klik untuk membuka layanan</div></div></div>
+            <div class="quick-grid">
+              <div class="quick-card" onclick="switchPage('linkcek')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-link"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">Link Cek</div><div class="quick-card-desc">Platform pengecekan dan validasi link.</div><div class="quick-card-url">tampu2312.github.io/linkcek/</div></div>
+              <div class="quick-card" onclick="switchPage('deloc')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-mobile-alt"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">Deloc App</div><div class="quick-card-desc">Aplikasi utilitas all-in-one.</div><div class="quick-card-url">deloc.oneapp.dev/</div></div>
+              <div class="quick-card" onclick="switchPage('qris')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-qrcode"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">QRIS & Pinjaman</div><div class="quick-card-desc">Layanan pembayaran QRIS dan pinjaman.</div><div class="quick-card-url">tampu2312.github.io/QrisAndPinjaman/</div></div>
+              <div class="quick-card" onclick="switchPage('bola')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-futbol"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">Score Bola</div><div class="quick-card-desc">Pantau skor sepak bola real-time.</div><div class="quick-card-url">tampu2312.github.io/BOLLA/</div></div>
+              <div class="quick-card" onclick="switchPage('result')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-trophy"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">Result Togel</div><div class="quick-card-desc">Hasil pengeluaran togel terkini.</div><div class="quick-card-url">tampu2312.github.io/Togeltampu/</div></div>
+              <div class="quick-card" onclick="switchPage('bank')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-university"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">Jam Bank</div><div class="quick-card-desc">Jadwal operasional bank lengkap.</div><div class="quick-card-url">tampu2312.github.io/BANK/</div></div>
+            </div>
+            <div class="activity-section"><div class="section-header"><div><div class="section-title">Status Layanan</div><div class="section-subtitle">Monitoring real-time</div></div></div>
+              <div class="activity-list">
+                <div class="activity-item"><div class="activity-dot online"></div><div class="activity-text"><strong>Link Cek</strong> — Online</div><div class="activity-time">LIVE</div></div>
+                <div class="activity-item"><div class="activity-dot online"></div><div class="activity-text"><strong>Deloc App</strong> — Online</div><div class="activity-time">LIVE</div></div>
+                <div class="activity-item"><div class="activity-dot online"></div><div class="activity-text"><strong>QRIS & Pinjaman</strong> — Online</div><div class="activity-time">LIVE</div></div>
+                <div class="activity-item"><div class="activity-dot online" style="background:var(--warning);box-shadow:0 0 8px rgba(251,191,36,0.5)"></div><div class="activity-text"><strong>Score Bola</strong> — Live</div><div class="activity-time">LIVE</div></div>
+                <div class="activity-item"><div class="activity-dot online" style="background:#a855f7;box-shadow:0 0 8px rgba(168,85,247,0.5)"></div><div class="activity-text"><strong>Result Togel</strong> — Live</div><div class="activity-time">LIVE</div></div>
+                <div class="activity-item"><div class="activity-dot online" style="background:#f97316;box-shadow:0 0 8px rgba(249,115,22,0.5)"></div><div class="activity-text"><strong>Jam Bank</strong> — Online</div><div class="activity-time">LIVE</div></div>
+                <div class="activity-item"><div class="activity-dot online" style="background:var(--accent);box-shadow:0 0 8px rgba(0,229,160,0.5)"></div><div class="activity-text"><strong>TOGEL ON</strong> — Command Center v2.0</div><div class="activity-time">ACTIVE</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-panel" id="page-linkcek"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('linkcek')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/linkcek/</span></div><a href="https://tampu2312.github.io/linkcek/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-linkcek"><div class="loader-ring"></div><div class="loader-text">Memuat Link Cek...</div></div><iframe id="iframe-linkcek" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-linkcek"><div class="fallback-icon-wrap" style="background:rgba(0,229,160,0.08);color:var(--accent)"><i class="fas fa-link"></i></div><div class="fallback-title">Link Cek</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/linkcek/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/linkcek/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('linkcek')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
+        <div class="page-panel" id="page-deloc"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('deloc')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://deloc.oneapp.dev/</span></div><a href="https://deloc.oneapp.dev/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-deloc"><div class="loader-ring"></div><div class="loader-text">Memuat Deloc App...</div></div><iframe id="iframe-deloc" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-deloc"><div class="fallback-icon-wrap" style="background:rgba(0,201,219,0.08);color:var(--accent2)"><i class="fas fa-mobile-alt"></i></div><div class="fallback-title">Deloc App</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://deloc.oneapp.dev/</div><div class="fallback-actions"><a href="https://deloc.oneapp.dev/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('deloc')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
+        <div class="page-panel" id="page-qris"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('qris')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/QrisAndPinjaman/</span></div><a href="https://tampu2312.github.io/QrisAndPinjaman/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-qris"><div class="loader-ring"></div><div class="loader-text">Memuat QRIS & Pinjaman...</div></div><iframe id="iframe-qris" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-qris"><div class="fallback-icon-wrap" style="background:rgba(0,229,160,0.08);color:var(--accent)"><i class="fas fa-qrcode"></i></div><div class="fallback-title">QRIS & Pinjaman</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/QrisAndPinjaman/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/QrisAndPinjaman/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('qris')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
+        <div class="page-panel" id="page-bola"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('bola')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/BOLLA/</span></div><a href="https://tampu2312.github.io/BOLLA/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-bola"><div class="loader-ring"></div><div class="loader-text">Memuat Score Bola...</div></div><iframe id="iframe-bola" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-bola"><div class="fallback-icon-wrap" style="background:rgba(251,191,36,0.08);color:var(--warning)"><i class="fas fa-futbol"></i></div><div class="fallback-title">Score Bola</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/BOLLA/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/BOLLA/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('bola')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
+        <div class="page-panel" id="page-result"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('result')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/Togeltampu/</span></div><a href="https://tampu2312.github.io/Togeltampu/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-result"><div class="loader-ring"></div><div class="loader-text">Memuat Result Togel...</div></div><iframe id="iframe-result" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-result"><div class="fallback-icon-wrap" style="background:rgba(168,85,247,0.08);color:#a855f7"><i class="fas fa-trophy"></i></div><div class="fallback-title">Result Togel</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/Togeltampu/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/Togeltampu/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('result')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
+        <div class="page-panel" id="page-bank"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('bank')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/BANK/</span></div><a href="https://tampu2312.github.io/BANK/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-bank"><div class="loader-ring"></div><div class="loader-text">Memuat Jam Bank...</div></div><iframe id="iframe-bank" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-bank"><div class="fallback-icon-wrap" style="background:rgba(249,115,22,0.08);color:#f97316"><i class="fas fa-university"></i></div><div class="fallback-title">Jam Bank</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/BANK/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/BANK/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('bank')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ==============================================
+       ANTI-INSPECT — HANYA BLOK SHORTCUT & KLIK KANAN
+       TANPA deteksi otomatis yang bisa false positive
+       ============================================== */
+
+    /* 1. Blok klik kanan */
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+
+    /* 2. Blok shortcut keyboard untuk DevTools */
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'F12' || e.keyCode === 123) { e.preventDefault(); return false; }
+      if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) { e.preventDefault(); return false; }
+      if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83)) { e.preventDefault(); return false; }
+    });
+
+    /* 3. Blok drag */
+    document.addEventListener('dragstart', function(e) { e.preventDefault(); return false; });
+
+    /* 4. Override copy */
+    document.addEventListener('copy', function(e) { e.preventDefault(); e.clipboardData.setData('text/plain', 'Dilindungi TOGEL ON'); return false; });
+    document.addEventListener('cut', function(e) { e.preventDefault(); return false; });
+
+    /* 5. Console dibersihkan (tanpa debugger trap) */
+    var _noop = function() {};
+    console.log = _noop;
+    console.warn = _noop;
+    console.info = _noop;
+    console.debug = _noop;
+    console.table = _noop;
+    console.trace = _noop;
+    console.dir = _noop;
+    console.dirxml = _noop;
+
+    /* ==============================================
+       KONFIGURASI
+       ============================================== */
+    var ACCESS_KEY = 'asd123';
+    var SESSION_KEY = 'togelon_session';
+    var SESSION_DURATION = 24 * 60 * 60 * 1000;
+    var PAGE_URLS = { linkcek:'https://tampu2312.github.io/linkcek/', deloc:'https://deloc.oneapp.dev/', qris:'https://tampu2312.github.io/QrisAndPinjaman/', bola:'https://tampu2312.github.io/BOLLA/', result:'https://tampu2312.github.io/Togeltampu/', bank:'https://tampu2312.github.io/BANK/' };
+    var PAGE_TITLES = { home:'Dashboard', linkcek:'Link Cek', deloc:'Deloc App', qris:'QRIS & Pinjaman', bola:'Score Bola', result:'Result Togel', bank:'Jam Bank' };
+    var PAGE_BREADCRUMBS = { home:'Home / Overview', linkcek:'Home / Aplikasi / Link Cek', deloc:'Home / Aplikasi / Deloc App', qris:'Home / Aplikasi / QRIS & Pinjaman', bola:'Home / Premium / Score Bola', result:'Home / Premium / Result Togel', bank:'Home / Premium / Jam Bank' };
+    var IFRAME_PAGES = ['linkcek','deloc','qris','bola','result','bank'];
+    var currentPage = 'home';
+    var loadedIframes = {};
+    var iframeBlocked = {};
+    var iframeLoadTimers = {};
+    var loginAttempts = 0;
+    var maxAttempts = 5;
+    var lockoutUntil = 0;
+
+    /* ==============================================
+       SESSION
+       ============================================== */
+    function checkSession() { try { var r = localStorage.getItem(SESSION_KEY); if (!r) return false; var d = JSON.parse(r); if (d && d.ts && (Date.now() - d.ts < SESSION_DURATION)) return true; localStorage.removeItem(SESSION_KEY); return false; } catch(e) { return false; } }
+    function createSession() { localStorage.setItem(SESSION_KEY, JSON.stringify({ ts: Date.now() })); }
+    function destroySession() { localStorage.removeItem(SESSION_KEY); }
+
+    /* ==============================================
+       LOGIN
+       ============================================== */
+    function togglePasswordVisibility() { var i = document.getElementById('loginPassword'), ic = document.getElementById('pwToggleIcon'); if (i.type === 'password') { i.type = 'text'; ic.className = 'fas fa-eye-slash'; } else { i.type = 'password'; ic.className = 'fas fa-eye'; } }
+    function showLoginError(msg) { document.getElementById('loginErrorText').textContent = msg; document.getElementById('loginError').classList.remove('hidden'); }
+    function hideLoginError() { document.getElementById('loginError').classList.add('hidden'); }
+    function shakeCard() { var c = document.getElementById('loginCard'); c.classList.add('shake'); setTimeout(function() { c.classList.remove('shake'); }, 600); }
+    function updateAttemptsDisplay(rem, locked) { var el = document.getElementById('loginAttempts'); if (locked) { el.textContent = 'LOCKED'; el.style.color = 'var(--danger)'; } else if (rem < maxAttempts) { el.textContent = rem + ' / ' + maxAttempts; el.style.color = rem <= 2 ? 'var(--warning)' : 'var(--text-muted)'; } else { el.textContent = ''; } }
+
+    function attemptLogin() {
+      var now = Date.now();
+      if (lockoutUntil > now) { showLoginError('Coba lagi dalam ' + Math.ceil((lockoutUntil - now) / 1000) + ' detik'); return; }
+      var input = document.getElementById('loginPassword'), btn = document.getElementById('loginBtn'), pw = input.value.trim();
+      if (!pw) { showLoginError('Masukkan kunci akses.'); shakeCard(); return; }
+      btn.classList.add('loading'); btn.innerHTML = '<span class="btn-shimmer"></span><i class="fas fa-spinner fa-spin" style="margin-right:6px"></i> MEMVERIFIKASI...';
+      setTimeout(function() {
+        if (pw === ACCESS_KEY) { loginAttempts = 0; createSession(); unlockDashboard(); }
+        else { loginAttempts++; var rem = maxAttempts - loginAttempts; if (rem <= 0) { lockoutUntil = Date.now() + 30000; showLoginError('Terlalu banyak salah. Coba 30 detik lagi.'); updateAttemptsDisplay(0, true); } else { showLoginError('Kunci salah. ' + rem + ' percobaan tersisa.'); updateAttemptsDisplay(rem, false); } shakeCard(); input.value = ''; input.focus(); }
+        btn.classList.remove('loading'); btn.innerHTML = '<span class="btn-shimmer"></span><i class="fas fa-lock-open" style="margin-right:6px"></i> MASUK';
+      }, 1200);
+    }
+    function unlockDashboard() { document.getElementById('loginGate').classList.add('unlocked'); document.getElementById('appLayout').style.opacity = '1'; setTimeout(function() { showToast('success', 'Selamat datang! Akses premium aktif.'); }, 500); }
+    function lockDashboard() { destroySession(); loginAttempts = 0; document.getElementById('appLayout').style.opacity = '0'; setTimeout(function() { document.getElementById('loginGate').classList.remove('unlocked'); document.getElementById('loginPassword').value = ''; hideLoginError(); document.getElementById('loginAttempts').textContent = ''; document.getElementById('loginPassword').focus(); }, 300); showToast('warning', 'Dashboard terkunci.'); }
+
+    document.getElementById('togglePwBtn').addEventListener('click', togglePasswordVisibility);
+    document.getElementById('loginBtn').addEventListener('click', attemptLogin);
+    document.getElementById('loginPassword').addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); attemptLogin(); } });
+
+    /* ==============================================
+       IFRAME
+       ============================================== */
+    function hideLoading(p) { var el = document.getElementById('loading-' + p); if (el) setTimeout(function() { el.classList.add('hidden'); }, 300); }
+    function showFallback(p) { var fb = document.getElementById('fallback-' + p), ld = document.getElementById('loading-' + p); if (fb) fb.classList.add('visible'); if (ld) ld.classList.add('hidden'); iframeBlocked[p] = true; showToast('warning', PAGE_TITLES[p] + ' tidak bisa di-embed'); }
+    function hideFallback(p) { var fb = document.getElementById('fallback-' + p); if (fb) fb.classList.remove('visible'); delete iframeBlocked[p]; }
+    IFRAME_PAGES.forEach(function(p) { var ifr = document.getElementById('iframe-' + p); if (!ifr) return; ifr.addEventListener('load', function() { if (ifr.src === 'about:blank') return; if (iframeLoadTimers[p]) { clearTimeout(iframeLoadTimers[p]); delete iframeLoadTimers[p]; } try { var d = ifr.contentDocument || ifr.contentWindow.document; if (d && d.body && d.body.innerHTML.length > 0) { hideLoading(p); hideFallback(p); return; } } catch(e) {} hideLoading(p); }); ifr.addEventListener('error', function() { if (ifr.src !== 'about:blank') showFallback(p); }); });
+    function loadIframe(p) { var ifr = document.getElementById('iframe-' + p), ld = document.getElementById('loading-' + p); if (!ifr || !PAGE_URLS[p]) return; hideFallback(p); ld.classList.remove('hidden'); loadedIframes[p] = true; ifr.src = PAGE_URLS[p]; iframeLoadTimers[p] = setTimeout(function() { try { var d = ifr.contentDocument || ifr.contentWindow.document; if (d && d.body && d.body.innerHTML.length > 50) { hideLoading(p); return; } } catch(e) {} if (ifr.src !== 'about:blank') showFallback(p); }, 6000); }
+    function retryIframe(p) { var ifr = document.getElementById('iframe-' + p); if (!ifr) return; hideFallback(p); document.getElementById('loading-' + p).classList.remove('hidden'); ifr.src = 'about:blank'; if (iframeLoadTimers[p]) { clearTimeout(iframeLoadTimers[p]); delete iframeLoadTimers[p]; } setTimeout(function() { ifr.src = PAGE_URLS[p]; loadedIframes[p] = true; iframeLoadTimers[p] = setTimeout(function() { try { var d = ifr.contentDocument || ifr.contentWindow.document; if (d && d.body && d.body.innerHTML.length > 50) { hideLoading(p); return; } } catch(e) {} if (ifr.src !== 'about:blank') showFallback(p); }, 6000); }, 150); showToast('info', 'Memuat ulang ' + (PAGE_TITLES[p] || p) + '...'); }
+
+    /* ==============================================
+       NAVIGASI
+       ============================================== */
+    function switchPage(p) { if (currentPage === p) return; currentPage = p; document.querySelectorAll('.nav-item[data-page]').forEach(function(i) { i.classList.toggle('active', i.dataset.page === p); }); document.getElementById('topbarTitle').textContent = PAGE_TITLES[p] || 'Dashboard'; document.getElementById('topbarBreadcrumb').textContent = PAGE_BREADCRUMBS[p] || 'Home'; document.querySelectorAll('.page-panel').forEach(function(pp) { pp.classList.remove('active'); }); document.getElementById('page-' + p).classList.add('active'); if (PAGE_URLS[p] && !loadedIframes[p]) loadIframe(p); closeMobileSidebar(); if (p !== 'home') showToast('success', 'Membuka ' + (PAGE_TITLES[p] || p) + '...'); }
+
+    /* ==============================================
+       SIDEBAR
+       ============================================== */
+    function toggleSidebar() { var s = document.getElementById('sidebar'); if (window.innerWidth <= 768) { s.classList.toggle('mobile-open'); document.getElementById('sidebarOverlay').classList.toggle('active', s.classList.contains('mobile-open')); } else { s.classList.toggle('collapsed'); } }
+    function closeMobileSidebar() { document.getElementById('sidebar').classList.remove('mobile-open'); document.getElementById('sidebarOverlay').classList.remove('active'); }
+    document.getElementById('sidebarOverlay').addEventListener('click', closeMobileSidebar);
+
+    /* ==============================================
+       TOAST
+       ============================================== */
+    function showToast(type, message) { var c = document.getElementById('toastContainer'), t = document.createElement('div'); t.className = 'toast'; var im = { success:'fa-check-circle', warning:'fa-exclamation-triangle', info:'fa-info-circle' }; t.innerHTML = '<i class="fas ' + (im[type]||im.info) + ' toast-icon ' + type + '"></i><span>' + message + '</span>'; c.appendChild(t); setTimeout(function() { t.classList.add('leaving'); setTimeout(function() { t.remove(); }, 300); }, 3500); }
+
+    /* ==============================================
+       JAM
+       ============================================== */
+    function updateClock() { var n = new Date(); document.getElementById('topbarClock').textContent = String(n.getHours()).padStart(2,'0') + ':' + String(n.getMinutes()).padStart(2,'0') + ':' + String(n.getSeconds()).padStart(2,'0'); }
+    setInterval(updateClock, 1000); updateClock();
+
+    /* ==============================================
+       PARTIKEL LOGIN
+       ============================================== */
+    (function() { var cv = document.getElementById('login-particles'); if (!cv) return; var cx = cv.getContext('2d'), ps = [], CT = 30; function rz() { cv.width = window.innerWidth; cv.height = window.innerHeight; } rz(); window.addEventListener('resize', rz); for (var idx = 0; idx < CT; idx++) ps.push({ x: Math.random()*cv.width, y: Math.random()*cv.height, vx: (Math.random()-.5)*.35, vy: (Math.random()-.5)*.35, sz: Math.random()*1.8+.5, a: Math.random()*.2+.05 }); function df() { if (document.getElementById('loginGate').classList.contains('unlocked')) return; cx.clearRect(0,0,cv.width,cv.height); for (var idx = 0; idx < ps.length; idx++) { var pt = ps[idx]; pt.x += pt.vx; pt.y += pt.vy; if (pt.x < 0) pt.x = cv.width; if (pt.x > cv.width) pt.x = 0; if (pt.y < 0) pt.y = cv.height; if (pt.y > cv.height) pt.y = 0; cx.beginPath(); cx.arc(pt.x, pt.y, Math.max(.5, pt.sz), 0, Math.PI*2); cx.fillStyle = 'rgba(0,229,160,' + pt.a + ')'; cx.fill(); } for (var idx = 0; idx < ps.length; idx++) { for (var jdx = idx+1; jdx < ps.length; jdx++) { var dx = ps[idx].x - ps[jdx].x, dy = ps[idx].y - ps[jdx].y, ds = Math.sqrt(dx*dx+dy*dy); if (ds < 150) { cx.beginPath(); cx.moveTo(ps[idx].x, ps[idx].y); cx.lineTo(ps[jdx].x, ps[jdx].y); cx.strokeStyle = 'rgba(0,229,160,' + ((1-ds/150)*.06) + ')'; cx.lineWidth = .5; cx.stroke(); } } } requestAnimationFrame(df); } if (!window.matchMedia('(prefers-reduced-motion:reduce)').matches) df(); })();
+
+    /* ==============================================
+       PARTIKEL DASHBOARD
+       ============================================== */
+    (function() { var cv = document.getElementById('particle-canvas'); if (!cv) return; var cx = cv.getContext('2d'), ps = [], CT = 25; function rz() { cv.width = window.innerWidth; cv.height = window.innerHeight; } rz(); window.addEventListener('resize', rz); for (var idx = 0; idx < CT; idx++) ps.push({ x: Math.random()*cv.width, y: Math.random()*cv.height, vx: (Math.random()-.5)*.2, vy: (Math.random()-.5)*.2, sz: Math.random()*1.2+.5, a: Math.random()*.15+.03 }); function df() { cx.clearRect(0,0,cv.width,cv.height); for (var idx = 0; idx < ps.length; idx++) { var pt = ps[idx]; pt.x += pt.vx; pt.y += pt.vy; if (pt.x < 0) pt.x = cv.width; if (pt.x > cv.width) pt.x = 0; if (pt.y < 0) pt.y = cv.height; if (pt.y > cv.height) pt.y = 0; cx.beginPath(); cx.arc(pt.x, pt.y, Math.max(.5, pt.sz), 0, Math.PI*2); cx.fillStyle = 'rgba(0,229,160,' + pt.a + ')'; cx.fill(); } for (var idx = 0; idx < ps.length; idx++) { for (var jdx = idx+1; jdx < ps.length; jdx++) { var dx = ps[idx].x - ps[jdx].x, dy = ps[idx].y - ps[jdx].y, ds = Math.sqrt(dx*dx+dy*dy); if (ds < 130) { cx.beginPath(); cx.moveTo(ps[idx].x, ps[idx].y); cx.lineTo(ps[jdx].x, ps[jdx].y); cx.strokeStyle = 'rgba(0,229,160,' + ((1-ds/130)*.04) + ')'; cx.lineWidth = .5; cx.stroke(); } } } requestAnimationFrame(df); } if (!window.matchMedia('(prefers-reduced-motion:reduce)').matches) df(); })();
+
+    /* ==============================================
+       KEYBOARD SHORTCUT
+       ============================================== */
+    document.addEventListener('keydown', function(e) { if (!document.getElementById('loginGate').classList.contains('unlocked')) return; if (e.altKey && e.key === '1') switchPage('home'); if (e.altKey && e.key === '2') switchPage('linkcek'); if (e.altKey && e.key === '3') switchPage('deloc'); if (e.altKey && e.key === '4') switchPage('qris'); if (e.altKey && e.key === '5') switchPage('bola'); if (e.altKey && e.key === '6') switchPage('result'); if (e.altKey && e.key === '7') switchPage('bank'); });
+
+    /* ==============================================
+       INIT
+       ============================================== */
+    (function() { if (checkSession()) { document.getElementById('loginGate').classList.add('unlocked'); document.getElementById('appLayout').style.opacity = '1'; } else { setTimeout(function() { document.getElementById('loginPassword').focus(); }, 500); } })();
+  </script>
+</body>
+</html>
