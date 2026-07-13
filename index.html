@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    :root{--bg-deep:#07070c;--bg-surface:rgba(10,10,18,0.88);--bg-surface-solid:#0c0c16;--bg-card:rgba(18,18,32,0.75);--bg-card-hover:rgba(28,28,46,0.8);--border:rgba(40,40,65,0.6);--accent:#00e5a0;--accent-dim:#00b87e;--accent-glow:rgba(0,229,160,0.12);--accent2:#00c9db;--text-primary:#eaf5f0;--text-secondary:#8a9a9e;--text-muted:#506068;--success:#00e5a0;--warning:#fbbf24;--danger:#ff4757;--info:#00c9db}
+    :root{--bg-deep:#07070c;--bg-surface:rgba(10,10,18,0.88);--bg-surface-solid:#0c0c16;--bg-card:rgba(18,18,32,0.75);--bg-card-hover:rgba(28,28,46,0.8);--border:rgba(40,40,65,0.6);--accent:#00e5a0;--accent-dim:#00b87e;--accent-glow:rgba(0,229,160,0.12);--accent2:#00c9db;--text-primary:#eaf5f0;--text-secondary:#8a9a9e;--text-muted:#506068;--success:#00e5a0;--warning:#fbbf24;--danger:#ff4757;--info:#00c9db;--rose:#ec4899}
     *{margin:0;padding:0;box-sizing:border-box}
     body,.login-gate,.app-layout,.sidebar,.main-content,.topbar,.dashboard-scroll,.stat-card,.quick-card,.activity-item,.login-card,.nav-item,.nav-label,.nav-icon,.stat-card-value,.stat-card-label,.quick-card-title,.quick-card-desc,.activity-text,.welcome-title,.welcome-sub,.section-title,.section-subtitle{user-select:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none}
     .login-input{user-select:text;-webkit-user-select:text}
@@ -132,6 +132,7 @@
     .stat-card:nth-child(4)::before{background:var(--warning)}
     .stat-card:nth-child(5)::before{background:#a855f7}
     .stat-card:nth-child(6)::before{background:#f97316}
+    .stat-card:nth-child(7)::before{background:var(--rose)}
     .stat-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
     .stat-card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px}
     .stat-card:nth-child(1) .stat-card-icon{background:rgba(0,229,160,0.1);color:var(--accent)}
@@ -140,6 +141,7 @@
     .stat-card:nth-child(4) .stat-card-icon{background:rgba(251,191,36,0.1);color:var(--warning)}
     .stat-card:nth-child(5) .stat-card-icon{background:rgba(168,85,247,0.1);color:#a855f7}
     .stat-card:nth-child(6) .stat-card-icon{background:rgba(249,115,22,0.1);color:#f97316}
+    .stat-card:nth-child(7) .stat-card-icon{background:rgba(236,72,153,0.1);color:var(--rose)}
     .stat-card-status{font-size:10px;font-family:'JetBrains Mono',monospace;padding:3px 8px;border-radius:6px;font-weight:600}
     .status-live{background:rgba(0,229,160,0.12);color:var(--success)}
     .stat-card-value{font-size:18px;font-weight:700;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
@@ -158,6 +160,7 @@
     .quick-card:nth-child(4) .quick-card-icon{background:linear-gradient(135deg,rgba(251,191,36,0.15),rgba(251,191,36,0.03));color:var(--warning)}
     .quick-card:nth-child(5) .quick-card-icon{background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(168,85,247,0.03));color:#a855f7}
     .quick-card:nth-child(6) .quick-card-icon{background:linear-gradient(135deg,rgba(249,115,22,0.15),rgba(249,115,22,0.03));color:#f97316}
+    .quick-card:nth-child(7) .quick-card-icon{background:linear-gradient(135deg,rgba(236,72,153,0.15),rgba(236,72,153,0.03));color:var(--rose)}
     .quick-card-arrow{width:30px;height:30px;border-radius:8px;background:rgba(10,10,18,0.6);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:11px;transition:all .3s}
     .quick-card:hover .quick-card-arrow{color:var(--accent);background:var(--accent-glow);transform:translate(2px,-2px)}
     .quick-card-title{font-size:15px;font-weight:600;margin-bottom:5px;position:relative;z-index:1}
@@ -274,6 +277,7 @@
         <div class="nav-item" data-page="bola" onclick="switchPage('bola')"><div class="nav-icon"><i class="fas fa-futbol"></i></div><span class="nav-label">SCHORCAT Bola</span><span class="nav-badge">LIVE</span></div>
         <div class="nav-item" data-page="result" onclick="switchPage('result')"><div class="nav-icon"><i class="fas fa-trophy"></i></div><span class="nav-label">Result Togel</span><span class="nav-badge">LIVE</span></div>
         <div class="nav-item" data-page="bank" onclick="switchPage('bank')"><div class="nav-icon"><i class="fas fa-university"></i></div><span class="nav-label">Jam Bank</span><span class="nav-badge">LIVE</span></div>
+        <div class="nav-item" data-page="syair" onclick="switchPage('syair')"><div class="nav-icon"><i class="fas fa-feather-alt"></i></div><span class="nav-label">Syair</span><span class="nav-badge">LIVE</span></div>
         <div class="nav-group-label" style="margin-top:14px">Sistem</div>
         <div class="nav-item" onclick="toggleSidebar()"><div class="nav-icon"><i class="fas fa-arrows-alt-h"></i></div><span class="nav-label">Toggle Sidebar</span></div>
         <div class="nav-item" onclick="lockDashboard()"><div class="nav-icon"><i class="fas fa-sign-out-alt"></i></div><span class="nav-label">Kunci Ulang</span></div>
@@ -295,6 +299,7 @@
         <button class="topbar-logout" onclick="lockDashboard()"><i class="fas fa-lock"></i> Kunci</button>
       </header>
       <div class="page-content">
+        <!-- HOME -->
         <div class="page-panel active" id="page-home">
           <div class="dashboard-scroll">
             <div class="welcome-section"><div class="welcome-title">Selamat Datang di <span>TOGEL ON</span></div><div class="welcome-sub">Kontrol dan akses semua layanan premium dari satu tempat.</div></div>
@@ -305,15 +310,17 @@
               <div class="stat-card" onclick="switchPage('bola')"><div class="stat-card-header"><div class="stat-card-icon"><i class="fas fa-futbol"></i></div><div class="stat-card-status status-live pulse-anim">LIVE</div></div><div class="stat-card-value">Score Bola</div><div class="stat-card-label">Skor pertandingan live</div></div>
               <div class="stat-card" onclick="switchPage('result')"><div class="stat-card-header"><div class="stat-card-icon"><i class="fas fa-trophy"></i></div><div class="stat-card-status status-live pulse-anim">LIVE</div></div><div class="stat-card-value">Result Togel</div><div class="stat-card-label">Hasil togel terkini</div></div>
               <div class="stat-card" onclick="switchPage('bank')"><div class="stat-card-header"><div class="stat-card-icon"><i class="fas fa-university"></i></div><div class="stat-card-status status-live pulse-anim">ONLINE</div></div><div class="stat-card-value">Jam Bank</div><div class="stat-card-label">Jadwal operasional bank</div></div>
+              <div class="stat-card" onclick="switchPage('syair')"><div class="stat-card-header"><div class="stat-card-icon"><i class="fas fa-feather-alt"></i></div><div class="stat-card-status status-live pulse-anim">LIVE</div></div><div class="stat-card-value">Syair</div><div class="stat-card-label">Kumpulan syair terlengkap</div></div>
             </div>
             <div class="section-header"><div><div class="section-title">Akses Cepat</div><div class="section-subtitle">Klik untuk membuka layanan</div></div></div>
             <div class="quick-grid">
               <div class="quick-card" onclick="switchPage('linkcek')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-link"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">Link Cek</div><div class="quick-card-desc">Platform pengecekan dan validasi link.</div><div class="quick-card-url">tampu2312.github.io/linkcek/</div></div>
-              <div class="quick-card" onclick="switchPage('deloc')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-mobile-alt"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">Deloc App</div><div class="quick-card-desc">Aplikasi utilitas all-in-one.</div><div class="quick-card-url">deloc.oneapp.dev/</div></div>
+              <div class="quick-card" onclick="switchPage('deloc')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-mobile-alt"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">Deloc App</div><div class="quick-card-desc">Aplikasi utilitas all-in-one.</div><div class="quick-card-url">tampu2312.github.io/report/</div></div>
               <div class="quick-card" onclick="switchPage('qris')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-qrcode"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">QRIS & Pinjaman</div><div class="quick-card-desc">Layanan pembayaran QRIS dan pinjaman.</div><div class="quick-card-url">tampu2312.github.io/QrisAndPinjaman/</div></div>
               <div class="quick-card" onclick="switchPage('bola')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-futbol"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">Score Bola</div><div class="quick-card-desc">Pantau skor sepak bola real-time.</div><div class="quick-card-url">tampu2312.github.io/BOLLA/</div></div>
               <div class="quick-card" onclick="switchPage('result')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-trophy"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">Result Togel</div><div class="quick-card-desc">Hasil pengeluaran togel terkini.</div><div class="quick-card-url">tampu2312.github.io/Togeltampu/</div></div>
               <div class="quick-card" onclick="switchPage('bank')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-university"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">Jam Bank</div><div class="quick-card-desc">Jadwal operasional bank lengkap.</div><div class="quick-card-url">tampu2312.github.io/BANK/</div></div>
+              <div class="quick-card" onclick="switchPage('syair')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-feather-alt"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">Syair</div><div class="quick-card-desc">Kumpulan syair dan kode alam terlengkap.</div><div class="quick-card-url">tampu2312.github.io/syair/</div></div>
             </div>
             <div class="activity-section"><div class="section-header"><div><div class="section-title">Status Layanan</div><div class="section-subtitle">Monitoring real-time</div></div></div>
               <div class="activity-list">
@@ -323,160 +330,335 @@
                 <div class="activity-item"><div class="activity-dot online" style="background:var(--warning);box-shadow:0 0 8px rgba(251,191,36,0.5)"></div><div class="activity-text"><strong>Score Bola</strong> — Live</div><div class="activity-time">LIVE</div></div>
                 <div class="activity-item"><div class="activity-dot online" style="background:#a855f7;box-shadow:0 0 8px rgba(168,85,247,0.5)"></div><div class="activity-text"><strong>Result Togel</strong> — Live</div><div class="activity-time">LIVE</div></div>
                 <div class="activity-item"><div class="activity-dot online" style="background:#f97316;box-shadow:0 0 8px rgba(249,115,22,0.5)"></div><div class="activity-text"><strong>Jam Bank</strong> — Online</div><div class="activity-time">LIVE</div></div>
+                <div class="activity-item"><div class="activity-dot online" style="background:var(--rose);box-shadow:0 0 8px rgba(236,72,153,0.5)"></div><div class="activity-text"><strong>Syair</strong> — Online</div><div class="activity-time">LIVE</div></div>
                 <div class="activity-item"><div class="activity-dot online" style="background:var(--accent);box-shadow:0 0 8px rgba(0,229,160,0.5)"></div><div class="activity-text"><strong>TOGEL ON</strong> — Command Center v2.0</div><div class="activity-time">ACTIVE</div></div>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- PAGE: LINK CEK -->
         <div class="page-panel" id="page-linkcek"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('linkcek')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/linkcek/</span></div><a href="https://tampu2312.github.io/linkcek/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-linkcek"><div class="loader-ring"></div><div class="loader-text">Memuat Link Cek...</div></div><iframe id="iframe-linkcek" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-linkcek"><div class="fallback-icon-wrap" style="background:rgba(0,229,160,0.08);color:var(--accent)"><i class="fas fa-link"></i></div><div class="fallback-title">Link Cek</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/linkcek/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/linkcek/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('linkcek')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
+
+        <!-- PAGE: DELOC -->
         <div class="page-panel" id="page-deloc"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('deloc')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/report/</span></div><a href="https://tampu2312.github.io/report/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-deloc"><div class="loader-ring"></div><div class="loader-text">Memuat Deloc App...</div></div><iframe id="iframe-deloc" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-deloc"><div class="fallback-icon-wrap" style="background:rgba(0,201,219,0.08);color:var(--accent2)"><i class="fas fa-mobile-alt"></i></div><div class="fallback-title">Deloc App</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/report/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/report/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('deloc')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
+
+        <!-- PAGE: QRIS -->
         <div class="page-panel" id="page-qris"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('qris')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/QrisAndPinjaman/</span></div><a href="https://tampu2312.github.io/QrisAndPinjaman/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-qris"><div class="loader-ring"></div><div class="loader-text">Memuat QRIS & Pinjaman...</div></div><iframe id="iframe-qris" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-qris"><div class="fallback-icon-wrap" style="background:rgba(0,229,160,0.08);color:var(--accent)"><i class="fas fa-qrcode"></i></div><div class="fallback-title">QRIS & Pinjaman</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/QrisAndPinjaman/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/QrisAndPinjaman/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('qris')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
+
+        <!-- PAGE: BOLA -->
         <div class="page-panel" id="page-bola"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('bola')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/BOLLA/</span></div><a href="https://tampu2312.github.io/BOLLA/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-bola"><div class="loader-ring"></div><div class="loader-text">Memuat Score Bola...</div></div><iframe id="iframe-bola" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-bola"><div class="fallback-icon-wrap" style="background:rgba(251,191,36,0.08);color:var(--warning)"><i class="fas fa-futbol"></i></div><div class="fallback-title">Score Bola</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/BOLLA/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/BOLLA/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('bola')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
+
+        <!-- PAGE: RESULT -->
         <div class="page-panel" id="page-result"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('result')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/Togeltampu/</span></div><a href="https://tampu2312.github.io/Togeltampu/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-result"><div class="loader-ring"></div><div class="loader-text">Memuat Result Togel...</div></div><iframe id="iframe-result" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-result"><div class="fallback-icon-wrap" style="background:rgba(168,85,247,0.08);color:#a855f7"><i class="fas fa-trophy"></i></div><div class="fallback-title">Result Togel</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/Togeltampu/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/Togeltampu/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('result')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
+
+        <!-- PAGE: BANK -->
         <div class="page-panel" id="page-bank"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('bank')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/BANK/</span></div><a href="https://tampu2312.github.io/BANK/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-bank"><div class="loader-ring"></div><div class="loader-text">Memuat Jam Bank...</div></div><iframe id="iframe-bank" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-bank"><div class="fallback-icon-wrap" style="background:rgba(249,115,22,0.08);color:#f97316"><i class="fas fa-university"></i></div><div class="fallback-title">Jam Bank</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/BANK/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/BANK/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('bank')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
+
+        <!-- PAGE: SYAIR (BARU) -->
+        <div class="page-panel" id="page-syair"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('syair')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/syair/</span></div><a href="https://tampu2312.github.io/syair/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-syair"><div class="loader-ring"></div><div class="loader-text">Memuat Syair...</div></div><iframe id="iframe-syair" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-syair"><div class="fallback-icon-wrap" style="background:rgba(236,72,153,0.08);color:var(--rose)"><i class="fas fa-feather-alt"></i></div><div class="fallback-title">Syair</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/syair/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/syair/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('syair')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
+
       </div>
     </div>
   </div>
 
   <script>
     /* ==============================================
-       ANTI-INSPECT — HANYA BLOK SHORTCUT & KLIK KANAN
-       TANPA deteksi otomatis yang bisa false positive
+       ANTI-INSPECT
        ============================================== */
-
-    /* 1. Blok klik kanan */
     document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
-
-    /* 2. Blok shortcut keyboard untuk DevTools */
     document.addEventListener('keydown', function(e) {
       if (e.key === 'F12' || e.keyCode === 123) { e.preventDefault(); return false; }
       if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) { e.preventDefault(); return false; }
       if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83)) { e.preventDefault(); return false; }
     });
-
-    /* 3. Blok drag */
     document.addEventListener('dragstart', function(e) { e.preventDefault(); return false; });
-
-    /* 4. Override copy */
-    document.addEventListener('copy', function(e) { e.preventDefault(); e.clipboardData.setData('text/plain', 'Dilindungi TOGEL ON'); return false; });
-    document.addEventListener('cut', function(e) { e.preventDefault(); return false; });
-
-    /* 5. Console dibersihkan (tanpa debugger trap) */
-    var _noop = function() {};
-    console.log = _noop;
-    console.warn = _noop;
-    console.info = _noop;
-    console.debug = _noop;
-    console.table = _noop;
-    console.trace = _noop;
-    console.dir = _noop;
-    console.dirxml = _noop;
+    document.addEventListener('copy', function(e) { e.preventDefault(); e.clipboardData.setData('text/plain', ''); return false; });
 
     /* ==============================================
-       KONFIGURASI
+       KONFIGURASI HALAMAN
        ============================================== */
-    var ACCESS_KEY = 'asd123';
-    var SESSION_KEY = 'togelon_session';
-    var SESSION_DURATION = 24 * 60 * 60 * 1000;
-    var PAGE_URLS = { linkcek:'https://tampu2312.github.io/linkcek/', deloc:'https://tampu2312.github.io/report/', qris:'https://tampu2312.github.io/QrisAndPinjaman/', bola:'https://tampu2312.github.io/BOLLA/', result:'https://tampu2312.github.io/Togeltampu/', bank:'https://tampu2312.github.io/BANK/' };
-    var PAGE_TITLES = { home:'Dashboard', linkcek:'Link Cek', deloc:'Deloc App', qris:'QRIS & Pinjaman', bola:'Score Bola', result:'Result Togel', bank:'Jam Bank' };
-    var PAGE_BREADCRUMBS = { home:'Home / Overview', linkcek:'Home / Aplikasi / Link Cek', deloc:'Home / Aplikasi / Deloc App', qris:'Home / Aplikasi / QRIS & Pinjaman', bola:'Home / Premium / Score Bola', result:'Home / Premium / Result Togel', bank:'Home / Premium / Jam Bank' };
-    var IFRAME_PAGES = ['linkcek','deloc','qris','bola','result','bank'];
-    var currentPage = 'home';
-    var loadedIframes = {};
-    var iframeBlocked = {};
-    var iframeLoadTimers = {};
-    var loginAttempts = 0;
-    var maxAttempts = 5;
-    var lockoutUntil = 0;
+    const PAGES = {
+      home: { title: 'Dashboard', breadcrumb: 'Home / Overview', url: null },
+      linkcek: { title: 'Link Cek', breadcrumb: 'Layanan / Link Cek', url: 'https://tampu2312.github.io/linkcek/' },
+      deloc: { title: 'CATATAN & REPORT', breadcrumb: 'Layanan / Deloc App', url: 'https://tampu2312.github.io/report/' },
+      qris: { title: 'QRIS & Pinjaman', breadcrumb: 'Layanan / QRIS', url: 'https://tampu2312.github.io/QrisAndPinjaman/' },
+      bola: { title: 'Score Bola', breadcrumb: 'Premium / Score Bola', url: 'https://tampu2312.github.io/BOLLA/' },
+      result: { title: 'Result Togel', breadcrumb: 'Premium / Result Togel', url: 'https://tampu2312.github.io/Togeltampu/' },
+      bank: { title: 'Jam Bank', breadcrumb: 'Premium / Jam Bank', url: 'https://tampu2312.github.io/BANK/' },
+      syair: { title: 'Syair', breadcrumb: 'Premium / Syair', url: 'https://tampu2312.github.io/syair/' }
+    };
+
+    let currentPage = 'home';
+    let iframeTimers = {};
 
     /* ==============================================
-       SESSION
+       NAVIGASI HALAMAN
        ============================================== */
-    function checkSession() { try { var r = localStorage.getItem(SESSION_KEY); if (!r) return false; var d = JSON.parse(r); if (d && d.ts && (Date.now() - d.ts < SESSION_DURATION)) return true; localStorage.removeItem(SESSION_KEY); return false; } catch(e) { return false; } }
-    function createSession() { localStorage.setItem(SESSION_KEY, JSON.stringify({ ts: Date.now() })); }
-    function destroySession() { localStorage.removeItem(SESSION_KEY); }
+    function switchPage(pageId) {
+      if (!PAGES[pageId]) return;
+      currentPage = pageId;
 
-    /* ==============================================
-       LOGIN
-       ============================================== */
-    function togglePasswordVisibility() { var i = document.getElementById('loginPassword'), ic = document.getElementById('pwToggleIcon'); if (i.type === 'password') { i.type = 'text'; ic.className = 'fas fa-eye-slash'; } else { i.type = 'password'; ic.className = 'fas fa-eye'; } }
-    function showLoginError(msg) { document.getElementById('loginErrorText').textContent = msg; document.getElementById('loginError').classList.remove('hidden'); }
-    function hideLoginError() { document.getElementById('loginError').classList.add('hidden'); }
-    function shakeCard() { var c = document.getElementById('loginCard'); c.classList.add('shake'); setTimeout(function() { c.classList.remove('shake'); }, 600); }
-    function updateAttemptsDisplay(rem, locked) { var el = document.getElementById('loginAttempts'); if (locked) { el.textContent = 'LOCKED'; el.style.color = 'var(--danger)'; } else if (rem < maxAttempts) { el.textContent = rem + ' / ' + maxAttempts; el.style.color = rem <= 2 ? 'var(--warning)' : 'var(--text-muted)'; } else { el.textContent = ''; } }
+      // Update nav items
+      document.querySelectorAll('.nav-item[data-page]').forEach(function(item) {
+        item.classList.toggle('active', item.getAttribute('data-page') === pageId);
+      });
 
-    function attemptLogin() {
-      var now = Date.now();
-      if (lockoutUntil > now) { showLoginError('Coba lagi dalam ' + Math.ceil((lockoutUntil - now) / 1000) + ' detik'); return; }
-      var input = document.getElementById('loginPassword'), btn = document.getElementById('loginBtn'), pw = input.value.trim();
-      if (!pw) { showLoginError('Masukkan kunci akses.'); shakeCard(); return; }
-      btn.classList.add('loading'); btn.innerHTML = '<span class="btn-shimmer"></span><i class="fas fa-spinner fa-spin" style="margin-right:6px"></i> MEMVERIFIKASI...';
-      setTimeout(function() {
-        if (pw === ACCESS_KEY) { loginAttempts = 0; createSession(); unlockDashboard(); }
-        else { loginAttempts++; var rem = maxAttempts - loginAttempts; if (rem <= 0) { lockoutUntil = Date.now() + 30000; showLoginError('Terlalu banyak salah. Coba 30 detik lagi.'); updateAttemptsDisplay(0, true); } else { showLoginError('Kunci salah. ' + rem + ' percobaan tersisa.'); updateAttemptsDisplay(rem, false); } shakeCard(); input.value = ''; input.focus(); }
-        btn.classList.remove('loading'); btn.innerHTML = '<span class="btn-shimmer"></span><i class="fas fa-lock-open" style="margin-right:6px"></i> MASUK';
-      }, 1200);
+      // Update topbar
+      document.getElementById('topbarTitle').textContent = PAGES[pageId].title;
+      document.getElementById('topbarBreadcrumb').textContent = PAGES[pageId].breadcrumb;
+
+      // Switch page panels
+      document.querySelectorAll('.page-panel').forEach(function(panel) {
+        panel.classList.remove('active');
+      });
+      var targetPanel = document.getElementById('page-' + pageId);
+      if (targetPanel) targetPanel.classList.add('active');
+
+      // Load iframe if needed
+      if (PAGES[pageId].url) {
+        loadIframe(pageId, PAGES[pageId].url);
+      }
+
+      // Close mobile sidebar
+      closeMobileSidebar();
     }
-    function unlockDashboard() { document.getElementById('loginGate').classList.add('unlocked'); document.getElementById('appLayout').style.opacity = '1'; setTimeout(function() { showToast('success', 'Selamat datang! Akses premium aktif.'); }, 500); }
-    function lockDashboard() { destroySession(); loginAttempts = 0; document.getElementById('appLayout').style.opacity = '0'; setTimeout(function() { document.getElementById('loginGate').classList.remove('unlocked'); document.getElementById('loginPassword').value = ''; hideLoginError(); document.getElementById('loginAttempts').textContent = ''; document.getElementById('loginPassword').focus(); }, 300); showToast('warning', 'Dashboard terkunci.'); }
-
-    document.getElementById('togglePwBtn').addEventListener('click', togglePasswordVisibility);
-    document.getElementById('loginBtn').addEventListener('click', attemptLogin);
-    document.getElementById('loginPassword').addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); attemptLogin(); } });
 
     /* ==============================================
-       IFRAME
+       IFRAME LOADING
        ============================================== */
-    function hideLoading(p) { var el = document.getElementById('loading-' + p); if (el) setTimeout(function() { el.classList.add('hidden'); }, 300); }
-    function showFallback(p) { var fb = document.getElementById('fallback-' + p), ld = document.getElementById('loading-' + p); if (fb) fb.classList.add('visible'); if (ld) ld.classList.add('hidden'); iframeBlocked[p] = true; showToast('warning', PAGE_TITLES[p] + ' tidak bisa di-embed'); }
-    function hideFallback(p) { var fb = document.getElementById('fallback-' + p); if (fb) fb.classList.remove('visible'); delete iframeBlocked[p]; }
-    IFRAME_PAGES.forEach(function(p) { var ifr = document.getElementById('iframe-' + p); if (!ifr) return; ifr.addEventListener('load', function() { if (ifr.src === 'about:blank') return; if (iframeLoadTimers[p]) { clearTimeout(iframeLoadTimers[p]); delete iframeLoadTimers[p]; } try { var d = ifr.contentDocument || ifr.contentWindow.document; if (d && d.body && d.body.innerHTML.length > 0) { hideLoading(p); hideFallback(p); return; } } catch(e) {} hideLoading(p); }); ifr.addEventListener('error', function() { if (ifr.src !== 'about:blank') showFallback(p); }); });
-    function loadIframe(p) { var ifr = document.getElementById('iframe-' + p), ld = document.getElementById('loading-' + p); if (!ifr || !PAGE_URLS[p]) return; hideFallback(p); ld.classList.remove('hidden'); loadedIframes[p] = true; ifr.src = PAGE_URLS[p]; iframeLoadTimers[p] = setTimeout(function() { try { var d = ifr.contentDocument || ifr.contentWindow.document; if (d && d.body && d.body.innerHTML.length > 50) { hideLoading(p); return; } } catch(e) {} if (ifr.src !== 'about:blank') showFallback(p); }, 6000); }
-    function retryIframe(p) { var ifr = document.getElementById('iframe-' + p); if (!ifr) return; hideFallback(p); document.getElementById('loading-' + p).classList.remove('hidden'); ifr.src = 'about:blank'; if (iframeLoadTimers[p]) { clearTimeout(iframeLoadTimers[p]); delete iframeLoadTimers[p]; } setTimeout(function() { ifr.src = PAGE_URLS[p]; loadedIframes[p] = true; iframeLoadTimers[p] = setTimeout(function() { try { var d = ifr.contentDocument || ifr.contentWindow.document; if (d && d.body && d.body.innerHTML.length > 50) { hideLoading(p); return; } } catch(e) {} if (ifr.src !== 'about:blank') showFallback(p); }, 6000); }, 150); showToast('info', 'Memuat ulang ' + (PAGE_TITLES[p] || p) + '...'); }
+    function loadIframe(pageId, url) {
+      var iframe = document.getElementById('iframe-' + pageId);
+      var loading = document.getElementById('loading-' + pageId);
+      var fallback = document.getElementById('fallback-' + pageId);
+      if (!iframe) return;
 
-    /* ==============================================
-       NAVIGASI
-       ============================================== */
-    function switchPage(p) { if (currentPage === p) return; currentPage = p; document.querySelectorAll('.nav-item[data-page]').forEach(function(i) { i.classList.toggle('active', i.dataset.page === p); }); document.getElementById('topbarTitle').textContent = PAGE_TITLES[p] || 'Dashboard'; document.getElementById('topbarBreadcrumb').textContent = PAGE_BREADCRUMBS[p] || 'Home'; document.querySelectorAll('.page-panel').forEach(function(pp) { pp.classList.remove('active'); }); document.getElementById('page-' + p).classList.add('active'); if (PAGE_URLS[p] && !loadedIframes[p]) loadIframe(p); closeMobileSidebar(); if (p !== 'home') showToast('success', 'Membuka ' + (PAGE_TITLES[p] || p) + '...'); }
+      // Reset states
+      if (loading) { loading.classList.remove('hidden'); }
+      if (fallback) { fallback.classList.remove('visible'); }
+
+      // Clear previous timer
+      if (iframeTimers[pageId]) clearTimeout(iframeTimers[pageId]);
+
+      iframe.src = url;
+
+      iframe.onload = function() {
+        if (loading) loading.classList.add('hidden');
+        if (fallback) fallback.classList.remove('visible');
+      };
+
+      // Timeout: tampilkan fallback setelah 15 detik
+      iframeTimers[pageId] = setTimeout(function() {
+        if (loading && !loading.classList.contains('hidden')) {
+          loading.classList.add('hidden');
+          if (fallback) fallback.classList.add('visible');
+        }
+      }, 15000);
+    }
+
+    function retryIframe(pageId) {
+      var url = PAGES[pageId] ? PAGES[pageId].url : null;
+      if (url) loadIframe(pageId, url);
+    }
 
     /* ==============================================
        SIDEBAR
        ============================================== */
-    function toggleSidebar() { var s = document.getElementById('sidebar'); if (window.innerWidth <= 768) { s.classList.toggle('mobile-open'); document.getElementById('sidebarOverlay').classList.toggle('active', s.classList.contains('mobile-open')); } else { s.classList.toggle('collapsed'); } }
-    function closeMobileSidebar() { document.getElementById('sidebar').classList.remove('mobile-open'); document.getElementById('sidebarOverlay').classList.remove('active'); }
+    function toggleSidebar() {
+      var sidebar = document.getElementById('sidebar');
+      var isMobile = window.innerWidth <= 768;
+      if (isMobile) {
+        sidebar.classList.toggle('mobile-open');
+        document.getElementById('sidebarOverlay').classList.toggle('active', sidebar.classList.contains('mobile-open'));
+      } else {
+        sidebar.classList.toggle('collapsed');
+      }
+    }
+
+    function closeMobileSidebar() {
+      var sidebar = document.getElementById('sidebar');
+      sidebar.classList.remove('mobile-open');
+      document.getElementById('sidebarOverlay').classList.remove('active');
+    }
+
     document.getElementById('sidebarOverlay').addEventListener('click', closeMobileSidebar);
+
+    /* ==============================================
+       LOCK / UNLOCK DASHBOARD
+       ============================================== */
+    function lockDashboard() {
+      document.getElementById('appLayout').style.opacity = '0';
+      setTimeout(function() {
+        document.getElementById('loginGate').classList.remove('unlocked');
+        document.getElementById('loginPassword').value = '';
+        document.getElementById('loginError').classList.add('hidden');
+      }, 300);
+    }
+
+    /* ==============================================
+       LOGIN
+       ============================================== */
+    var VALID_PASSWORD = 'asd1234';
+    var loginAttempts = 0;
+
+    var loginBtn = document.getElementById('loginBtn');
+    var loginPassword = document.getElementById('loginPassword');
+    var loginError = document.getElementById('loginError');
+    var loginErrorText = document.getElementById('loginErrorText');
+    var loginAttemptsEl = document.getElementById('loginAttempts');
+
+    loginBtn.addEventListener('click', attemptLogin);
+    loginPassword.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') attemptLogin();
+    });
+
+    function attemptLogin() {
+      var pw = loginPassword.value.trim();
+      if (!pw) {
+        showLoginError('Kunci akses tidak boleh kosong');
+        shakeCard();
+        return;
+      }
+      if (pw === VALID_PASSWORD) {
+        loginBtn.classList.add('loading');
+        loginBtn.innerHTML = '<span class="btn-shimmer"></span><i class="fas fa-spinner fa-spin" style="margin-right:6px"></i> MEMVERIFIKASI...';
+        setTimeout(function() {
+          document.getElementById('loginGate').classList.add('unlocked');
+          document.getElementById('appLayout').style.opacity = '1';
+          loginBtn.classList.remove('loading');
+          loginBtn.innerHTML = '<span class="btn-shimmer"></span><i class="fas fa-lock-open" style="margin-right:6px"></i> MASUK';
+          loginAttempts = 0;
+          loginAttemptsEl.textContent = '';
+        }, 1200);
+      } else {
+        loginAttempts++;
+        showLoginError('Kunci akses salah!');
+        shakeCard();
+        loginAttemptsEl.textContent = loginAttempts + ' percobaan gagal';
+        loginPassword.value = '';
+        loginPassword.focus();
+      }
+    }
+
+    function showLoginError(msg) {
+      loginErrorText.textContent = msg;
+      loginError.classList.remove('hidden');
+    }
+
+    function shakeCard() {
+      var card = document.getElementById('loginCard');
+      card.classList.add('shake');
+      setTimeout(function() { card.classList.remove('shake'); }, 500);
+    }
+
+    // Toggle password visibility
+    document.getElementById('togglePwBtn').addEventListener('click', function() {
+      var input = document.getElementById('loginPassword');
+      var icon = document.getElementById('pwToggleIcon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'fas fa-eye-slash';
+      } else {
+        input.type = 'password';
+        icon.className = 'fas fa-eye';
+      }
+    });
 
     /* ==============================================
        TOAST
        ============================================== */
-    function showToast(type, message) { var c = document.getElementById('toastContainer'), t = document.createElement('div'); t.className = 'toast'; var im = { success:'fa-check-circle', warning:'fa-exclamation-triangle', info:'fa-info-circle' }; t.innerHTML = '<i class="fas ' + (im[type]||im.info) + ' toast-icon ' + type + '"></i><span>' + message + '</span>'; c.appendChild(t); setTimeout(function() { t.classList.add('leaving'); setTimeout(function() { t.remove(); }, 300); }, 3500); }
+    function showToast(type, message) {
+      var container = document.getElementById('toastContainer');
+      var toast = document.createElement('div');
+      toast.className = 'toast';
+      var iconClass = type === 'success' ? 'fas fa-check-circle' : type === 'warning' ? 'fas fa-exclamation-triangle' : 'fas fa-info-circle';
+      toast.innerHTML = '<div class="toast-icon ' + type + '"><i class="' + iconClass + '"></i></div><div>' + message + '</div>';
+      container.appendChild(toast);
+      setTimeout(function() {
+        toast.classList.add('leaving');
+        setTimeout(function() { toast.remove(); }, 300);
+      }, 3000);
+    }
 
     /* ==============================================
        JAM
        ============================================== */
-    function updateClock() { var n = new Date(); document.getElementById('topbarClock').textContent = String(n.getHours()).padStart(2,'0') + ':' + String(n.getMinutes()).padStart(2,'0') + ':' + String(n.getSeconds()).padStart(2,'0'); }
-    setInterval(updateClock, 1000); updateClock();
+    function updateClock() {
+      var now = new Date();
+      var h = String(now.getHours()).padStart(2, '0');
+      var m = String(now.getMinutes()).padStart(2, '0');
+      var s = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('topbarClock').textContent = h + ':' + m + ':' + s;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
 
     /* ==============================================
-       PARTIKEL LOGIN
+       PARTIKEL BACKGROUND
        ============================================== */
-    (function() { var cv = document.getElementById('login-particles'); if (!cv) return; var cx = cv.getContext('2d'), ps = [], CT = 30; function rz() { cv.width = window.innerWidth; cv.height = window.innerHeight; } rz(); window.addEventListener('resize', rz); for (var idx = 0; idx < CT; idx++) ps.push({ x: Math.random()*cv.width, y: Math.random()*cv.height, vx: (Math.random()-.5)*.35, vy: (Math.random()-.5)*.35, sz: Math.random()*1.8+.5, a: Math.random()*.2+.05 }); function df() { if (document.getElementById('loginGate').classList.contains('unlocked')) return; cx.clearRect(0,0,cv.width,cv.height); for (var idx = 0; idx < ps.length; idx++) { var pt = ps[idx]; pt.x += pt.vx; pt.y += pt.vy; if (pt.x < 0) pt.x = cv.width; if (pt.x > cv.width) pt.x = 0; if (pt.y < 0) pt.y = cv.height; if (pt.y > cv.height) pt.y = 0; cx.beginPath(); cx.arc(pt.x, pt.y, Math.max(.5, pt.sz), 0, Math.PI*2); cx.fillStyle = 'rgba(0,229,160,' + pt.a + ')'; cx.fill(); } for (var idx = 0; idx < ps.length; idx++) { for (var jdx = idx+1; jdx < ps.length; jdx++) { var dx = ps[idx].x - ps[jdx].x, dy = ps[idx].y - ps[jdx].y, ds = Math.sqrt(dx*dx+dy*dy); if (ds < 150) { cx.beginPath(); cx.moveTo(ps[idx].x, ps[idx].y); cx.lineTo(ps[jdx].x, ps[jdx].y); cx.strokeStyle = 'rgba(0,229,160,' + ((1-ds/150)*.06) + ')'; cx.lineWidth = .5; cx.stroke(); } } } requestAnimationFrame(df); } if (!window.matchMedia('(prefers-reduced-motion:reduce)').matches) df(); })();
+    function initParticles(canvasId, color, count) {
+      var canvas = document.getElementById(canvasId);
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var particles = [];
+      var w, h;
 
-    /* ==============================================
-       PARTIKEL DASHBOARD
-       ============================================== */
-    (function() { var cv = document.getElementById('particle-canvas'); if (!cv) return; var cx = cv.getContext('2d'), ps = [], CT = 25; function rz() { cv.width = window.innerWidth; cv.height = window.innerHeight; } rz(); window.addEventListener('resize', rz); for (var idx = 0; idx < CT; idx++) ps.push({ x: Math.random()*cv.width, y: Math.random()*cv.height, vx: (Math.random()-.5)*.2, vy: (Math.random()-.5)*.2, sz: Math.random()*1.2+.5, a: Math.random()*.15+.03 }); function df() { cx.clearRect(0,0,cv.width,cv.height); for (var idx = 0; idx < ps.length; idx++) { var pt = ps[idx]; pt.x += pt.vx; pt.y += pt.vy; if (pt.x < 0) pt.x = cv.width; if (pt.x > cv.width) pt.x = 0; if (pt.y < 0) pt.y = cv.height; if (pt.y > cv.height) pt.y = 0; cx.beginPath(); cx.arc(pt.x, pt.y, Math.max(.5, pt.sz), 0, Math.PI*2); cx.fillStyle = 'rgba(0,229,160,' + pt.a + ')'; cx.fill(); } for (var idx = 0; idx < ps.length; idx++) { for (var jdx = idx+1; jdx < ps.length; jdx++) { var dx = ps[idx].x - ps[jdx].x, dy = ps[idx].y - ps[jdx].y, ds = Math.sqrt(dx*dx+dy*dy); if (ds < 130) { cx.beginPath(); cx.moveTo(ps[idx].x, ps[idx].y); cx.lineTo(ps[jdx].x, ps[jdx].y); cx.strokeStyle = 'rgba(0,229,160,' + ((1-ds/130)*.04) + ')'; cx.lineWidth = .5; cx.stroke(); } } } requestAnimationFrame(df); } if (!window.matchMedia('(prefers-reduced-motion:reduce)').matches) df(); })();
+      function resize() {
+        w = canvas.width = canvas.parentElement ? canvas.parentElement.offsetWidth : window.innerWidth;
+        h = canvas.height = canvas.parentElement ? canvas.parentElement.offsetHeight : window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
 
-    /* ==============================================
-       KEYBOARD SHORTCUT
-       ============================================== */
-    document.addEventListener('keydown', function(e) { if (!document.getElementById('loginGate').classList.contains('unlocked')) return; if (e.altKey && e.key === '1') switchPage('home'); if (e.altKey && e.key === '2') switchPage('linkcek'); if (e.altKey && e.key === '3') switchPage('deloc'); if (e.altKey && e.key === '4') switchPage('qris'); if (e.altKey && e.key === '5') switchPage('bola'); if (e.altKey && e.key === '6') switchPage('result'); if (e.altKey && e.key === '7') switchPage('bank'); });
+      for (var i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          r: Math.random() * 1.5 + 0.5,
+          a: Math.random() * 0.4 + 0.1
+        });
+      }
 
-    /* ==============================================
-       INIT
-       ============================================== */
-    (function() { if (checkSession()) { document.getElementById('loginGate').classList.add('unlocked'); document.getElementById('appLayout').style.opacity = '1'; } else { setTimeout(function() { document.getElementById('loginPassword').focus(); }, 500); } })();
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0) p.x = w;
+          if (p.x > w) p.x = 0;
+          if (p.y < 0) p.y = h;
+          if (p.y > h) p.y = 0;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = color.replace('A)', p.a + ')');
+          ctx.fill();
+        }
+        // Garis koneksi
+        for (var i = 0; i < particles.length; i++) {
+          for (var j = i + 1; j < particles.length; j++) {
+            var dx = particles[i].x - particles[j].x;
+            var dy = particles[i].y - particles[j].y;
+            var dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 120) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = color.replace('A)', (0.06 * (1 - dist / 120)) + ')');
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    }
+
+    initParticles('particle-canvas', 'rgba(0,229,160,A)', 50);
+    initParticles('login-particles', 'rgba(0,229,160,A)', 30);
   </script>
 </body>
 </html>
