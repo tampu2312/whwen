@@ -23,7 +23,6 @@
     @keyframes floatG1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-40px,30px) scale(1.1)}}
     @keyframes floatG2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-40px) scale(1.15)}}
 
-    /* Login Gate */
     .login-gate{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .8s ease,visibility .8s ease}
     .login-gate.unlocked{opacity:0;visibility:hidden;pointer-events:none}
     .login-bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,160,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,160,0.02) 1px,transparent 1px);background-size:80px 80px;animation:gridDrift 25s linear infinite}
@@ -67,7 +66,6 @@
     .shake{animation:shake .5s ease}
     #login-particles{position:absolute;inset:0;z-index:1;pointer-events:none}
 
-    /* Dashboard */
     .app-layout{display:flex;height:100vh;position:relative;z-index:2}
     .sidebar{width:280px;min-width:280px;background:var(--bg-surface);backdrop-filter:blur(20px);border-right:1px solid var(--border);display:flex;flex-direction:column;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
     .sidebar::after{content:'';position:absolute;top:0;right:0;width:1px;height:100%;background:linear-gradient(to bottom,var(--accent),transparent 30%,transparent 70%,var(--accent2));opacity:.2}
@@ -183,6 +181,8 @@
     .iframe-url-bar span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .iframe-btn{width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:6px;background:transparent;border:1px solid var(--border);color:var(--text-secondary);cursor:pointer;transition:all .2s;font-size:12px}
     .iframe-btn:hover{color:var(--accent);border-color:rgba(0,229,160,0.3)}
+    .iframe-btn.sound-btn{color:var(--warning);border-color:rgba(251,191,36,0.3);background:rgba(251,191,36,0.08)}
+    .iframe-btn.sound-btn:hover{background:rgba(251,191,36,0.15);color:var(--warning)}
     .iframe-btn.open-external{width:auto;padding:0 12px;font-size:11px;gap:6px;font-family:'Space Grotesk',sans-serif;font-weight:500;text-decoration:none;display:flex;align-items:center}
     .iframe-wrapper{flex:1;position:relative;overflow:hidden}
     .iframe-wrapper iframe{width:100%;height:100%;border:none;background:#fff}
@@ -352,10 +352,10 @@
         <!-- PAGE: RESULT -->
         <div class="page-panel" id="page-result"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('result')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/Togeltampu/</span></div><a href="https://tampu2312.github.io/Togeltampu/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-result"><div class="loader-ring"></div><div class="loader-text">Memuat Result Togel...</div></div><iframe id="iframe-result" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-result"><div class="fallback-icon-wrap" style="background:rgba(168,85,247,0.08);color:#a855f7"><i class="fas fa-trophy"></i></div><div class="fallback-title">Result Togel</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/Togeltampu/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/Togeltampu/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('result')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
 
-        <!-- PAGE: BANK -->
-        <div class="page-panel" id="page-bank"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('bank')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/BANK/</span></div><a href="https://tampu2312.github.io/BANK/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-bank"><div class="loader-ring"></div><div class="loader-text">Memuat Jam Bank...</div></div><iframe id="iframe-bank" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-bank"><div class="fallback-icon-wrap" style="background:rgba(249,115,22,0.08);color:#f97316"><i class="fas fa-university"></i></div><div class="fallback-title">Jam Bank</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/BANK/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/BANK/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('bank')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
+        <!-- PAGE: BANK (dengan tombol suara & allow autoplay) -->
+        <div class="page-panel" id="page-bank"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('bank')"><i class="fas fa-redo"></i></button><button class="iframe-btn sound-btn" onclick="activateBankSound()" title="Aktifkan Suara Notifikasi"><i class="fas fa-volume-up"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/BANK/</span></div><a href="https://tampu2312.github.io/BANK/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-bank"><div class="loader-ring"></div><div class="loader-text">Memuat Jam Bank...</div></div><iframe id="iframe-bank" src="about:blank" allow="autoplay; encrypted-media"></iframe><div class="iframe-fallback" id="fallback-bank"><div class="fallback-icon-wrap" style="background:rgba(249,115,22,0.08);color:#f97316"><i class="fas fa-university"></i></div><div class="fallback-title">Jam Bank</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/BANK/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/BANK/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('bank')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
 
-        <!-- PAGE: SYAIR (BARU) -->
+        <!-- PAGE: SYAIR -->
         <div class="page-panel" id="page-syair"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('syair')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/syair/</span></div><a href="https://tampu2312.github.io/syair/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-syair"><div class="loader-ring"></div><div class="loader-text">Memuat Syair...</div></div><iframe id="iframe-syair" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-syair"><div class="fallback-icon-wrap" style="background:rgba(236,72,153,0.08);color:var(--rose)"><i class="fas fa-feather-alt"></i></div><div class="fallback-title">Syair</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/syair/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/syair/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('syair')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
 
       </div>
@@ -378,7 +378,7 @@
     /* ==============================================
        KONFIGURASI HALAMAN
        ============================================== */
-    const PAGES = {
+    var PAGES = {
       home: { title: 'Dashboard', breadcrumb: 'Home / Overview', url: null },
       linkcek: { title: 'Link Cek', breadcrumb: 'Layanan / Link Cek', url: 'https://tampu2312.github.io/linkcek/' },
       deloc: { title: 'CATATAN & REPORT', breadcrumb: 'Layanan / Deloc App', url: 'https://tampu2312.github.io/report/' },
@@ -389,8 +389,96 @@
       syair: { title: 'Syair', breadcrumb: 'Premium / Syair', url: 'https://tampu2312.github.io/syair/' }
     };
 
-    let currentPage = 'home';
-    let iframeTimers = {};
+    var currentPage = 'home';
+    var iframeTimers = {};
+
+    /* ==============================================
+       SISTEM AUDIO / SUARA NOTIFIKASI
+       Menggunakan Web Audio API agar suara bisa
+       berbunyi tanpa file eksternal
+       ============================================== */
+    var audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    /* Putar nada notifikasi (beep) */
+    function playNotifSound(frequency, duration, volume) {
+      try {
+        var ctx = getAudioContext();
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.frequency.value = frequency || 880;
+        osc.type = 'sine';
+        gain.gain.setValueAtTime(volume || 0.3, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + (duration || 0.2));
+
+        osc.start(ctx.currentTime);
+        osc.stop(ctx.currentTime + (duration || 0.2));
+      } catch (e) {
+        console.log('Audio tidak tersedia:', e);
+      }
+    }
+
+    /* Suara khusus Jam Bank (ding-dong) */
+    function playBankSound() {
+      setTimeout(function() { playNotifSound(660, 0.15, 0.4); }, 100);
+      setTimeout(function() { playNotifSound(880, 0.25, 0.4); }, 280);
+    }
+
+    /* Aktifkan suara untuk iframe Jam Bank */
+    function activateBankSound() {
+      playBankSound();
+      showToast('success', 'Suara Jam Bank diaktifkan! Notifikasi akan berbunyi saat bank buka/tutup.');
+    }
+
+    /* ==============================================
+       NOTIFIKASI JADWAL BANK OTOMATIS
+       Cek setiap menit, bunyikan suara saat jam buka/tutup
+       ============================================== */
+    var lastBankNotifMinute = -1;
+
+    function checkBankSchedule() {
+      var now = new Date();
+      var h = now.getHours();
+      var m = now.getMinutes();
+      var currentMinute = h * 60 + m;
+
+      if (currentMinute === lastBankNotifMinute) return;
+
+      // Jam buka bank: 08:00
+      if (h === 8 && m === 0) {
+        lastBankNotifMinute = currentMinute;
+        playBankSound();
+        showToast('success', '🏦 Bank sudah BUKA! (Jam 08:00)');
+      }
+      // Jam tutup bank: 21:00
+      if (h === 21 && m === 0) {
+        lastBankNotifMinute = currentMinute;
+        playBankSound();
+        showToast('warning', '🏦 Bank sudah TUTUP! (Jam 21:00)');
+      }
+      // Peringatan 15 menit sebelum tutup: 20:45
+      if (h === 20 && m === 45) {
+        lastBankNotifMinute = currentMinute;
+        playBankSound();
+        showToast('warning', '⏰ Bank tutup dalam 15 menit! (Jam 21:00)');
+      }
+    }
+
+    /* Cek jadwal bank setiap 30 detik */
+    setInterval(checkBankSchedule, 30000);
+    checkBankSchedule();
 
     /* ==============================================
        NAVIGASI HALAMAN
@@ -399,28 +487,28 @@
       if (!PAGES[pageId]) return;
       currentPage = pageId;
 
-      // Update nav items
       document.querySelectorAll('.nav-item[data-page]').forEach(function(item) {
         item.classList.toggle('active', item.getAttribute('data-page') === pageId);
       });
 
-      // Update topbar
       document.getElementById('topbarTitle').textContent = PAGES[pageId].title;
       document.getElementById('topbarBreadcrumb').textContent = PAGES[pageId].breadcrumb;
 
-      // Switch page panels
       document.querySelectorAll('.page-panel').forEach(function(panel) {
         panel.classList.remove('active');
       });
       var targetPanel = document.getElementById('page-' + pageId);
       if (targetPanel) targetPanel.classList.add('active');
 
-      // Load iframe if needed
       if (PAGES[pageId].url) {
         loadIframe(pageId, PAGES[pageId].url);
       }
 
-      // Close mobile sidebar
+      /* Bunyikan suara saat halaman Jam Bank dibuka */
+      if (pageId === 'bank') {
+        setTimeout(function() { playBankSound(); }, 300);
+      }
+
       closeMobileSidebar();
     }
 
@@ -433,11 +521,9 @@
       var fallback = document.getElementById('fallback-' + pageId);
       if (!iframe) return;
 
-      // Reset states
-      if (loading) { loading.classList.remove('hidden'); }
-      if (fallback) { fallback.classList.remove('visible'); }
+      if (loading) loading.classList.remove('hidden');
+      if (fallback) fallback.classList.remove('visible');
 
-      // Clear previous timer
       if (iframeTimers[pageId]) clearTimeout(iframeTimers[pageId]);
 
       iframe.src = url;
@@ -447,7 +533,6 @@
         if (fallback) fallback.classList.remove('visible');
       };
 
-      // Timeout: tampilkan fallback setelah 15 detik
       iframeTimers[pageId] = setTimeout(function() {
         if (loading && !loading.classList.contains('hidden')) {
           loading.classList.add('hidden');
@@ -484,9 +569,47 @@
     document.getElementById('sidebarOverlay').addEventListener('click', closeMobileSidebar);
 
     /* ==============================================
-       LOCK / UNLOCK DASHBOARD
+       AUTENTIKASI DENGAN SESSION PERSISTENCE
        ============================================== */
+    var AUTH_KEY = 'togelon_auth_session';
+    var SESSION_MAX_AGE = 24 * 60 * 60 * 1000;
+    var VALID_PASSWORD = 'asd123';
+    var loginAttempts = 0;
+
+    function isSessionValid() {
+      try {
+        var session = localStorage.getItem(AUTH_KEY);
+        if (!session) return false;
+        var data = JSON.parse(session);
+        if (!data || !data.timestamp) return false;
+        var age = Date.now() - data.timestamp;
+        if (age > SESSION_MAX_AGE) {
+          localStorage.removeItem(AUTH_KEY);
+          return false;
+        }
+        return true;
+      } catch (e) { return false; }
+    }
+
+    function saveSession() {
+      try {
+        localStorage.setItem(AUTH_KEY, JSON.stringify({ timestamp: Date.now(), authenticated: true }));
+      } catch (e) {}
+    }
+
+    function clearSession() {
+      try { localStorage.removeItem(AUTH_KEY); } catch (e) {}
+    }
+
+    function unlockDashboardDirect() {
+      document.getElementById('loginGate').classList.add('unlocked');
+      document.getElementById('appLayout').style.opacity = '1';
+    }
+
     function lockDashboard() {
+      clearSession();
+      loginAttempts = 0;
+      document.getElementById('loginAttempts').textContent = '';
       document.getElementById('appLayout').style.opacity = '0';
       setTimeout(function() {
         document.getElementById('loginGate').classList.remove('unlocked');
@@ -498,9 +621,6 @@
     /* ==============================================
        LOGIN
        ============================================== */
-    var VALID_PASSWORD = 'asd1234';
-    var loginAttempts = 0;
-
     var loginBtn = document.getElementById('loginBtn');
     var loginPassword = document.getElementById('loginPassword');
     var loginError = document.getElementById('loginError');
@@ -523,17 +643,23 @@
         loginBtn.classList.add('loading');
         loginBtn.innerHTML = '<span class="btn-shimmer"></span><i class="fas fa-spinner fa-spin" style="margin-right:6px"></i> MEMVERIFIKASI...';
         setTimeout(function() {
+          saveSession();
           document.getElementById('loginGate').classList.add('unlocked');
           document.getElementById('appLayout').style.opacity = '1';
           loginBtn.classList.remove('loading');
           loginBtn.innerHTML = '<span class="btn-shimmer"></span><i class="fas fa-lock-open" style="margin-right:6px"></i> MASUK';
           loginAttempts = 0;
           loginAttemptsEl.textContent = '';
+          /* Bunyikan suara saat berhasil login */
+          playNotifSound(1000, 0.15, 0.2);
+          setTimeout(function() { playNotifSound(1200, 0.2, 0.2); }, 180);
         }, 1200);
       } else {
         loginAttempts++;
         showLoginError('Kunci akses salah!');
         shakeCard();
+        /* Bunyikan suara error */
+        playNotifSound(300, 0.3, 0.3);
         loginAttemptsEl.textContent = loginAttempts + ' percobaan gagal';
         loginPassword.value = '';
         loginPassword.focus();
@@ -551,7 +677,6 @@
       setTimeout(function() { card.classList.remove('shake'); }, 500);
     }
 
-    // Toggle password visibility
     document.getElementById('togglePwBtn').addEventListener('click', function() {
       var input = document.getElementById('loginPassword');
       var icon = document.getElementById('pwToggleIcon');
@@ -563,6 +688,13 @@
         icon.className = 'fas fa-eye';
       }
     });
+
+    /* Cek sesi saat halaman dimuat */
+    (function checkExistingSession() {
+      if (isSessionValid()) {
+        unlockDashboardDirect();
+      }
+    })();
 
     /* ==============================================
        TOAST
@@ -577,7 +709,7 @@
       setTimeout(function() {
         toast.classList.add('leaving');
         setTimeout(function() { toast.remove(); }, 300);
-      }, 3000);
+      }, 4000);
     }
 
     /* ==============================================
@@ -612,12 +744,9 @@
 
       for (var i = 0; i < count; i++) {
         particles.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4,
-          r: Math.random() * 1.5 + 0.5,
-          a: Math.random() * 0.4 + 0.1
+          x: Math.random() * w, y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
+          r: Math.random() * 1.5 + 0.5, a: Math.random() * 0.4 + 0.1
         });
       }
 
@@ -625,18 +754,14 @@
         ctx.clearRect(0, 0, w, h);
         for (var i = 0; i < particles.length; i++) {
           var p = particles[i];
-          p.x += p.vx;
-          p.y += p.vy;
-          if (p.x < 0) p.x = w;
-          if (p.x > w) p.x = 0;
-          if (p.y < 0) p.y = h;
-          if (p.y > h) p.y = 0;
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
+          if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
           ctx.fillStyle = color.replace('A)', p.a + ')');
           ctx.fill();
         }
-        // Garis koneksi
         for (var i = 0; i < particles.length; i++) {
           for (var j = i + 1; j < particles.length; j++) {
             var dx = particles[i].x - particles[j].x;
