@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    :root{--bg-deep:#07070c;--bg-surface:rgba(10,10,18,0.88);--bg-surface-solid:#0c0c16;--bg-card:rgba(18,18,32,0.75);--bg-card-hover:rgba(28,28,46,0.8);--border:rgba(40,40,65,0.6);--accent:#00e5a0;--accent-dim:#00b87e;--accent-glow:rgba(0,229,160,0.12);--accent2:#00c9db;--text-primary:#eaf5f0;--text-secondary:#8a9a9e;--text-muted:#506068;--success:#00e5a0;--warning:#fbbf24;--danger:#ff4757;--info:#00c9db;--rose:#ec4899}
+    :root{--bg-deep:#07070c;--bg-surface:rgba(10,10,18,0.88);--bg-surface-solid:#0c0c16;--bg-card:rgba(18,18,32,0.75);--bg-card-hover:rgba(28,28,46,0.8);--border:rgba(40,40,65,0.6);--accent:#00e5a0;--accent-dim:#00b87e;--accent-glow:rgba(0,229,160,0.12);--accent2:#00c9db;--text-primary:#eaf5f0;--text-secondary:#8a9a9e;--text-muted:#506068;--success:#00e5a0;--warning:#fbbf24;--danger:#ff4757;--info:#00c9db;--rose:#ec4899;--cyan:#22d3ee}
     *{margin:0;padding:0;box-sizing:border-box}
     body,.login-gate,.app-layout,.sidebar,.main-content,.topbar,.dashboard-scroll,.stat-card,.quick-card,.activity-item,.login-card,.nav-item,.nav-label,.nav-icon,.stat-card-value,.stat-card-label,.quick-card-title,.quick-card-desc,.activity-text,.welcome-title,.welcome-sub,.section-title,.section-subtitle{user-select:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none}
     .login-input{user-select:text;-webkit-user-select:text}
@@ -131,6 +131,7 @@
     .stat-card:nth-child(5)::before{background:#a855f7}
     .stat-card:nth-child(6)::before{background:#f97316}
     .stat-card:nth-child(7)::before{background:var(--rose)}
+    .stat-card:nth-child(8)::before{background:var(--cyan)}
     .stat-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
     .stat-card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px}
     .stat-card:nth-child(1) .stat-card-icon{background:rgba(0,229,160,0.1);color:var(--accent)}
@@ -140,6 +141,7 @@
     .stat-card:nth-child(5) .stat-card-icon{background:rgba(168,85,247,0.1);color:#a855f7}
     .stat-card:nth-child(6) .stat-card-icon{background:rgba(249,115,22,0.1);color:#f97316}
     .stat-card:nth-child(7) .stat-card-icon{background:rgba(236,72,153,0.1);color:var(--rose)}
+    .stat-card:nth-child(8) .stat-card-icon{background:rgba(34,211,238,0.1);color:var(--cyan)}
     .stat-card-status{font-size:10px;font-family:'JetBrains Mono',monospace;padding:3px 8px;border-radius:6px;font-weight:600}
     .status-live{background:rgba(0,229,160,0.12);color:var(--success)}
     .stat-card-value{font-size:18px;font-weight:700;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
@@ -159,6 +161,7 @@
     .quick-card:nth-child(5) .quick-card-icon{background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(168,85,247,0.03));color:#a855f7}
     .quick-card:nth-child(6) .quick-card-icon{background:linear-gradient(135deg,rgba(249,115,22,0.15),rgba(249,115,22,0.03));color:#f97316}
     .quick-card:nth-child(7) .quick-card-icon{background:linear-gradient(135deg,rgba(236,72,153,0.15),rgba(236,72,153,0.03));color:var(--rose)}
+    .quick-card:nth-child(8) .quick-card-icon{background:linear-gradient(135deg,rgba(34,211,238,0.15),rgba(34,211,238,0.03));color:var(--cyan)}
     .quick-card-arrow{width:30px;height:30px;border-radius:8px;background:rgba(10,10,18,0.6);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:11px;transition:all .3s}
     .quick-card:hover .quick-card-arrow{color:var(--accent);background:var(--accent-glow);transform:translate(2px,-2px)}
     .quick-card-title{font-size:15px;font-weight:600;margin-bottom:5px;position:relative;z-index:1}
@@ -276,6 +279,7 @@
         <div class="nav-group-label" style="margin-top:14px">Layanan Premium</div>
         <div class="nav-item" data-page="bola" onclick="switchPage('bola')"><div class="nav-icon"><i class="fas fa-futbol"></i></div><span class="nav-label">SCHORCAT Bola</span><span class="nav-badge">LIVE</span></div>
         <div class="nav-item" data-page="result" onclick="switchPage('result')"><div class="nav-icon"><i class="fas fa-trophy"></i></div><span class="nav-label">Result Togel</span><span class="nav-badge">LIVE</span></div>
+        <div class="nav-item" data-page="prediksi" onclick="switchPage('prediksi')"><div class="nav-icon"><i class="fas fa-chart-line"></i></div><span class="nav-label">Prediksi Togel</span><span class="nav-badge">LIVE</span></div>
         <div class="nav-item" data-page="bank" onclick="switchPage('bank')"><div class="nav-icon"><i class="fas fa-university"></i></div><span class="nav-label">Jam Bank</span><span class="nav-badge">LIVE</span></div>
         <div class="nav-item" data-page="syair" onclick="switchPage('syair')"><div class="nav-icon"><i class="fas fa-feather-alt"></i></div><span class="nav-label">Syair</span><span class="nav-badge">LIVE</span></div>
         <div class="nav-group-label" style="margin-top:14px">Sistem</div>
@@ -309,6 +313,7 @@
               <div class="stat-card" onclick="switchPage('qris')"><div class="stat-card-header"><div class="stat-card-icon"><i class="fas fa-qrcode"></i></div><div class="stat-card-status status-live pulse-anim">ONLINE</div></div><div class="stat-card-value">QRIS & Loan</div><div class="stat-card-label">Pembayaran & pinjaman</div></div>
               <div class="stat-card" onclick="switchPage('bola')"><div class="stat-card-header"><div class="stat-card-icon"><i class="fas fa-futbol"></i></div><div class="stat-card-status status-live pulse-anim">LIVE</div></div><div class="stat-card-value">Score Bola</div><div class="stat-card-label">Skor pertandingan live</div></div>
               <div class="stat-card" onclick="switchPage('result')"><div class="stat-card-header"><div class="stat-card-icon"><i class="fas fa-trophy"></i></div><div class="stat-card-status status-live pulse-anim">LIVE</div></div><div class="stat-card-value">Result Togel</div><div class="stat-card-label">Hasil togel terkini</div></div>
+              <div class="stat-card" onclick="switchPage('prediksi')"><div class="stat-card-header"><div class="stat-card-icon"><i class="fas fa-chart-line"></i></div><div class="stat-card-status status-live pulse-anim">LIVE</div></div><div class="stat-card-value">Prediksi Togel</div><div class="stat-card-label">Analisis & prediksi angka</div></div>
               <div class="stat-card" onclick="switchPage('bank')"><div class="stat-card-header"><div class="stat-card-icon"><i class="fas fa-university"></i></div><div class="stat-card-status status-live pulse-anim">ONLINE</div></div><div class="stat-card-value">Jam Bank</div><div class="stat-card-label">Jadwal operasional bank</div></div>
               <div class="stat-card" onclick="switchPage('syair')"><div class="stat-card-header"><div class="stat-card-icon"><i class="fas fa-feather-alt"></i></div><div class="stat-card-status status-live pulse-anim">LIVE</div></div><div class="stat-card-value">Syair</div><div class="stat-card-label">Kumpulan syair terlengkap</div></div>
             </div>
@@ -319,6 +324,7 @@
               <div class="quick-card" onclick="switchPage('qris')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-qrcode"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">QRIS & Pinjaman</div><div class="quick-card-desc">Layanan pembayaran QRIS dan pinjaman.</div><div class="quick-card-url">tampu2312.github.io/QrisAndPinjaman/</div></div>
               <div class="quick-card" onclick="switchPage('bola')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-futbol"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">Score Bola</div><div class="quick-card-desc">Pantau skor sepak bola real-time.</div><div class="quick-card-url">tampu2312.github.io/BOLLA/</div></div>
               <div class="quick-card" onclick="switchPage('result')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-trophy"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">Result Togel</div><div class="quick-card-desc">Hasil pengeluaran togel terkini.</div><div class="quick-card-url">tampu2312.github.io/Togeltampu/</div></div>
+              <div class="quick-card" onclick="switchPage('prediksi')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-chart-line"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">Prediksi Togel</div><div class="quick-card-desc">Analisis dan prediksi angka jitu.</div><div class="quick-card-url">tampu2312.github.io/prediksitogel/</div></div>
               <div class="quick-card" onclick="switchPage('bank')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-university"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">Jam Bank</div><div class="quick-card-desc">Jadwal operasional bank lengkap.</div><div class="quick-card-url">tampu2312.github.io/BANK/</div></div>
               <div class="quick-card" onclick="switchPage('syair')"><div class="quick-card-top"><div class="quick-card-icon"><i class="fas fa-feather-alt"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div><div class="quick-card-title">Syair</div><div class="quick-card-desc">Kumpulan syair dan kode alam terlengkap.</div><div class="quick-card-url">tampu2312.github.io/syair/</div></div>
             </div>
@@ -329,6 +335,7 @@
                 <div class="activity-item"><div class="activity-dot online"></div><div class="activity-text"><strong>QRIS & Pinjaman</strong> — Online</div><div class="activity-time">LIVE</div></div>
                 <div class="activity-item"><div class="activity-dot online" style="background:var(--warning);box-shadow:0 0 8px rgba(251,191,36,0.5)"></div><div class="activity-text"><strong>Score Bola</strong> — Live</div><div class="activity-time">LIVE</div></div>
                 <div class="activity-item"><div class="activity-dot online" style="background:#a855f7;box-shadow:0 0 8px rgba(168,85,247,0.5)"></div><div class="activity-text"><strong>Result Togel</strong> — Live</div><div class="activity-time">LIVE</div></div>
+                <div class="activity-item"><div class="activity-dot online" style="background:var(--cyan);box-shadow:0 0 8px rgba(34,211,238,0.5)"></div><div class="activity-text"><strong>Prediksi Togel</strong> — Live</div><div class="activity-time">LIVE</div></div>
                 <div class="activity-item"><div class="activity-dot online" style="background:#f97316;box-shadow:0 0 8px rgba(249,115,22,0.5)"></div><div class="activity-text"><strong>Jam Bank</strong> — Online</div><div class="activity-time">LIVE</div></div>
                 <div class="activity-item"><div class="activity-dot online" style="background:var(--rose);box-shadow:0 0 8px rgba(236,72,153,0.5)"></div><div class="activity-text"><strong>Syair</strong> — Online</div><div class="activity-time">LIVE</div></div>
                 <div class="activity-item"><div class="activity-dot online" style="background:var(--accent);box-shadow:0 0 8px rgba(0,229,160,0.5)"></div><div class="activity-text"><strong>TOGEL ON</strong> — Command Center v2.0</div><div class="activity-time">ACTIVE</div></div>
@@ -352,7 +359,10 @@
         <!-- PAGE: RESULT -->
         <div class="page-panel" id="page-result"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('result')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/Togeltampu/</span></div><a href="https://tampu2312.github.io/Togeltampu/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-result"><div class="loader-ring"></div><div class="loader-text">Memuat Result Togel...</div></div><iframe id="iframe-result" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-result"><div class="fallback-icon-wrap" style="background:rgba(168,85,247,0.08);color:#a855f7"><i class="fas fa-trophy"></i></div><div class="fallback-title">Result Togel</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/Togeltampu/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/Togeltampu/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('result')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
 
-        <!-- PAGE: BANK (dengan tombol suara & allow autoplay) -->
+        <!-- PAGE: PREDIKSI TOGEL (BARU) -->
+        <div class="page-panel" id="page-prediksi"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('prediksi')"><i class="fas fa-redo"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/prediksitogel/</span></div><a href="https://tampu2312.github.io/prediksitogel/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-prediksi"><div class="loader-ring"></div><div class="loader-text">Memuat Prediksi Togel...</div></div><iframe id="iframe-prediksi" src="about:blank"></iframe><div class="iframe-fallback" id="fallback-prediksi"><div class="fallback-icon-wrap" style="background:rgba(34,211,238,0.08);color:var(--cyan)"><i class="fas fa-chart-line"></i></div><div class="fallback-title">Prediksi Togel</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/prediksitogel/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/prediksitogel/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('prediksi')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
+
+        <!-- PAGE: BANK -->
         <div class="page-panel" id="page-bank"><div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage('home')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe('bank')"><i class="fas fa-redo"></i></button><button class="iframe-btn sound-btn" onclick="activateBankSound()" title="Aktifkan Suara Notifikasi"><i class="fas fa-volume-up"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>https://tampu2312.github.io/BANK/</span></div><a href="https://tampu2312.github.io/BANK/" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-bank"><div class="loader-ring"></div><div class="loader-text">Memuat Jam Bank...</div></div><iframe id="iframe-bank" src="about:blank" allow="autoplay; encrypted-media"></iframe><div class="iframe-fallback" id="fallback-bank"><div class="fallback-icon-wrap" style="background:rgba(249,115,22,0.08);color:#f97316"><i class="fas fa-university"></i></div><div class="fallback-title">Jam Bank</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">https://tampu2312.github.io/BANK/</div><div class="fallback-actions"><a href="https://tampu2312.github.io/BANK/" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe('bank')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div></div>
 
         <!-- PAGE: SYAIR -->
@@ -363,9 +373,6 @@
   </div>
 
   <script>
-    /* ==============================================
-       ANTI-INSPECT
-       ============================================== */
     document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
     document.addEventListener('keydown', function(e) {
       if (e.key === 'F12' || e.keyCode === 123) { e.preventDefault(); return false; }
@@ -375,9 +382,6 @@
     document.addEventListener('dragstart', function(e) { e.preventDefault(); return false; });
     document.addEventListener('copy', function(e) { e.preventDefault(); e.clipboardData.setData('text/plain', ''); return false; });
 
-    /* ==============================================
-       KONFIGURASI HALAMAN
-       ============================================== */
     var PAGES = {
       home: { title: 'Dashboard', breadcrumb: 'Home / Overview', url: null },
       linkcek: { title: 'Link Cek', breadcrumb: 'Layanan / Link Cek', url: 'https://tampu2312.github.io/linkcek/' },
@@ -385,6 +389,7 @@
       qris: { title: 'QRIS & Pinjaman', breadcrumb: 'Layanan / QRIS', url: 'https://tampu2312.github.io/QrisAndPinjaman/' },
       bola: { title: 'Score Bola', breadcrumb: 'Premium / Score Bola', url: 'https://tampu2312.github.io/BOLLA/' },
       result: { title: 'Result Togel', breadcrumb: 'Premium / Result Togel', url: 'https://tampu2312.github.io/Togeltampu/' },
+      prediksi: { title: 'Prediksi Togel', breadcrumb: 'Premium / Prediksi Togel', url: 'https://tampu2312.github.io/prediksitogel/' },
       bank: { title: 'Jam Bank', breadcrumb: 'Premium / Jam Bank', url: 'https://tampu2312.github.io/BANK/' },
       syair: { title: 'Syair', breadcrumb: 'Premium / Syair', url: 'https://tampu2312.github.io/syair/' }
     };
@@ -392,253 +397,106 @@
     var currentPage = 'home';
     var iframeTimers = {};
 
-    /* ==============================================
-       SISTEM AUDIO / SUARA NOTIFIKASI
-       Menggunakan Web Audio API agar suara bisa
-       berbunyi tanpa file eksternal
-       ============================================== */
     var audioCtx = null;
-
     function getAudioContext() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
+      if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+      if (audioCtx.state === 'suspended') { audioCtx.resume(); }
       return audioCtx;
     }
-
-    /* Putar nada notifikasi (beep) */
     function playNotifSound(frequency, duration, volume) {
       try {
         var ctx = getAudioContext();
-        var osc = ctx.createOscillator();
-        var gain = ctx.createGain();
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.frequency.value = frequency || 880;
-        osc.type = 'sine';
+        var osc = ctx.createOscillator(); var gain = ctx.createGain();
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.frequency.value = frequency || 880; osc.type = 'sine';
         gain.gain.setValueAtTime(volume || 0.3, ctx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + (duration || 0.2));
-
-        osc.start(ctx.currentTime);
-        osc.stop(ctx.currentTime + (duration || 0.2));
-      } catch (e) {
-        console.log('Audio tidak tersedia:', e);
-      }
+        osc.start(ctx.currentTime); osc.stop(ctx.currentTime + (duration || 0.2));
+      } catch (e) {}
     }
-
-    /* Suara khusus Jam Bank (ding-dong) */
     function playBankSound() {
       setTimeout(function() { playNotifSound(660, 0.15, 0.4); }, 100);
       setTimeout(function() { playNotifSound(880, 0.25, 0.4); }, 280);
     }
-
-    /* Aktifkan suara untuk iframe Jam Bank */
     function activateBankSound() {
       playBankSound();
-      showToast('success', 'Suara Jam Bank diaktifkan! Notifikasi akan berbunyi saat bank buka/tutup.');
+      showToast('success', 'Suara Jam Bank diaktifkan!');
     }
 
-    /* ==============================================
-       NOTIFIKASI JADWAL BANK OTOMATIS
-       Cek setiap menit, bunyikan suara saat jam buka/tutup
-       ============================================== */
     var lastBankNotifMinute = -1;
-
     function checkBankSchedule() {
-      var now = new Date();
-      var h = now.getHours();
-      var m = now.getMinutes();
+      var now = new Date(); var h = now.getHours(); var m = now.getMinutes();
       var currentMinute = h * 60 + m;
-
       if (currentMinute === lastBankNotifMinute) return;
-
-      // Jam buka bank: 08:00
-      if (h === 8 && m === 0) {
-        lastBankNotifMinute = currentMinute;
-        playBankSound();
-        showToast('success', '🏦 Bank sudah BUKA! (Jam 08:00)');
-      }
-      // Jam tutup bank: 21:00
-      if (h === 21 && m === 0) {
-        lastBankNotifMinute = currentMinute;
-        playBankSound();
-        showToast('warning', '🏦 Bank sudah TUTUP! (Jam 21:00)');
-      }
-      // Peringatan 15 menit sebelum tutup: 20:45
-      if (h === 20 && m === 45) {
-        lastBankNotifMinute = currentMinute;
-        playBankSound();
-        showToast('warning', '⏰ Bank tutup dalam 15 menit! (Jam 21:00)');
-      }
+      if (h === 8 && m === 0) { lastBankNotifMinute = currentMinute; playBankSound(); showToast('success', '🏦 Bank sudah BUKA! (08:00)'); }
+      if (h === 20 && m === 45) { lastBankNotifMinute = currentMinute; playBankSound(); showToast('warning', '⏰ Bank tutup dalam 15 menit!'); }
+      if (h === 21 && m === 0) { lastBankNotifMinute = currentMinute; playBankSound(); showToast('warning', '🏦 Bank sudah TUTUP! (21:00)'); }
     }
+    setInterval(checkBankSchedule, 30000); checkBankSchedule();
 
-    /* Cek jadwal bank setiap 30 detik */
-    setInterval(checkBankSchedule, 30000);
-    checkBankSchedule();
-
-    /* ==============================================
-       NAVIGASI HALAMAN
-       ============================================== */
     function switchPage(pageId) {
-      if (!PAGES[pageId]) return;
-      currentPage = pageId;
-
-      document.querySelectorAll('.nav-item[data-page]').forEach(function(item) {
-        item.classList.toggle('active', item.getAttribute('data-page') === pageId);
-      });
-
+      if (!PAGES[pageId]) return; currentPage = pageId;
+      document.querySelectorAll('.nav-item[data-page]').forEach(function(item) { item.classList.toggle('active', item.getAttribute('data-page') === pageId); });
       document.getElementById('topbarTitle').textContent = PAGES[pageId].title;
       document.getElementById('topbarBreadcrumb').textContent = PAGES[pageId].breadcrumb;
-
-      document.querySelectorAll('.page-panel').forEach(function(panel) {
-        panel.classList.remove('active');
-      });
+      document.querySelectorAll('.page-panel').forEach(function(panel) { panel.classList.remove('active'); });
       var targetPanel = document.getElementById('page-' + pageId);
       if (targetPanel) targetPanel.classList.add('active');
-
-      if (PAGES[pageId].url) {
-        loadIframe(pageId, PAGES[pageId].url);
-      }
-
-      /* Bunyikan suara saat halaman Jam Bank dibuka */
-      if (pageId === 'bank') {
-        setTimeout(function() { playBankSound(); }, 300);
-      }
-
+      if (PAGES[pageId].url) { loadIframe(pageId, PAGES[pageId].url); }
+      if (pageId === 'bank') { setTimeout(function() { playBankSound(); }, 300); }
       closeMobileSidebar();
     }
 
-    /* ==============================================
-       IFRAME LOADING
-       ============================================== */
     function loadIframe(pageId, url) {
       var iframe = document.getElementById('iframe-' + pageId);
       var loading = document.getElementById('loading-' + pageId);
       var fallback = document.getElementById('fallback-' + pageId);
       if (!iframe) return;
-
       if (loading) loading.classList.remove('hidden');
       if (fallback) fallback.classList.remove('visible');
-
       if (iframeTimers[pageId]) clearTimeout(iframeTimers[pageId]);
-
       iframe.src = url;
-
-      iframe.onload = function() {
-        if (loading) loading.classList.add('hidden');
-        if (fallback) fallback.classList.remove('visible');
-      };
-
+      iframe.onload = function() { if (loading) loading.classList.add('hidden'); if (fallback) fallback.classList.remove('visible'); };
       iframeTimers[pageId] = setTimeout(function() {
-        if (loading && !loading.classList.contains('hidden')) {
-          loading.classList.add('hidden');
-          if (fallback) fallback.classList.add('visible');
-        }
+        if (loading && !loading.classList.contains('hidden')) { loading.classList.add('hidden'); if (fallback) fallback.classList.add('visible'); }
       }, 15000);
     }
 
-    function retryIframe(pageId) {
-      var url = PAGES[pageId] ? PAGES[pageId].url : null;
-      if (url) loadIframe(pageId, url);
-    }
+    function retryIframe(pageId) { var url = PAGES[pageId] ? PAGES[pageId].url : null; if (url) loadIframe(pageId, url); }
 
-    /* ==============================================
-       SIDEBAR
-       ============================================== */
     function toggleSidebar() {
-      var sidebar = document.getElementById('sidebar');
-      var isMobile = window.innerWidth <= 768;
-      if (isMobile) {
-        sidebar.classList.toggle('mobile-open');
-        document.getElementById('sidebarOverlay').classList.toggle('active', sidebar.classList.contains('mobile-open'));
-      } else {
-        sidebar.classList.toggle('collapsed');
-      }
+      var sidebar = document.getElementById('sidebar'); var isMobile = window.innerWidth <= 768;
+      if (isMobile) { sidebar.classList.toggle('mobile-open'); document.getElementById('sidebarOverlay').classList.toggle('active', sidebar.classList.contains('mobile-open')); }
+      else { sidebar.classList.toggle('collapsed'); }
     }
-
-    function closeMobileSidebar() {
-      var sidebar = document.getElementById('sidebar');
-      sidebar.classList.remove('mobile-open');
-      document.getElementById('sidebarOverlay').classList.remove('active');
-    }
-
+    function closeMobileSidebar() { var sidebar = document.getElementById('sidebar'); sidebar.classList.remove('mobile-open'); document.getElementById('sidebarOverlay').classList.remove('active'); }
     document.getElementById('sidebarOverlay').addEventListener('click', closeMobileSidebar);
 
-    /* ==============================================
-       AUTENTIKASI DENGAN SESSION PERSISTENCE
-       ============================================== */
-    var AUTH_KEY = 'togelon_auth_session';
-    var SESSION_MAX_AGE = 24 * 60 * 60 * 1000;
-    var VALID_PASSWORD = 'asd123';
-    var loginAttempts = 0;
+    var AUTH_KEY = 'togelon_auth_session'; var SESSION_MAX_AGE = 24 * 60 * 60 * 1000; var VALID_PASSWORD = 'asd123'; var loginAttempts = 0;
 
     function isSessionValid() {
-      try {
-        var session = localStorage.getItem(AUTH_KEY);
-        if (!session) return false;
-        var data = JSON.parse(session);
-        if (!data || !data.timestamp) return false;
-        var age = Date.now() - data.timestamp;
-        if (age > SESSION_MAX_AGE) {
-          localStorage.removeItem(AUTH_KEY);
-          return false;
-        }
-        return true;
-      } catch (e) { return false; }
+      try { var session = localStorage.getItem(AUTH_KEY); if (!session) return false; var data = JSON.parse(session); if (!data || !data.timestamp) return false; if (Date.now() - data.timestamp > SESSION_MAX_AGE) { localStorage.removeItem(AUTH_KEY); return false; } return true; } catch (e) { return false; }
     }
-
-    function saveSession() {
-      try {
-        localStorage.setItem(AUTH_KEY, JSON.stringify({ timestamp: Date.now(), authenticated: true }));
-      } catch (e) {}
-    }
-
-    function clearSession() {
-      try { localStorage.removeItem(AUTH_KEY); } catch (e) {}
-    }
-
-    function unlockDashboardDirect() {
-      document.getElementById('loginGate').classList.add('unlocked');
-      document.getElementById('appLayout').style.opacity = '1';
-    }
+    function saveSession() { try { localStorage.setItem(AUTH_KEY, JSON.stringify({ timestamp: Date.now(), authenticated: true })); } catch (e) {} }
+    function clearSession() { try { localStorage.removeItem(AUTH_KEY); } catch (e) {} }
+    function unlockDashboardDirect() { document.getElementById('loginGate').classList.add('unlocked'); document.getElementById('appLayout').style.opacity = '1'; }
 
     function lockDashboard() {
-      clearSession();
-      loginAttempts = 0;
-      document.getElementById('loginAttempts').textContent = '';
+      clearSession(); loginAttempts = 0; document.getElementById('loginAttempts').textContent = '';
       document.getElementById('appLayout').style.opacity = '0';
-      setTimeout(function() {
-        document.getElementById('loginGate').classList.remove('unlocked');
-        document.getElementById('loginPassword').value = '';
-        document.getElementById('loginError').classList.add('hidden');
-      }, 300);
+      setTimeout(function() { document.getElementById('loginGate').classList.remove('unlocked'); document.getElementById('loginPassword').value = ''; document.getElementById('loginError').classList.add('hidden'); }, 300);
     }
 
-    /* ==============================================
-       LOGIN
-       ============================================== */
-    var loginBtn = document.getElementById('loginBtn');
-    var loginPassword = document.getElementById('loginPassword');
-    var loginError = document.getElementById('loginError');
-    var loginErrorText = document.getElementById('loginErrorText');
+    var loginBtn = document.getElementById('loginBtn'); var loginPassword = document.getElementById('loginPassword');
+    var loginError = document.getElementById('loginError'); var loginErrorText = document.getElementById('loginErrorText');
     var loginAttemptsEl = document.getElementById('loginAttempts');
 
     loginBtn.addEventListener('click', attemptLogin);
-    loginPassword.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') attemptLogin();
-    });
+    loginPassword.addEventListener('keydown', function(e) { if (e.key === 'Enter') attemptLogin(); });
 
     function attemptLogin() {
       var pw = loginPassword.value.trim();
-      if (!pw) {
-        showLoginError('Kunci akses tidak boleh kosong');
-        shakeCard();
-        return;
-      }
+      if (!pw) { showLoginError('Kunci akses tidak boleh kosong'); shakeCard(); return; }
       if (pw === VALID_PASSWORD) {
         loginBtn.classList.add('loading');
         loginBtn.innerHTML = '<span class="btn-shimmer"></span><i class="fas fa-spinner fa-spin" style="margin-right:6px"></i> MEMVERIFIKASI...';
@@ -648,140 +506,53 @@
           document.getElementById('appLayout').style.opacity = '1';
           loginBtn.classList.remove('loading');
           loginBtn.innerHTML = '<span class="btn-shimmer"></span><i class="fas fa-lock-open" style="margin-right:6px"></i> MASUK';
-          loginAttempts = 0;
-          loginAttemptsEl.textContent = '';
-          /* Bunyikan suara saat berhasil login */
-          playNotifSound(1000, 0.15, 0.2);
-          setTimeout(function() { playNotifSound(1200, 0.2, 0.2); }, 180);
+          loginAttempts = 0; loginAttemptsEl.textContent = '';
+          playNotifSound(1000, 0.15, 0.2); setTimeout(function() { playNotifSound(1200, 0.2, 0.2); }, 180);
         }, 1200);
       } else {
-        loginAttempts++;
-        showLoginError('Kunci akses salah!');
-        shakeCard();
-        /* Bunyikan suara error */
-        playNotifSound(300, 0.3, 0.3);
-        loginAttemptsEl.textContent = loginAttempts + ' percobaan gagal';
-        loginPassword.value = '';
-        loginPassword.focus();
+        loginAttempts++; showLoginError('Kunci akses salah!'); shakeCard(); playNotifSound(300, 0.3, 0.3);
+        loginAttemptsEl.textContent = loginAttempts + ' percobaan gagal'; loginPassword.value = ''; loginPassword.focus();
       }
     }
-
-    function showLoginError(msg) {
-      loginErrorText.textContent = msg;
-      loginError.classList.remove('hidden');
-    }
-
-    function shakeCard() {
-      var card = document.getElementById('loginCard');
-      card.classList.add('shake');
-      setTimeout(function() { card.classList.remove('shake'); }, 500);
-    }
+    function showLoginError(msg) { loginErrorText.textContent = msg; loginError.classList.remove('hidden'); }
+    function shakeCard() { var card = document.getElementById('loginCard'); card.classList.add('shake'); setTimeout(function() { card.classList.remove('shake'); }, 500); }
 
     document.getElementById('togglePwBtn').addEventListener('click', function() {
-      var input = document.getElementById('loginPassword');
-      var icon = document.getElementById('pwToggleIcon');
-      if (input.type === 'password') {
-        input.type = 'text';
-        icon.className = 'fas fa-eye-slash';
-      } else {
-        input.type = 'password';
-        icon.className = 'fas fa-eye';
-      }
+      var input = document.getElementById('loginPassword'); var icon = document.getElementById('pwToggleIcon');
+      if (input.type === 'password') { input.type = 'text'; icon.className = 'fas fa-eye-slash'; }
+      else { input.type = 'password'; icon.className = 'fas fa-eye'; }
     });
 
-    /* Cek sesi saat halaman dimuat */
-    (function checkExistingSession() {
-      if (isSessionValid()) {
-        unlockDashboardDirect();
-      }
-    })();
+    (function checkExistingSession() { if (isSessionValid()) { unlockDashboardDirect(); } })();
 
-    /* ==============================================
-       TOAST
-       ============================================== */
     function showToast(type, message) {
-      var container = document.getElementById('toastContainer');
-      var toast = document.createElement('div');
-      toast.className = 'toast';
+      var container = document.getElementById('toastContainer'); var toast = document.createElement('div'); toast.className = 'toast';
       var iconClass = type === 'success' ? 'fas fa-check-circle' : type === 'warning' ? 'fas fa-exclamation-triangle' : 'fas fa-info-circle';
       toast.innerHTML = '<div class="toast-icon ' + type + '"><i class="' + iconClass + '"></i></div><div>' + message + '</div>';
       container.appendChild(toast);
-      setTimeout(function() {
-        toast.classList.add('leaving');
-        setTimeout(function() { toast.remove(); }, 300);
-      }, 4000);
+      setTimeout(function() { toast.classList.add('leaving'); setTimeout(function() { toast.remove(); }, 300); }, 4000);
     }
 
-    /* ==============================================
-       JAM
-       ============================================== */
     function updateClock() {
       var now = new Date();
-      var h = String(now.getHours()).padStart(2, '0');
-      var m = String(now.getMinutes()).padStart(2, '0');
-      var s = String(now.getSeconds()).padStart(2, '0');
-      document.getElementById('topbarClock').textContent = h + ':' + m + ':' + s;
+      document.getElementById('topbarClock').textContent = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0') + ':' + String(now.getSeconds()).padStart(2,'0');
     }
-    setInterval(updateClock, 1000);
-    updateClock();
+    setInterval(updateClock, 1000); updateClock();
 
-    /* ==============================================
-       PARTIKEL BACKGROUND
-       ============================================== */
     function initParticles(canvasId, color, count) {
-      var canvas = document.getElementById(canvasId);
-      if (!canvas) return;
-      var ctx = canvas.getContext('2d');
-      var particles = [];
-      var w, h;
-
-      function resize() {
-        w = canvas.width = canvas.parentElement ? canvas.parentElement.offsetWidth : window.innerWidth;
-        h = canvas.height = canvas.parentElement ? canvas.parentElement.offsetHeight : window.innerHeight;
-      }
-      resize();
-      window.addEventListener('resize', resize);
-
-      for (var i = 0; i < count; i++) {
-        particles.push({
-          x: Math.random() * w, y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
-          r: Math.random() * 1.5 + 0.5, a: Math.random() * 0.4 + 0.1
-        });
-      }
-
+      var canvas = document.getElementById(canvasId); if (!canvas) return;
+      var ctx = canvas.getContext('2d'); var particles = []; var w, h;
+      function resize() { w = canvas.width = canvas.parentElement ? canvas.parentElement.offsetWidth : window.innerWidth; h = canvas.height = canvas.parentElement ? canvas.parentElement.offsetHeight : window.innerHeight; }
+      resize(); window.addEventListener('resize', resize);
+      for (var i = 0; i < count; i++) { particles.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4, r: Math.random() * 1.5 + 0.5, a: Math.random() * 0.4 + 0.1 }); }
       function draw() {
         ctx.clearRect(0, 0, w, h);
-        for (var i = 0; i < particles.length; i++) {
-          var p = particles[i];
-          p.x += p.vx; p.y += p.vy;
-          if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
-          if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = color.replace('A)', p.a + ')');
-          ctx.fill();
-        }
-        for (var i = 0; i < particles.length; i++) {
-          for (var j = i + 1; j < particles.length; j++) {
-            var dx = particles[i].x - particles[j].x;
-            var dy = particles[i].y - particles[j].y;
-            var dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 120) {
-              ctx.beginPath();
-              ctx.moveTo(particles[i].x, particles[i].y);
-              ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.strokeStyle = color.replace('A)', (0.06 * (1 - dist / 120)) + ')');
-              ctx.lineWidth = 0.5;
-              ctx.stroke();
-            }
-          }
-        }
+        for (var i = 0; i < particles.length; i++) { var p = particles[i]; p.x += p.vx; p.y += p.vy; if (p.x < 0) p.x = w; if (p.x > w) p.x = 0; if (p.y < 0) p.y = h; if (p.y > h) p.y = 0; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = color.replace('A)', p.a + ')'); ctx.fill(); }
+        for (var i = 0; i < particles.length; i++) { for (var j = i + 1; j < particles.length; j++) { var dx = particles[i].x - particles[j].x; var dy = particles[i].y - particles[j].y; var dist = Math.sqrt(dx * dx + dy * dy); if (dist < 120) { ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.strokeStyle = color.replace('A)', (0.06 * (1 - dist / 120)) + ')'); ctx.lineWidth = 0.5; ctx.stroke(); } } }
         requestAnimationFrame(draw);
       }
       draw();
     }
-
     initParticles('particle-canvas', 'rgba(0,229,160,A)', 50);
     initParticles('login-particles', 'rgba(0,229,160,A)', 30);
   </script>
