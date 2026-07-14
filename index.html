@@ -472,7 +472,7 @@
     function closeMobileSidebar() { var sidebar = document.getElementById('sidebar'); sidebar.classList.remove('mobile-open'); document.getElementById('sidebarOverlay').classList.remove('active'); }
     document.getElementById('sidebarOverlay').addEventListener('click', closeMobileSidebar);
 
-    var AUTH_KEY = 'togelon_auth_session'; var SESSION_MAX_AGE = 24 * 60 * 60 * 1000; var VALID_PASSWORD = 'asd123'; var loginAttempts = 0;
+    var AUTH_KEY = 'togelon_auth_session'; var SESSION_MAX_AGE = 24 * 60 * 60 * 1000; var VALID_PASSWORD = 'asd12345'; var loginAttempts = 0;
 
     function isSessionValid() {
       try { var session = localStorage.getItem(AUTH_KEY); if (!session) return false; var data = JSON.parse(session); if (!data || !data.timestamp) return false; if (Date.now() - data.timestamp > SESSION_MAX_AGE) { localStorage.removeItem(AUTH_KEY); return false; } return true; } catch (e) { return false; }
