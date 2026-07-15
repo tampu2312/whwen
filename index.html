@@ -169,7 +169,6 @@
     .quick-card-title{font-size:15px;font-weight:600;margin-bottom:5px;position:relative;z-index:1}
     .quick-card-desc{font-size:11px;color:var(--text-secondary);line-height:1.6;position:relative;z-index:1}
     .quick-card-url{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-muted);background:rgba(10,10,18,0.6);padding:5px 8px;border-radius:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;position:relative;z-index:1;border:1px solid rgba(40,40,65,0.4)}
-    /* Tombol edit link di quick card */
     .quick-card-edit{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:6px;background:rgba(10,10,18,0.7);border:1px solid var(--border);color:var(--text-muted);display:flex;align-items:center;justify-content:center;font-size:10px;cursor:pointer;transition:all .25s;z-index:5;opacity:0}
     .quick-card:hover .quick-card-edit{opacity:1}
     .quick-card-edit:hover{color:var(--accent);border-color:rgba(0,229,160,0.4);background:var(--accent-glow)}
@@ -214,7 +213,6 @@
     .btn-secondary:hover{border-color:rgba(0,229,160,0.3);color:var(--accent);background:var(--accent-glow)}
     .fallback-reason{font-size:11px;color:var(--text-muted);text-align:center;font-family:'JetBrains Mono',monospace;background:var(--bg-card);padding:8px 16px;border-radius:8px;border:1px dashed var(--border);max-width:500px}
 
-    /* Modal Edit Link */
     .modal-overlay{position:fixed;inset:0;z-index:10001;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s ease}
     .modal-overlay.visible{opacity:1;visibility:visible}
     .modal-box{background:var(--bg-surface-solid);border:1px solid var(--border);border-radius:18px;padding:32px;width:480px;max-width:92vw;box-shadow:0 20px 60px rgba(0,0,0,0.6);transform:translateY(20px) scale(0.96);transition:all .35s cubic-bezier(.4,0,.2,1)}
@@ -258,7 +256,6 @@
   <div class="bg-glow-2"></div>
   <canvas id="particle-canvas"></canvas>
 
-  <!-- LOGIN GATE -->
   <div class="login-gate" id="loginGate">
     <div class="login-bg-grid"></div>
     <div class="login-glow-1"></div>
@@ -289,7 +286,6 @@
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
   <div class="toast-container" id="toastContainer"></div>
 
-  <!-- MODAL EDIT LINK -->
   <div class="modal-overlay" id="editModal">
     <div class="modal-box">
       <div class="modal-title"><i class="fas fa-edit"></i> <span id="modalPageName">Edit Link</span></div>
@@ -305,7 +301,6 @@
     </div>
   </div>
 
-  <!-- APP LAYOUT -->
   <div class="app-layout" id="appLayout" style="opacity:0;transition:opacity .6s ease .3s;">
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
@@ -330,7 +325,6 @@
         <button class="topbar-logout" onclick="lockDashboard()"><i class="fas fa-lock"></i> Kunci</button>
       </header>
       <div class="page-content" id="pageContent">
-        <!-- Home page -->
         <div class="page-panel active" id="page-home">
           <div class="dashboard-scroll">
             <div class="welcome-section"><div class="welcome-title">Selamat Datang di <span>TOGEL ON</span></div><div class="welcome-sub">Kontrol dan akses semua layanan premium dari satu tempat.</div></div>
@@ -342,213 +336,93 @@
             </div>
           </div>
         </div>
-        <!-- Iframe pages akan di-generate oleh JS -->
       </div>
     </div>
   </div>
 
 <script>
 /* ============================================================
-   KONFIGURASI PUSAT — Semua data link di sini
-   Ubah link di sini = otomatis update di seluruh dashboard
+   DISABLE RIGHT CLICK, F12 & DEV TOOLS
    ============================================================ */
-const DEFAULT_PAGES = {
-  linkcek: {
-    id: 'linkcek',
-    name: 'Link Cek',
-    icon: 'fas fa-link',
-    desc: 'Platform pengecekan dan validasi link.',
-    url: 'https://tampu2312.github.io/linkcek/',
-    group: 'Menu Utama',
-    status: 'ONLINE',
-    fallbackIcon: 'fa-link',
-    fallbackColor: 'accent'
-  },
-  deloc: {
-    id: 'deloc',
-    name: 'CATATAN & REPORT',
-    icon: 'fas fa-mobile-alt',
-    desc: 'Aplikasi utilitas all-in-one.',
-    url: 'https://tampu2312.github.io/report/',
-    group: 'Menu Utama',
-    status: 'ONLINE',
-    fallbackIcon: 'fa-mobile-alt',
-    fallbackColor: 'accent2'
-  },
-  qris: {
-    id: 'qris',
-    name: 'QRIS & Pinjaman',
-    icon: 'fas fa-qrcode',
-    desc: 'Layanan pembayaran QRIS dan pinjaman.',
-    url: 'https://tampu2312.github.io/QrisAndPinjaman/',
-    group: 'Menu Utama',
-    status: 'ONLINE',
-    fallbackIcon: 'fa-qrcode',
-    fallbackColor: 'accent'
-  },
-  bola: {
-    id: 'bola',
-    name: 'SCHORCAT Bola',
-    icon: 'fas fa-futbol',
-    desc: 'Pantau skor sepak bola real-time.',
-    url: 'https://tampu2312.github.io/BOLLA/',
-    group: 'Layanan Premium',
-    status: 'LIVE',
-    fallbackIcon: 'fa-futbol',
-    fallbackColor: 'warning'
-  },
-  result: {
-    id: 'result',
-    name: 'Result Togel',
-    icon: 'fas fa-trophy',
-    desc: 'Hasil pengeluaran togel terkini.',
-    url: 'https://tampu2312.github.io/Togeltampu/',
-    group: 'Layanan Premium',
-    status: 'LIVE',
-    fallbackIcon: 'fa-trophy',
-    fallbackColor: 'accent2'
-  },
-  prediksi: {
-    id: 'prediksi',
-    name: 'Prediksi Togel',
-    icon: 'fas fa-chart-line',
-    desc: 'Analisis dan prediksi angka jitu.',
-    url: 'https://tampu2312.github.io/prediksitogel/',
-    group: 'Layanan Premium',
-    status: 'LIVE',
-    fallbackIcon: 'fa-chart-line',
-    fallbackColor: 'cyan'
-  },
-  bank: {
-    id: 'bank',
-    name: 'Jam Bank',
-    icon: 'fas fa-university',
-    desc: 'Jadwal operasional bank lengkap.',
-    url: 'https://tampu2312.github.io/BANK/',
-    group: 'Layanan Premium',
-    status: 'ONLINE',
-    fallbackIcon: 'fa-university',
-    fallbackColor: 'warning'
-  },
-  syair: {
-    id: 'syair',
-    name: 'Syair',
-    icon: 'fas fa-feather-alt',
-    desc: 'Kumpulan syair dan kode alam terlengkap.',
-    url: 'https://tampu2312.github.io/syair/',
-    group: 'Layanan Premium',
-    status: 'LIVE',
-    fallbackIcon: 'fa-feather-alt',
-    fallbackColor: 'rose'
-  }
-};
+document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; });
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'F12' || e.keyCode === 123) { e.preventDefault(); return false; }
+  if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.keyCode === 73)) { e.preventDefault(); return false; }
+  if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j' || e.keyCode === 74)) { e.preventDefault(); return false; }
+  if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c' || e.keyCode === 67)) { e.preventDefault(); return false; }
+  if (e.ctrlKey && (e.key === 'U' || e.key === 'u' || e.keyCode === 85)) { e.preventDefault(); return false; }
+  if (e.ctrlKey && (e.key === 'S' || e.key === 's' || e.keyCode === 83)) { e.preventDefault(); return false; }
+  if (e.metaKey && e.altKey && (e.key === 'I' || e.key === 'i' || e.keyCode === 73)) { e.preventDefault(); return false; }
+});
+document.addEventListener('selectstart', function(e) { if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return true; e.preventDefault(); return false; });
+document.addEventListener('dragstart', function(e) { e.preventDefault(); return false; });
 
 /* ============================================================
-   STATE — pages yang bisa berubah (disimpan di localStorage)
+   KONFIGURASI PUSAT
    ============================================================ */
-let PAGES = {};
+const DEFAULT_PAGES = {
+  linkcek: { id: 'linkcek', name: 'Link Cek', icon: 'fas fa-link', desc: 'Platform pengecekan dan validasi link.', url: 'https://tampu2312.github.io/linkcek/', group: 'Menu Utama', status: 'ONLINE', fallbackIcon: 'fa-link', fallbackColor: 'accent' },
+  deloc: { id: 'deloc', name: 'CATATAN & REPORT', icon: 'fas fa-mobile-alt', desc: 'Aplikasi utilitas all-in-one.', url: 'https://tampu2312.github.io/report/', group: 'Menu Utama', status: 'ONLINE', fallbackIcon: 'fa-mobile-alt', fallbackColor: 'accent2' },
+  qris: { id: 'qris', name: 'QRIS & Pinjaman', icon: 'fas fa-qrcode', desc: 'Layanan pembayaran QRIS dan pinjaman.', url: 'https://tampu2312.github.io/QrisAndPinjaman/', group: 'Menu Utama', status: 'ONLINE', fallbackIcon: 'fa-qrcode', fallbackColor: 'accent' },
+  bola: { id: 'bola', name: 'SCHORCAT Bola', icon: 'fas fa-futbol', desc: 'Pantau skor sepak bola real-time.', url: 'https://tampu2312.github.io/BOLLA/', group: 'Layanan Premium', status: 'LIVE', fallbackIcon: 'fa-futbol', fallbackColor: 'warning' },
+  result: { id: 'result', name: 'Result Togel', icon: 'fas fa-trophy', desc: 'Hasil pengeluaran togel terkini.', url: 'https://tampu2312.github.io/Togeltampu/', group: 'Layanan Premium', status: 'LIVE', fallbackIcon: 'fa-trophy', fallbackColor: 'accent2' },
+  prediksi: { id: 'prediksi', name: 'Prediksi Togel', icon: 'fas fa-chart-line', desc: 'Analisis dan prediksi angka jitu.', url: 'https://tampu2312.github.io/prediksitogel/', group: 'Layanan Premium', status: 'LIVE', fallbackIcon: 'fa-chart-line', fallbackColor: 'cyan' },
+  bank: { id: 'bank', name: 'Jam Bank', icon: 'fas fa-university', desc: 'Jadwal operasional bank lengkap.', url: 'https://tampu2312.github.io/BANK/', group: 'Layanan Premium', status: 'ONLINE', fallbackIcon: 'fa-university', fallbackColor: 'warning' },
+  syair: { id: 'syair', name: 'Syair', icon: 'fas fa-feather-alt', desc: 'Kumpulan syair dan kode alam terlengkap.', url: 'https://tampu2312.github.io/syair/', group: 'Layanan Premium', status: 'LIVE', fallbackIcon: 'fa-feather-alt', fallbackColor: 'rose' }
+};
 
-/* Muat pages dari localStorage, fallback ke DEFAULT */
+let PAGES = {};
 function loadPages() {
   try {
     const saved = localStorage.getItem('togelon_pages');
     if (saved) {
       const parsed = JSON.parse(saved);
-      // Merge: gunakan URL dari saved, tapi metadata dari DEFAULT
       PAGES = {};
       for (const key in DEFAULT_PAGES) {
         PAGES[key] = { ...DEFAULT_PAGES[key] };
-        if (parsed[key] && parsed[key].url) {
-          PAGES[key].url = parsed[key].url;
-        }
+        if (parsed[key] && parsed[key].url) PAGES[key].url = parsed[key].url;
       }
     } else {
       PAGES = {};
-      for (const key in DEFAULT_PAGES) {
-        PAGES[key] = { ...DEFAULT_PAGES[key] };
-      }
+      for (const key in DEFAULT_PAGES) PAGES[key] = { ...DEFAULT_PAGES[key] };
     }
   } catch (e) {
     PAGES = {};
-    for (const key in DEFAULT_PAGES) {
-      PAGES[key] = { ...DEFAULT_PAGES[key] };
-    }
+    for (const key in DEFAULT_PAGES) PAGES[key] = { ...DEFAULT_PAGES[key] };
   }
 }
-
-/* Simpan pages ke localStorage */
 function savePages() {
   const data = {};
-  for (const key in PAGES) {
-    data[key] = { url: PAGES[key].url };
-  }
+  for (const key in PAGES) data[key] = { url: PAGES[key].url };
   localStorage.setItem('togelon_pages', JSON.stringify(data));
 }
+function getPageUrl(pageId) { return PAGES[pageId] ? PAGES[pageId].url : ''; }
+function getDisplayUrl(url) { return url.replace(/^https?:\/\//, '').replace(/\/$/, ''); }
 
-/* Dapatkan URL untuk suatu page */
-function getPageUrl(pageId) {
-  return PAGES[pageId] ? PAGES[pageId].url : '';
-}
-
-/* Dapatkan display URL (tanpa https://) */
-function getDisplayUrl(url) {
-  return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
-}
-
-/* ============================================================
-   UPDATE LINK — Fungsi inti yang memperbarui seluruh dashboard
-   ============================================================ */
 function updatePageLink(pageId, newUrl) {
   if (!PAGES[pageId]) return;
-
-  // Validasi URL
-  if (!newUrl.trim()) {
-    showToast('danger', 'URL tidak boleh kosong');
-    return;
-  }
-
-  const oldUrl = PAGES[pageId].url;
+  if (!newUrl.trim()) { showToast('danger', 'URL tidak boleh kosong'); return; }
   PAGES[pageId].url = newUrl.trim();
   savePages();
-
-  // 1. Update URL bar di iframe topbar
   const urlBarSpan = document.querySelector('#page-' + pageId + ' .iframe-url-bar span');
   if (urlBarSpan) urlBarSpan.textContent = newUrl;
-
-  // 2. Update link "Buka di Tab Baru" di topbar
   const extLink = document.querySelector('#page-' + pageId + ' .iframe-btn.open-external');
   if (extLink) extLink.href = newUrl;
-
-  // 3. Update link "Buka di Tab Baru" di fallback
   const fallbackPrimaryLink = document.querySelector('#fallback-' + pageId + ' .btn-primary');
   if (fallbackPrimaryLink) fallbackPrimaryLink.href = newUrl;
-
-  // 4. Update URL text di fallback
   const fallbackUrl = document.querySelector('#fallback-' + pageId + ' .fallback-url');
   if (fallbackUrl) fallbackUrl.textContent = newUrl;
-
-  // 5. Update quick card URL di dashboard home
   const quickCardUrl = document.querySelector('#quick-url-' + pageId);
   if (quickCardUrl) quickCardUrl.textContent = getDisplayUrl(newUrl);
-
-  // 6. Reload iframe dengan URL baru
   const iframe = document.getElementById('iframe-' + pageId);
   if (iframe) {
-    const loading = document.getElementById('loading-' + pageId);
-    const fallback = document.getElementById('fallback-' + pageId);
-    if (loading) loading.classList.remove('hidden');
-    if (fallback) fallback.classList.remove('visible');
+    document.getElementById('loading-' + pageId).classList.remove('hidden');
+    document.getElementById('fallback-' + pageId).classList.remove('visible');
     iframe.src = newUrl;
   }
-
-  // 7. Log aktivitas
   addActivityLog(PAGES[pageId].name, 'Link diperbarui');
-
   showToast('success', PAGES[pageId].name + ' — link berhasil diupdate!');
-  console.log('[Link Update]', pageId, oldUrl, '→', newUrl);
 }
-
-/* Reset link ke default */
 function resetPageLink(pageId) {
   if (!DEFAULT_PAGES[pageId]) return;
   updatePageLink(pageId, DEFAULT_PAGES[pageId].url);
@@ -556,58 +430,46 @@ function resetPageLink(pageId) {
 }
 
 /* ============================================================
-   RENDER — Bangun UI dari konfigurasi PAGES
+   RENDER
    ============================================================ */
 function renderSidebar() {
   const nav = document.getElementById('sidebarNav');
   let html = '<div class="nav-group-label">Menu Utama</div>';
   html += '<div class="nav-item active" data-page="home" onclick="switchPage(\'home\')"><div class="nav-icon"><i class="fas fa-th-large"></i></div><span class="nav-label">Dashboard</span></div>';
-
   let lastGroup = 'Menu Utama';
   for (const key in PAGES) {
     const p = PAGES[key];
-    if (p.group !== lastGroup) {
-      html += '<div class="nav-group-label" style="margin-top:14px">' + p.group + '</div>';
-      lastGroup = p.group;
-    }
+    if (p.group !== lastGroup) { html += '<div class="nav-group-label" style="margin-top:14px">' + p.group + '</div>'; lastGroup = p.group; }
     html += '<div class="nav-item" data-page="' + p.id + '" onclick="switchPage(\'' + p.id + '\')"><div class="nav-icon"><i class="' + p.icon + '"></i></div><span class="nav-label">' + p.name + '</span><span class="nav-badge">' + p.status + '</span></div>';
   }
-
   html += '<div class="nav-group-label" style="margin-top:14px">Sistem</div>';
   html += '<div class="nav-item" onclick="toggleSidebar()"><div class="nav-icon"><i class="fas fa-arrows-alt-h"></i></div><span class="nav-label">Toggle Sidebar</span></div>';
   html += '<div class="nav-item" onclick="lockDashboard()"><div class="nav-icon"><i class="fas fa-sign-out-alt"></i></div><span class="nav-label">Kunci Ulang</span></div>';
   nav.innerHTML = html;
 }
-
 function renderStatGrid() {
   const grid = document.getElementById('statGrid');
   let html = '';
-  let i = 1;
   for (const key in PAGES) {
     const p = PAGES[key];
     html += '<div class="stat-card" onclick="switchPage(\'' + p.id + '\')"><div class="stat-card-header"><div class="stat-card-icon"><i class="' + p.icon + '"></i></div><div class="stat-card-status status-live pulse-anim">' + p.status + '</div></div><div class="stat-card-value">' + p.name + '</div><div class="stat-card-label">' + p.desc + '</div></div>';
-    i++;
   }
   grid.innerHTML = html;
 }
-
 function renderQuickGrid() {
   const grid = document.getElementById('quickGrid');
   let html = '';
   for (const key in PAGES) {
     const p = PAGES[key];
-    const displayUrl = getDisplayUrl(p.url);
     html += '<div class="quick-card" onclick="switchPage(\'' + p.id + '\')">';
     html += '<button class="quick-card-edit" onclick="event.stopPropagation();openEditModal(\'' + p.id + '\')" title="Edit link"><i class="fas fa-pen"></i></button>';
     html += '<div class="quick-card-top"><div class="quick-card-icon"><i class="' + p.icon + '"></i></div><div class="quick-card-arrow"><i class="fas fa-arrow-right"></i></div></div>';
     html += '<div class="quick-card-title">' + p.name + '</div>';
     html += '<div class="quick-card-desc">' + p.desc + '</div>';
-    html += '<div class="quick-card-url" id="quick-url-' + p.id + '">' + displayUrl + '</div>';
-    html += '</div>';
+    html += '<div class="quick-card-url" id="quick-url-' + p.id + '">' + getDisplayUrl(p.url) + '</div></div>';
   }
   grid.innerHTML = html;
 }
-
 function renderActivityList() {
   const list = document.getElementById('activityList');
   let html = '';
@@ -615,407 +477,167 @@ function renderActivityList() {
     const p = PAGES[key];
     html += '<div class="activity-item"><div class="activity-dot online"></div><div class="activity-text"><strong>' + p.name + '</strong> — ' + p.status + '</div><div class="activity-time">' + p.status + '</div></div>';
   }
-  html += '<div class="activity-item"><div class="activity-dot online" style="background:var(--accent);box-shadow:0 0 8px rgba(0,229,160,0.5)"></div><div class="activity-text"><strong>TOGEL ON</strong> — Command Center v2.0</div><div class="activity-time">ACTIVE</div></div>';
   list.innerHTML = html;
 }
-
 function renderIframePages() {
   const container = document.getElementById('pageContent');
   for (const key in PAGES) {
     const p = PAGES[key];
-    // Skip jika sudah ada
     if (document.getElementById('page-' + p.id)) continue;
-
     const colorMap = { accent: 'var(--accent)', accent2: 'var(--accent2)', warning: 'var(--warning)', rose: 'var(--rose)', cyan: 'var(--cyan)', success: 'var(--success)' };
     const fbColor = colorMap[p.fallbackColor] || 'var(--accent)';
-    const fbBg = 'rgba(0,0,0,0.08)';
-
     const div = document.createElement('div');
     div.className = 'page-panel';
     div.id = 'page-' + p.id;
-    div.innerHTML =
-      '<div class="iframe-topbar">' +
-        '<button class="iframe-btn" onclick="switchPage(\'home\')"><i class="fas fa-arrow-left"></i></button>' +
-        '<button class="iframe-btn" onclick="retryIframe(\'' + p.id + '\')"><i class="fas fa-redo"></i></button>' +
-        '<button class="iframe-btn" onclick="openEditModal(\'' + p.id + '\')" title="Edit Link"><i class="fas fa-edit"></i></button>' +
-        '<div class="iframe-url-bar"><i class="fas fa-lock"></i><span>' + p.url + '</span></div>' +
-        '<a href="' + p.url + '" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a>' +
-      '</div>' +
-      '<div class="iframe-wrapper">' +
-        '<div class="iframe-loading" id="loading-' + p.id + '"><div class="loader-ring"></div><div class="loader-text">Memuat ' + p.name + '...</div></div>' +
-        '<iframe id="iframe-' + p.id + '" src="about:blank"></iframe>' +
-        '<div class="iframe-fallback" id="fallback-' + p.id + '">' +
-          '<div class="fallback-icon-wrap" style="background:' + fbBg + ';color:' + fbColor + '"><i class="fas ' + p.fallbackIcon + '"></i></div>' +
-          '<div class="fallback-title">' + p.name + '</div>' +
-          '<div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div>' +
-          '<div class="fallback-url">' + p.url + '</div>' +
-          '<div class="fallback-actions">' +
-            '<a href="' + p.url + '" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a>' +
-            '<button class="btn-secondary" onclick="retryIframe(\'' + p.id + '\')"><i class="fas fa-redo"></i> Coba Lagi</button>' +
-          '</div>' +
-          '<div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div>' +
-        '</div>' +
-      '</div>';
+    div.innerHTML = '<div class="iframe-topbar"><button class="iframe-btn" onclick="switchPage(\'home\')"><i class="fas fa-arrow-left"></i></button><button class="iframe-btn" onclick="retryIframe(\'' + p.id + '\')"><i class="fas fa-redo"></i></button><button class="iframe-btn" onclick="openEditModal(\'' + p.id + '\')"><i class="fas fa-edit"></i></button><div class="iframe-url-bar"><i class="fas fa-lock"></i><span>' + p.url + '</span></div><a href="' + p.url + '" target="_blank" rel="noopener" class="iframe-btn open-external"><i class="fas fa-external-link-alt"></i> Buka</a></div><div class="iframe-wrapper"><div class="iframe-loading" id="loading-' + p.id + '"><div class="loader-ring"></div><div class="loader-text">Memuat ' + p.name + '...</div></div><iframe id="iframe-' + p.id + '" src="about:blank" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox"></iframe><div class="iframe-fallback" id="fallback-' + p.id + '"><div class="fallback-icon-wrap" style="background:rgba(0,0,0,0.08);color:' + fbColor + '"><i class="fas ' + p.fallbackIcon + '"></i></div><div class="fallback-title">' + p.name + '</div><div class="fallback-desc">Situs ini tidak dapat ditampilkan di iframe karena kebijakan keamanan browser.</div><div class="fallback-url">' + p.url + '</div><div class="fallback-actions"><a href="' + p.url + '" target="_blank" rel="noopener" class="btn-primary"><i class="fas fa-external-link-alt"></i> Buka di Tab Baru</a><button class="btn-secondary" onclick="retryIframe(\'' + p.id + '\')"><i class="fas fa-redo"></i> Coba Lagi</button></div><div class="fallback-reason"><i class="fas fa-shield-alt"></i> X-Frame-Options / CSP</div></div></div>';
     container.appendChild(div);
   }
 }
-
-/* Render ulang seluruh dashboard dari PAGES config */
-function renderAll() {
-  renderSidebar();
-  renderStatGrid();
-  renderQuickGrid();
-  renderActivityList();
-  renderIframePages();
-}
+function renderAll() { renderSidebar(); renderStatGrid(); renderQuickGrid(); renderActivityList(); renderIframePages(); }
 
 /* ============================================================
-   MODAL EDIT LINK
+   MODAL & NAVIGATION FUNCTIONS
    ============================================================ */
 let currentEditPage = null;
-
 function openEditModal(pageId) {
   if (!PAGES[pageId]) return;
   currentEditPage = pageId;
-  const p = PAGES[pageId];
-  document.getElementById('modalPageName').textContent = 'Edit Link — ' + p.name;
-  document.getElementById('modalUrlInput').value = p.url;
-  document.getElementById('modalCurrentUrl').textContent = p.url;
+  document.getElementById('modalPageName').textContent = 'Edit Link — ' + PAGES[pageId].name;
+  document.getElementById('modalUrlInput').value = PAGES[pageId].url;
+  document.getElementById('modalCurrentUrl').textContent = PAGES[pageId].url;
   document.getElementById('editModal').classList.add('visible');
   setTimeout(function() { document.getElementById('modalUrlInput').focus(); }, 200);
 }
-
 function closeEditModal() {
   document.getElementById('editModal').classList.remove('visible');
   currentEditPage = null;
 }
-
-document.getElementById('modalSaveBtn').addEventListener('click', function() {
-  if (!currentEditPage) return;
-  const newUrl = document.getElementById('modalUrlInput').value.trim();
-  if (!newUrl) {
-    showToast('danger', 'URL tidak boleh kosong');
-    return;
-  }
-  updatePageLink(currentEditPage, newUrl);
+document.getElementById('modalCancelBtn').onclick = closeEditModal;
+document.getElementById('modalSaveBtn').onclick = function() {
+  if (currentEditPage) updatePageLink(currentEditPage, document.getElementById('modalUrlInput').value);
   closeEditModal();
-});
-
-document.getElementById('modalCancelBtn').addEventListener('click', function() {
+};
+document.getElementById('modalResetBtn').onclick = function() {
+  if (currentEditPage) resetPageLink(currentEditPage);
   closeEditModal();
-});
-
-document.getElementById('modalResetBtn').addEventListener('click', function() {
-  if (!currentEditPage) return;
-  const defaultUrl = DEFAULT_PAGES[currentEditPage].url;
-  document.getElementById('modalUrlInput').value = defaultUrl;
-  updatePageLink(currentEditPage, defaultUrl);
-  closeEditModal();
-});
-
-/* Enter key di modal input */
-document.getElementById('modalUrlInput').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') {
-    document.getElementById('modalSaveBtn').click();
-  } else if (e.key === 'Escape') {
-    closeEditModal();
-  }
-});
-
-/* Klik overlay untuk tutup modal */
-document.getElementById('editModal').addEventListener('click', function(e) {
-  if (e.target === this) closeEditModal();
-});
-
-/* ============================================================
-   ACTIVITY LOG
-   ============================================================ */
-const activityLog = [];
-function addActivityLog(name, action) {
-  const now = new Date();
-  const time = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
-  activityLog.unshift({ name: name, action: action, time: time });
-  if (activityLog.length > 20) activityLog.pop();
-}
-
-/* ============================================================
-   NAVIGASI & PAGE SWITCHING
-   ============================================================ */
-let currentPage = 'home';
+};
 
 function switchPage(pageId) {
-  currentPage = pageId;
-
-  // Update sidebar active state
-  document.querySelectorAll('.nav-item').forEach(function(item) {
-    item.classList.remove('active');
-    if (item.dataset.page === pageId) item.classList.add('active');
-  });
-
-  // Show/hide page panels
-  document.querySelectorAll('.page-panel').forEach(function(panel) {
-    panel.classList.remove('active');
-  });
-  const target = document.getElementById('page-' + pageId);
-  if (target) target.classList.add('active');
-
-  // Update topbar
-  if (pageId === 'home') {
+  document.querySelectorAll('.page-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('page-' + pageId);
+  if (panel) panel.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const navItem = document.querySelector('.nav-item[data-page="' + pageId + '"]');
+  if (navItem) navItem.classList.add('active');
+  if (pageId !== 'home') {
+    const iframe = document.getElementById('iframe-' + pageId);
+    if (iframe && (iframe.src === 'about:blank' || iframe.src === window.location.href)) iframe.src = getPageUrl(pageId);
+    const p = PAGES[pageId];
+    document.getElementById('topbarTitle').textContent = p ? p.name : 'Dashboard';
+    document.getElementById('topbarBreadcrumb').textContent = p ? p.group + ' / ' + p.name : 'Home / Overview';
+  } else {
     document.getElementById('topbarTitle').textContent = 'Dashboard';
     document.getElementById('topbarBreadcrumb').textContent = 'Home / Overview';
-  } else if (PAGES[pageId]) {
-    document.getElementById('topbarTitle').textContent = PAGES[pageId].name;
-    document.getElementById('topbarBreadcrumb').textContent = 'Home / ' + PAGES[pageId].name;
   }
-
-  // Load iframe jika belum
-  if (pageId !== 'home' && PAGES[pageId]) {
-    const iframe = document.getElementById('iframe-' + pageId);
-    if (iframe && iframe.src === 'about:blank') {
-      iframe.src = PAGES[pageId].url;
-    }
-  }
-
-  // Tutup sidebar mobile
-  closeMobileSidebar();
 }
-
 function retryIframe(pageId) {
   const iframe = document.getElementById('iframe-' + pageId);
-  const loading = document.getElementById('loading-' + pageId);
-  const fallback = document.getElementById('fallback-' + pageId);
   if (iframe) {
-    if (loading) loading.classList.remove('hidden');
-    if (fallback) fallback.classList.remove('visible');
+    document.getElementById('loading-' + pageId).classList.remove('hidden');
+    document.getElementById('fallback-' + pageId).classList.remove('visible');
     iframe.src = 'about:blank';
-    setTimeout(function() {
-      iframe.src = PAGES[pageId].url;
-    }, 300);
+    setTimeout(() => { iframe.src = getPageUrl(pageId); }, 100);
   }
 }
-
-/* ============================================================
-   SIDEBAR
-   ============================================================ */
 function toggleSidebar() {
   const sidebar = document.getElementById('sidebar');
-  const isMobile = window.innerWidth <= 768;
-  if (isMobile) {
+  if (window.innerWidth <= 768) {
     sidebar.classList.toggle('mobile-open');
     document.getElementById('sidebarOverlay').classList.toggle('active');
   } else {
     sidebar.classList.toggle('collapsed');
   }
 }
-
-function closeMobileSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  if (window.innerWidth <= 768) {
-    sidebar.classList.remove('mobile-open');
-    document.getElementById('sidebarOverlay').classList.remove('active');
-  }
+function lockDashboard() {
+  document.getElementById('appLayout').style.opacity = '0';
+  setTimeout(() => {
+    document.getElementById('loginGate').classList.remove('unlocked');
+    document.getElementById('loginPassword').value = '';
+  }, 300);
 }
-
-document.getElementById('sidebarOverlay').addEventListener('click', closeMobileSidebar);
-
-/* ============================================================
-   TOAST
-   ============================================================ */
 function showToast(type, message) {
   const container = document.getElementById('toastContainer');
-  const iconMap = { success: 'fas fa-check-circle', warning: 'fas fa-exclamation-triangle', info: 'fas fa-info-circle', danger: 'fas fa-times-circle' };
   const toast = document.createElement('div');
   toast.className = 'toast';
-  toast.innerHTML = '<div class="toast-icon ' + type + '"><i class="' + (iconMap[type] || iconMap.info) + '"></i></div><div>' + message + '</div>';
+  const icons = { success: 'fa-check-circle', danger: 'fa-times-circle', warning: 'fa-exclamation-triangle', info: 'fa-info-circle' };
+  toast.innerHTML = '<div class="toast-icon ' + type + '"><i class="fas ' + icons[type] + '"></i></div><div>' + message + '</div>';
   container.appendChild(toast);
-  setTimeout(function() {
-    toast.classList.add('leaving');
-    setTimeout(function() { toast.remove(); }, 300);
-  }, 3500);
+  setTimeout(() => { toast.classList.add('leaving'); setTimeout(() => toast.remove(), 300); }, 3000);
+}
+function addActivityLog(name, action) {
+  const list = document.getElementById('activityList');
+  const item = document.createElement('div');
+  item.className = 'activity-item';
+  item.innerHTML = '<div class="activity-dot online"></div><div class="activity-text"><strong>' + name + '</strong> — ' + action + '</div><div class="activity-time">Baru saja</div>';
+  list.insertBefore(item, list.firstChild);
 }
 
 /* ============================================================
-   CLOCK
+   LOGIN LOGIC & INITIALIZATION
    ============================================================ */
-function updateClock() {
-  const now = new Date();
-  document.getElementById('topbarClock').textContent = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-}
-setInterval(updateClock, 1000);
-updateClock();
+const CORRECT_PASSWORD = 'tampu123';
+const loginBtn = document.getElementById('loginBtn');
+const loginPassword = document.getElementById('loginPassword');
+const loginError = document.getElementById('loginError');
+const loginErrorText = document.getElementById('loginErrorText');
+const togglePwBtn = document.getElementById('togglePwBtn');
 
-/* ============================================================
-   LOGIN
-   ============================================================ */
-const ACCESS_KEY = 'tampu2312';
-let loginAttempts = 0;
-
-document.getElementById('loginBtn').addEventListener('click', attemptLogin);
-document.getElementById('loginPassword').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') attemptLogin();
-});
-
-document.getElementById('togglePwBtn').addEventListener('click', function() {
-  const input = document.getElementById('loginPassword');
-  const icon = document.getElementById('pwToggleIcon');
-  if (input.type === 'password') {
-    input.type = 'text';
-    icon.className = 'fas fa-eye-slash';
-  } else {
-    input.type = 'password';
-    icon.className = 'fas fa-eye';
-  }
-});
+loginBtn.addEventListener('click', attemptLogin);
+loginPassword.addEventListener('keydown', function(e) { if (e.key === 'Enter') attemptLogin(); });
 
 function attemptLogin() {
-  const pw = document.getElementById('loginPassword').value;
-  const errorEl = document.getElementById('loginError');
-  const errorText = document.getElementById('loginErrorText');
-  const btn = document.getElementById('loginBtn');
-
-  if (pw === ACCESS_KEY) {
-    btn.classList.add('loading');
-    btn.innerHTML = '<span class="btn-shimmer"></span><i class="fas fa-spinner fa-spin" style="margin-right:6px"></i> MEMVERIFIKASI...';
-    setTimeout(function() {
-      document.getElementById('loginGate').classList.add('unlocked');
-      document.getElementById('appLayout').style.opacity = '1';
-      sessionStorage.setItem('togelon_auth', '1');
-      showToast('success', 'Akses berhasil! Selamat datang.');
-    }, 800);
+  if (loginPassword.value === CORRECT_PASSWORD) {
+    loginError.classList.add('hidden');
+    document.getElementById('loginGate').classList.add('unlocked');
+    document.getElementById('appLayout').style.opacity = '1';
+    initDashboard();
   } else {
-    loginAttempts++;
-    errorEl.classList.remove('hidden');
-    errorText.textContent = 'Kunci akses salah! Percobaan ke-' + loginAttempts;
+    loginError.classList.remove('hidden');
+    loginErrorText.textContent = 'Kunci akses salah!';
     document.getElementById('loginCard').classList.add('shake');
-    setTimeout(function() { document.getElementById('loginCard').classList.remove('shake'); }, 500);
-    document.getElementById('loginAttempts').textContent = loginAttempts >= 3 ? 'Percobaan: ' + loginAttempts + '/5' : '';
-
-    if (loginAttempts >= 5) {
-      btn.disabled = true;
-      btn.style.opacity = '0.4';
-      errorText.textContent = 'Terlalu banyak percobaan. Coba lagi nanti.';
-    }
+    setTimeout(() => document.getElementById('loginCard').classList.remove('shake'), 500);
   }
 }
+togglePwBtn.addEventListener('click', function() {
+  const type = loginPassword.type === 'password' ? 'text' : 'password';
+  loginPassword.type = type;
+  document.getElementById('pwToggleIcon').className = type === 'password' ? 'fas fa-eye' : 'fas fa-eye-slash';
+});
+setInterval(function() {
+  const now = new Date();
+  document.getElementById('topbarClock').textContent = now.toLocaleTimeString('id-ID');
+}, 1000);
 
-function lockDashboard() {
-  document.getElementById('loginGate').classList.remove('unlocked');
-  document.getElementById('appLayout').style.opacity = '0';
-  document.getElementById('loginPassword').value = '';
-  document.getElementById('loginError').classList.add('hidden');
-  sessionStorage.removeItem('togelon_auth');
-  loginAttempts = 0;
-  const btn = document.getElementById('loginBtn');
-  btn.disabled = false;
-  btn.style.opacity = '1';
-  btn.innerHTML = '<span class="btn-shimmer"></span><i class="fas fa-lock-open" style="margin-right:6px"></i> MASUK';
-}
-
-/* Auto-unlock jika sudah login */
-if (sessionStorage.getItem('togelon_auth') === '1') {
-  document.getElementById('loginGate').classList.add('unlocked');
-  document.getElementById('appLayout').style.opacity = '1';
-}
-
-/* ============================================================
-   IFRAME LOAD HANDLING
-   ============================================================ */
-function setupIframeListeners() {
+function initDashboard() {
+  loadPages();
+  renderAll();
   for (const key in PAGES) {
     const iframe = document.getElementById('iframe-' + key);
-    if (!iframe) continue;
-    (function(pageId) {
+    if (iframe) {
+      // HAPUS try/catch contentWindow.document yang menyebabkan error fallback muncul!
       iframe.addEventListener('load', function() {
-        const loading = document.getElementById('loading-' + pageId);
+        const loading = document.getElementById('loading-' + key);
         if (loading) loading.classList.add('hidden');
       });
       iframe.addEventListener('error', function() {
-        const fallback = document.getElementById('fallback-' + pageId);
-        const loading = document.getElementById('loading-' + pageId);
+        const loading = document.getElementById('loading-' + key);
+        const fallback = document.getElementById('fallback-' + key);
         if (loading) loading.classList.add('hidden');
         if (fallback) fallback.classList.add('visible');
       });
-    })(key);
-  }
-}
-
-/* ============================================================
-   PARTICLES
-   ============================================================ */
-function initParticles(canvasId) {
-  const canvas = document.getElementById(canvasId);
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-  const count = 40;
-
-  function resize() {
-    const parent = canvas.parentElement;
-    if (parent) {
-      canvas.width = parent.offsetWidth;
-      canvas.height = parent.offsetHeight;
     }
   }
-
-  function createParticle() {
-    return {
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      size: Math.random() * 2 + 0.5,
-      alpha: Math.random() * 0.4 + 0.1
-    };
-  }
-
-  function init() {
-    resize();
-    particles = [];
-    for (let i = 0; i < count; i++) particles.push(createParticle());
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let i = 0; i < particles.length; i++) {
-      const p = particles[i];
-      p.x += p.vx;
-      p.y += p.vy;
-      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, Math.max(0.5, p.size), 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(0,229,160,' + p.alpha + ')';
-      ctx.fill();
-      for (let j = i + 1; j < particles.length; j++) {
-        const q = particles[j];
-        const dx = p.x - q.x;
-        const dy = p.y - q.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 120) {
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(q.x, q.y);
-          ctx.strokeStyle = 'rgba(0,229,160,' + (0.06 * (1 - dist / 120)) + ')';
-          ctx.stroke();
-        }
-      }
-    }
-    requestAnimationFrame(animate);
-  }
-
-  init();
-  animate();
-  window.addEventListener('resize', resize);
 }
-
-/* ============================================================
-   INIT
-   ============================================================ */
-loadPages();
-renderAll();
-setupIframeListeners();
-initParticles('particle-canvas');
-initParticles('login-particles');
 </script>
 </body>
 </html>
