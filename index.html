@@ -560,6 +560,7 @@ function toggleSidebar() {
 }
 function lockDashboard() {
   document.getElementById('appLayout').style.opacity = '0';
+  localStorage.removeItem('togelon_auth'); // Hapus status login saat dikunci manual
   setTimeout(() => {
     document.getElementById('loginGate').classList.remove('unlocked');
     document.getElementById('loginPassword').value = '';
@@ -600,6 +601,7 @@ function attemptLogin() {
     loginError.classList.add('hidden');
     document.getElementById('loginGate').classList.add('unlocked');
     document.getElementById('appLayout').style.opacity = '1';
+    localStorage.setItem('togelon_auth', 'true'); // Simpan status login agar tidak lock saat F5
     initDashboard();
   } else {
     loginError.classList.remove('hidden');
@@ -624,7 +626,6 @@ function initDashboard() {
   for (const key in PAGES) {
     const iframe = document.getElementById('iframe-' + key);
     if (iframe) {
-      // HAPUS try/catch contentWindow.document yang menyebabkan error fallback muncul!
       iframe.addEventListener('load', function() {
         const loading = document.getElementById('loading-' + key);
         if (loading) loading.classList.add('hidden');
@@ -638,6 +639,17 @@ function initDashboard() {
     }
   }
 }
+
+/* ============================================================
+   AUTO-LOGIN CHECK (Mencegah lock saat F5)
+   ============================================================ */
+(function() {
+  if (localStorage.getItem('togelon_auth') === 'true') {
+    document.getElementById('loginGate').classList.add('unlocked');
+    document.getElementById('appLayout').style.opacity = '1';
+    initDashboard();
+  }
+})();
 </script>
 </body>
 </html>
