@@ -594,6 +594,9 @@ function toggleSidebar() {
 }
 
 function lockDashboard() {
+  // Hapus status login saat dikunci manual
+  sessionStorage.removeItem('togelon_auth');
+  
   document.getElementById('loginGate').classList.remove('unlocked');
   document.getElementById('appLayout').style.opacity = '0';
   document.getElementById('loginPassword').value = '';
@@ -662,6 +665,9 @@ function attemptLogin() {
   
   setTimeout(() => {
     if (loginInput.value === ACCESS_KEY) {
+      // Simpan status login agar tidak keluar saat F5
+      sessionStorage.setItem('togelon_auth', 'true');
+      
       loginGate.classList.add('unlocked');
       appLayout.style.opacity = '1';
       showToast('success', 'Login berhasil! Selamat datang.');
@@ -687,6 +693,12 @@ loginInput.addEventListener('keypress', (e) => {
 loadPages();
 renderAll();
 updateClock();
+
+// Cek sesi login saat halaman dimuat (mencegah logout saat F5)
+if (sessionStorage.getItem('togelon_auth') === 'true') {
+  document.getElementById('loginGate').classList.add('unlocked');
+  document.getElementById('appLayout').style.opacity = '1';
+}
 </script>
 </body>
 </html>
