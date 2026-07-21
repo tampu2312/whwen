@@ -134,6 +134,7 @@
     .stat-card:nth-child(7)::before{background:var(--rose)}
     .stat-card:nth-child(8)::before{background:var(--cyan)}
     .stat-card:nth-child(9)::before{background:var(--lime)}
+    .stat-card:nth-child(10)::before{background:#a855f7}
     .stat-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
     .stat-card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px}
     .stat-card:nth-child(1) .stat-card-icon{background:rgba(0,229,160,0.1);color:var(--accent)}
@@ -145,6 +146,7 @@
     .stat-card:nth-child(7) .stat-card-icon{background:rgba(236,72,153,0.1);color:var(--rose)}
     .stat-card:nth-child(8) .stat-card-icon{background:rgba(34,211,238,0.1);color:var(--cyan)}
     .stat-card:nth-child(9) .stat-card-icon{background:rgba(163,230,53,0.1);color:var(--lime)}
+    .stat-card:nth-child(10) .stat-card-icon{background:rgba(168,85,247,0.1);color:#a855f7}
     .stat-card-status{font-size:10px;font-family:'JetBrains Mono',monospace;padding:3px 8px;border-radius:6px;font-weight:600}
     .status-live{background:rgba(0,229,160,0.12);color:var(--success)}
     .stat-card-value{font-size:18px;font-weight:700;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
@@ -167,6 +169,7 @@
     .quick-card:nth-child(7) .quick-card-icon{background:linear-gradient(135deg,rgba(236,72,153,0.15),rgba(236,72,153,0.03));color:var(--rose)}
     .quick-card:nth-child(8) .quick-card-icon{background:linear-gradient(135deg,rgba(34,211,238,0.15),rgba(34,211,238,0.03));color:var(--cyan)}
     .quick-card:nth-child(9) .quick-card-icon{background:linear-gradient(135deg,rgba(163,230,53,0.15),rgba(163,230,53,0.03));color:var(--lime)}
+    .quick-card:nth-child(10) .quick-card-icon{background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(168,85,247,0.03));color:#a855f7}
     .quick-card-arrow{width:30px;height:30px;border-radius:8px;background:rgba(10,10,18,0.6);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:11px;transition:all .3s}
     .quick-card:hover .quick-card-arrow{color:var(--accent);background:var(--accent-glow);transform:translate(2px,-2px)}
     .quick-card-title{font-size:15px;font-weight:600;margin-bottom:5px;position:relative;z-index:1}
@@ -364,13 +367,14 @@ document.addEventListener('selectstart', function(e) { if (e.target.tagName === 
 document.addEventListener('dragstart', function(e) { e.preventDefault(); return false; });
 
 /* ============================================================
-   KONFIGURASI PUSAT — TERMASUK SOHRCAHT QRIS
+   KONFIGURASI PUSAT — TERMASUK EDIT KEMANGAN
    ============================================================ */
 const DEFAULT_PAGES = {
   linkcek: { id: 'linkcek', name: 'Link Cek', icon: 'fas fa-link', desc: 'Platform pengecekan dan validasi link.', url: 'https://tampu2312.github.io/linkcek/', group: 'Menu Utama', status: 'ONLINE', fallbackIcon: 'fa-link', fallbackColor: 'accent' },
   deloc: { id: 'deloc', name: 'CATATAN & REPORT', icon: 'fas fa-mobile-alt', desc: 'Aplikasi utilitas all-in-one.', url: 'https://tampu2312.github.io/report/', group: 'Menu Utama', status: 'ONLINE', fallbackIcon: 'fa-mobile-alt', fallbackColor: 'accent2' },
   qris: { id: 'qris', name: 'QRIS & Pinjaman', icon: 'fas fa-qrcode', desc: 'Layanan pembayaran QRIS dan pinjaman.', url: 'https://tampu2312.github.io/QrisAndPinjaman/', group: 'Menu Utama', status: 'ONLINE', fallbackIcon: 'fa-qrcode', fallbackColor: 'accent' },
   sohrcahtqris: { id: 'sohrcahtqris', name: 'Sohrcaht QRIS', icon: 'fas fa-money-check-alt', desc: 'Layanan Sohrcaht QRIS untuk transaksi pembayaran.', url: 'https://xpyhm.oneapp.dev/', group: 'Menu Utama', status: 'LIVE', fallbackIcon: 'fa-money-check-alt', fallbackColor: 'lime' },
+  editkemangan: { id: 'editkemangan', name: 'Edit Kemangan', icon: 'fas fa-edit', desc: 'Halaman edit kemangan.', url: 'https://tampu2312.github.io/Edit-kemenagan/', group: 'Menu Utama', status: 'ONLINE', fallbackIcon: 'fa-edit', fallbackColor: 'accent2' },
   bola: { id: 'bola', name: 'SCHORCAT Bola', icon: 'fas fa-futbol', desc: 'Pantau skor sepak bola real-time.', url: 'https://tampu2312.github.io/BOLLA/', group: 'Layanan Premium', status: 'LIVE', fallbackIcon: 'fa-futbol', fallbackColor: 'warning' },
   result: { id: 'result', name: 'Result Togel', icon: 'fas fa-trophy', desc: 'Hasil pengeluaran togel terkini.', url: 'https://tampu2312.github.io/Togeltampu/', group: 'Layanan Premium', status: 'LIVE', fallbackIcon: 'fa-trophy', fallbackColor: 'accent2' },
   prediksi: { id: 'prediksi', name: 'Prediksi Togel', icon: 'fas fa-chart-line', desc: 'Analisis dan prediksi angka jitu.', url: 'https://tampu2312.github.io/prediksitogel/', group: 'Layanan Premium', status: 'LIVE', fallbackIcon: 'fa-chart-line', fallbackColor: 'cyan' },
@@ -530,248 +534,159 @@ function closeEditModal() {
   document.getElementById('editModal').classList.remove('visible');
   currentEditPage = null;
 }
+
+// Melanjutkan kode yang terpotong
 document.getElementById('modalCancelBtn').onclick = closeEditModal;
 document.getElementById('modalSaveBtn').onclick = function() {
-  if (currentEditPage) updatePageLink(currentEditPage, document.getElementById('modalUrlInput').value);
-  closeEditModal();
+  if (currentEditPage) {
+    updatePageLink(currentEditPage, document.getElementById('modalUrlInput').value);
+    closeEditModal();
+  }
 };
 document.getElementById('modalResetBtn').onclick = function() {
-  if (currentEditPage) resetPageLink(currentEditPage);
-  closeEditModal();
+  if (currentEditPage) {
+    resetPageLink(currentEditPage);
+    closeEditModal();
+  }
 };
 
 function switchPage(pageId) {
   document.querySelectorAll('.page-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  
   const panel = document.getElementById('page-' + pageId);
   if (panel) panel.classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  
   const navItem = document.querySelector('.nav-item[data-page="' + pageId + '"]');
   if (navItem) navItem.classList.add('active');
-  if (pageId !== 'home') {
+  
+  let title = 'Dashboard';
+  let breadcrumb = 'Home / Overview';
+  if (pageId !== 'home' && PAGES[pageId]) {
+    title = PAGES[pageId].name;
+    breadcrumb = 'Home / ' + PAGES[pageId].group + ' / ' + title;
+    
     const iframe = document.getElementById('iframe-' + pageId);
-    if (iframe && (iframe.src === 'about:blank' || iframe.src === window.location.href)) iframe.src = getPageUrl(pageId);
-    const p = PAGES[pageId];
-    document.getElementById('topbarTitle').textContent = p ? p.name : 'Dashboard';
-    document.getElementById('topbarBreadcrumb').textContent = p ? p.group + ' / ' + p.name : 'Home / Overview';
-  } else {
-    document.getElementById('topbarTitle').textContent = 'Dashboard';
-    document.getElementById('topbarBreadcrumb').textContent = 'Home / Overview';
-  }
-  // Tutup sidebar mobile
-  if (window.innerWidth <= 768) {
-    document.getElementById('sidebar').classList.remove('mobile-open');
-    document.getElementById('sidebarOverlay').classList.remove('active');
-  }
-}
-
-function retryIframe(pageId) {
-  const iframe = document.getElementById('iframe-' + pageId);
-  const loading = document.getElementById('loading-' + pageId);
-  const fallback = document.getElementById('fallback-' + pageId);
-  if (!iframe) return;
-  if (fallback) fallback.classList.remove('visible');
-  if (loading) loading.classList.remove('hidden');
-  iframe.src = 'about:blank';
-  setTimeout(function() { iframe.src = getPageUrl(pageId); }, 300);
-}
-
-/* ============================================================
-   SIDEBAR TOGGLE
-   ============================================================ */
-function toggleSidebar() {
-  const sb = document.getElementById('sidebar');
-  if (window.innerWidth <= 768) {
-    sb.classList.toggle('mobile-open');
-    document.getElementById('sidebarOverlay').classList.toggle('active');
-  } else {
-    sb.classList.toggle('collapsed');
-  }
-}
-document.getElementById('sidebarOverlay').onclick = function() {
-  document.getElementById('sidebar').classList.remove('mobile-open');
-  this.classList.remove('active');
-};
-
-/* ============================================================
-   TOAST NOTIFICATIONS
-   ============================================================ */
-function showToast(type, msg) {
-  const container = document.getElementById('toastContainer');
-  const iconMap = { success: 'fa-check-circle', warning: 'fa-exclamation-triangle', info: 'fa-info-circle', danger: 'fa-times-circle' };
-  const toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.innerHTML = '<div class="toast-icon ' + type + '"><i class="fas ' + (iconMap[type] || 'fa-info-circle') + '"></i></div><div>' + msg + '</div>';
-  container.appendChild(toast);
-  setTimeout(function() { toast.classList.add('leaving'); setTimeout(function() { toast.remove(); }, 300); }, 3500);
-}
-
-/* ============================================================
-   CLOCK
-   ============================================================ */
-function updateClock() {
-  const now = new Date();
-  document.getElementById('topbarClock').textContent = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-}
-setInterval(updateClock, 1000);
-updateClock();
-
-/* ============================================================
-   IFRAME LOAD HANDLERS
-   ============================================================ */
-function setupIframeHandlers() {
-  for (const key in PAGES) {
-    const p = PAGES[key];
-    const iframe = document.getElementById('iframe-' + p.id);
-    if (!iframe) continue;
-    iframe.addEventListener('load', function() {
-      const loading = document.getElementById('loading-' + p.id);
-      if (loading) loading.classList.add('hidden');
-    });
-    iframe.addEventListener('error', function() {
-      const loading = document.getElementById('loading-' + p.id);
-      const fallback = document.getElementById('fallback-' + p.id);
-      if (loading) loading.classList.add('hidden');
-      if (fallback) fallback.classList.add('visible');
-    });
-  }
-}
-
-/* ============================================================
-   LOGIN SYSTEM
-   ============================================================ */
-const ACCESS_KEY = 'tampu2312';
-let loginAttempts = 0;
-
-function attemptLogin() {
-  const pw = document.getElementById('loginPassword').value;
-  const errorEl = document.getElementById('loginError');
-  const errorText = document.getElementById('loginErrorText');
-  const btn = document.getElementById('loginBtn');
-
-  if (pw === ACCESS_KEY) {
-    btn.classList.add('loading');
-    btn.innerHTML = '<span class="btn-shimmer"></span><i class="fas fa-spinner fa-spin" style="margin-right:6px"></i> Mengakses...';
-    errorEl.classList.add('hidden');
-    setTimeout(function() {
-      document.getElementById('loginGate').classList.add('unlocked');
-      document.getElementById('appLayout').style.opacity = '1';
-      sessionStorage.setItem('togelon_auth', '1');
-      showToast('success', 'Selamat datang! Akses berhasil.');
-    }, 1200);
-  } else {
-    loginAttempts++;
-    errorText.textContent = 'Kunci akses salah! Percobaan ke-' + loginAttempts;
-    errorEl.classList.remove('hidden');
-    document.getElementById('loginCard').classList.add('shake');
-    setTimeout(function() { document.getElementById('loginCard').classList.remove('shake'); }, 500);
-    document.getElementById('loginAttempts').textContent = loginAttempts >= 3 ? 'Percobaan: ' + loginAttempts + '/5 — Akses terkunci setelah 5x salah' : '';
-    if (loginAttempts >= 5) {
-      btn.disabled = true;
-      btn.style.opacity = '0.4';
-      errorText.textContent = 'Akses ditolak. Terlalu banyak percobaan salah.';
-      setTimeout(function() {
-        loginAttempts = 0;
-        btn.disabled = false;
-        btn.style.opacity = '1';
-        errorEl.classList.add('hidden');
-        document.getElementById('loginAttempts').textContent = '';
-      }, 30000);
+    if (iframe && (iframe.src === 'about:blank' || iframe.src === '')) {
+      document.getElementById('loading-' + pageId).classList.remove('hidden');
+      iframe.src = PAGES[pageId].url;
+      
+      iframe.onload = function() {
+        document.getElementById('loading-' + pageId).classList.add('hidden');
+      };
+      iframe.onerror = function() {
+        document.getElementById('loading-' + pageId).classList.add('hidden');
+        document.getElementById('fallback-' + pageId).classList.add('visible');
+      };
     }
   }
+  document.getElementById('topbarTitle').textContent = title;
+  document.getElementById('topbarBreadcrumb').textContent = breadcrumb;
 }
 
-document.getElementById('loginBtn').onclick = attemptLogin;
-document.getElementById('loginPassword').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') attemptLogin();
-});
-document.getElementById('togglePwBtn').onclick = function() {
-  const inp = document.getElementById('loginPassword');
-  const ico = document.getElementById('pwToggleIcon');
-  if (inp.type === 'password') { inp.type = 'text'; ico.className = 'fas fa-eye-slash'; }
-  else { inp.type = 'password'; ico.className = 'fas fa-eye'; }
-};
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.classList.toggle('collapsed');
+  if (window.innerWidth <= 768) {
+    sidebar.classList.toggle('mobile-open');
+    document.getElementById('sidebarOverlay').classList.toggle('active');
+  }
+}
 
 function lockDashboard() {
   document.getElementById('loginGate').classList.remove('unlocked');
   document.getElementById('appLayout').style.opacity = '0';
   document.getElementById('loginPassword').value = '';
-  sessionStorage.removeItem('togelon_auth');
-  switchPage('home');
-  showToast('warning', 'Dashboard terkunci');
 }
 
-// Cek sesi sudah login
-if (sessionStorage.getItem('togelon_auth') === '1') {
-  document.getElementById('loginGate').classList.add('unlocked');
-  document.getElementById('appLayout').style.opacity = '1';
+function retryIframe(pageId) {
+  const iframe = document.getElementById('iframe-' + pageId);
+  if (iframe) {
+    document.getElementById('loading-' + pageId).classList.remove('hidden');
+    document.getElementById('fallback-' + pageId).classList.remove('visible');
+    iframe.src = 'about:blank';
+    setTimeout(() => { 
+      iframe.src = PAGES[pageId].url; 
+    }, 100);
+  }
 }
 
-/* ============================================================
-   PARTICLE CANVAS (Background)
-   ============================================================ */
-function initParticles() {
-  const canvas = document.getElementById('particle-canvas');
-  const ctx = canvas.getContext('2d');
-  let w, h, particles = [];
-  function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
-  resize();
-  window.addEventListener('resize', resize);
-  for (let i = 0; i < 50; i++) {
-    particles.push({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 1.5 + 0.5, dx: (Math.random() - 0.5) * 0.3, dy: (Math.random() - 0.5) * 0.3, o: Math.random() * 0.4 + 0.1 });
-  }
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-    particles.forEach(function(p) {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, Math.max(0.1, p.r), 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(0,229,160,' + p.o + ')';
-      ctx.fill();
-      p.x += p.dx; p.y += p.dy;
-      if (p.x < 0 || p.x > w) p.dx *= -1;
-      if (p.y < 0 || p.y > h) p.dy *= -1;
-    });
-    requestAnimationFrame(draw);
-  }
-  draw();
+function showToast(type, message) {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  const iconMap = { success: 'fa-check-circle', warning: 'fa-exclamation-triangle', info: 'fa-info-circle', danger: 'fa-times-circle' };
+  toast.innerHTML = '<i class="fas ' + iconMap[type] + ' toast-icon ' + type + '"></i><span>' + message + '</span>';
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.classList.add('leaving');
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
 }
+
+function updateClock() {
+  const now = new Date();
+  const time = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  document.getElementById('topbarClock').textContent = time;
+}
+setInterval(updateClock, 1000);
 
 /* ============================================================
-   LOGIN PARTICLES
+   LOGIN FUNCTIONALITY
    ============================================================ */
-function initLoginParticles() {
-  const canvas = document.getElementById('login-particles');
-  const ctx = canvas.getContext('2d');
-  let w, h, pts = [];
-  function resize() { w = canvas.width = canvas.parentElement.offsetWidth; h = canvas.height = canvas.parentElement.offsetHeight; }
-  resize();
-  window.addEventListener('resize', resize);
-  for (let i = 0; i < 30; i++) {
-    pts.push({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 1.2 + 0.3, dx: (Math.random() - 0.5) * 0.2, dy: (Math.random() - 0.5) * 0.2, o: Math.random() * 0.3 + 0.05 });
+const ACCESS_KEY = "tampu2312"; // Ubah sesuai kunci akses Anda jika berbeda
+const loginBtn = document.getElementById('loginBtn');
+const loginInput = document.getElementById('loginPassword');
+const loginError = document.getElementById('loginError');
+const loginErrorText = document.getElementById('loginErrorText');
+const togglePwBtn = document.getElementById('togglePwBtn');
+const pwToggleIcon = document.getElementById('pwToggleIcon');
+const loginGate = document.getElementById('loginGate');
+const appLayout = document.getElementById('appLayout');
+
+togglePwBtn.addEventListener('click', () => {
+  if (loginInput.type === 'password') {
+    loginInput.type = 'text';
+    pwToggleIcon.classList.remove('fa-eye');
+    pwToggleIcon.classList.add('fa-eye-slash');
+  } else {
+    loginInput.type = 'password';
+    pwToggleIcon.classList.remove('fa-eye-slash');
+    pwToggleIcon.classList.add('fa-eye');
   }
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-    pts.forEach(function(p) {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, Math.max(0.1, p.r), 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(0,229,160,' + p.o + ')';
-      ctx.fill();
-      p.x += p.dx; p.y += p.dy;
-      if (p.x < 0 || p.x > w) p.dx *= -1;
-      if (p.y < 0 || p.y > h) p.dy *= -1;
-    });
-    requestAnimationFrame(draw);
-  }
-  draw();
+});
+
+function attemptLogin() {
+  loginBtn.classList.add('loading');
+  loginBtn.innerHTML = '<span class="btn-shimmer"></span><i class="fas fa-spinner fa-spin" style="margin-right:6px"></i> MEMPROSES...';
+  
+  setTimeout(() => {
+    if (loginInput.value === ACCESS_KEY) {
+      loginGate.classList.add('unlocked');
+      appLayout.style.opacity = '1';
+      showToast('success', 'Login berhasil! Selamat datang.');
+    } else {
+      loginError.classList.remove('hidden');
+      loginErrorText.textContent = 'Kunci akses salah! Coba lagi.';
+      document.getElementById('loginCard').classList.add('shake');
+      setTimeout(() => document.getElementById('loginCard').classList.remove('shake'), 500);
+      loginBtn.classList.remove('loading');
+      loginBtn.innerHTML = '<span class="btn-shimmer"></span><i class="fas fa-lock-open" style="margin-right:6px"></i> MASUK';
+    }
+  }, 800);
 }
+
+loginBtn.addEventListener('click', attemptLogin);
+loginInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') attemptLogin();
+});
 
 /* ============================================================
    INIT
    ============================================================ */
 loadPages();
 renderAll();
-setupIframeHandlers();
-initParticles();
-initLoginParticles();
+updateClock();
 </script>
 </body>
 </html>
